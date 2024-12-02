@@ -25,23 +25,23 @@ public class QueuePassengerController : MonoBehaviour
 
     }
 
-    public void Rearrange()
-    {
-        currentQueue = new Queue<GameObject>();
-        for (int i = 0; i < queueSize; i++)
-        {
-            GameObject passenger = objectPool.GetObject();
-            currentQueue.Enqueue(passenger);
-            if (i > queuePassengerData.QueuePassenger.Count)
-            {
-                passenger.SetActive(false);
-            }
-            else
-            {
-                passenger.GetComponent<PassengerBehaviour>().MoveTo(queueSize - i - 1);
-            }
-        }
-    }
+    //public void Rearrange()
+    //{
+    //    currentQueue = new Queue<GameObject>();
+    //    for (int i = 0; i < queueSize; i++)
+    //    {
+    //        GameObject passenger = objectPool.GetObject();
+    //        currentQueue.Enqueue(passenger);
+    //        if (i > queuePassengerData.QueuePassenger.Count)
+    //        {
+    //            passenger.SetActive(false);
+    //        }
+    //        else
+    //        {
+    //            passenger.GetComponent<PassengerBehaviour>().MoveTo(queueSize - i - 1);
+    //        }
+    //    }
+    //}
 
     public void EnqueuePassenger(int num)
     {
@@ -72,6 +72,12 @@ public class QueuePassengerController : MonoBehaviour
 
     public void DequeuePassenger(int num)
     {
+        if (queuePassengerData.GetSize() == 0)
+        {
+            Debug.Log("queue is empty");
+            return;
+        }
+
         for (int i = 0; i < num; i++)
         {
             GameObject passenger = currentQueue.Dequeue();
@@ -80,14 +86,15 @@ public class QueuePassengerController : MonoBehaviour
 
         for (int i = 0; i < num; i++)
         {
-            if (queuePassengerData.QueuePassenger.Count > num + currentQueue.Count)
+            int nextIdx = num + currentQueue.Count;
+            if (nextIdx < queuePassengerData.GetSize())
             {
                 GameObject passenger = objectPool.GetObject();
                 var controller = passenger.GetComponent<PassengerController>();
 
-                var data = controller.PassengerData;   
-                data.Color = queuePassengerData.GetColorByIdx(currentQueue.Count + num);
-                data.PositionIndex = currentQueue.Count + num;
+                var data = controller.PassengerData;
+                data.Color = queuePassengerData.GetColorByIdx(nextIdx);
+                data.PositionIndex = nextIdx;
                 currentQueue.Enqueue(passenger);
             }
             else
@@ -107,5 +114,6 @@ public class QueuePassengerController : MonoBehaviour
         }
 
         this.queuePassengerData.DequeuePassenger(num);
+        Debug.Log("QueueData -> Size: " + queuePassengerData.GetSize());
     }
 }

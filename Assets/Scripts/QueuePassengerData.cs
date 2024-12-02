@@ -35,20 +35,18 @@ public class QueuePassengerData
             {
                 back.num += num;
                 queue.SetBack(back);
-                Debug.Log("enqueue -> size: " + GetSize());
                 return;
             }
         }
         queue.Enqueue(new Pair(color, num));
-        Debug.Log("enqueue -> size: " + GetSize());
     }
 
     public void DequeuePassenger(int num)
     {
-        while (true)
+        while (queue.Count > 0)
         {
             var front = QueuePassenger.Peek();
-            if (front.num > num)
+            if (front.num >= num)
             {
                 front.num -= num;
                 queue.SetFront(front);
