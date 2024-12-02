@@ -55,6 +55,11 @@ public class CarData
         this.direction = CarDirection.L;
     }
 
+    public CarData(CarColor color, CarSize size, CarDirection direction)
+    {
+        this.SetData(color, size, direction);
+    }
+
     public void SetData(CarColor color, CarSize size, CarDirection direction)
     {
         this.color = color;
@@ -64,7 +69,7 @@ public class CarData
 
     public string GetSpriteName()
     {
-        return this.color.ToString() + "_car_" + (int) this.size + "_" +  math.abs((int) this.direction);
+        return this.color.ToString() + "_car_" + (int) this.size + "_" +  this.GetDirectionId();
     }
 
     public void SetDirection(CarDirection direction)

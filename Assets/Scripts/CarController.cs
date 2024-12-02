@@ -69,4 +69,16 @@ public class CarController : MonoBehaviour
         this.carData.SetData(color, size, direction);
         LoadView();
     }
+
+
+    public void SetData(CarData carData)
+    {
+        this.carData = carData;
+
+        color = this.carData.Color;
+        size = this.carData.Size;
+        direction = this.carData.Direction;
+
+        this.LoadView();
+    }
 }
