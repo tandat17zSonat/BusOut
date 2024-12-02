@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "NewCarScriptableObject", menuName = "ScriptableObject")]
+[CreateAssetMenu(fileName = "NewCarScriptableObject", menuName = "CarScriptableObject")]
 public class CarScriptableObject : ScriptableObject
 {
     [SerializeField] List<Sprite> sprites;
