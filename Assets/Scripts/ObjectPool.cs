@@ -8,6 +8,7 @@ public class ObjectPool : MonoBehaviour
     [SerializeField] GameObject prefab;
     [SerializeField] int poolSize = 20;
     [SerializeField] Queue<GameObject> pool;
+    [SerializeField] GameObject parent;
 
     private void Awake()
     {
@@ -16,6 +17,7 @@ public class ObjectPool : MonoBehaviour
         for (int i = 0; i < poolSize; i++)
         {
             GameObject go = Instantiate(prefab);
+            go.transform.SetParent(parent.transform, false);
             go.SetActive(false);
             pool.Enqueue(go);
         }

@@ -42,7 +42,7 @@ public class PassengerController : MonoBehaviour
         Sprite sprite = passengerScriptableObject.GetSprite(this.PassengerData);
         spriteRenderer.sprite = sprite;
 
-        transform.position = this.PassengerData.GetPosition();
+        transform.localPosition = this.PassengerData.GetPosition();
     }
 
     private void OnValidate()
