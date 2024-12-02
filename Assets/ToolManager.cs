@@ -26,10 +26,9 @@ public class ToolManager : MonoBehaviour
             return;
         }
 
-        // Tạo đối tượng lưu dữ liệu
+        // Tạo
         ParkingPlotData plotData = new ParkingPlotData();
         plotData.Level = level; 
-        // Thu thập thông tin các xe con
         foreach (Transform carTransform in parkingPlot.transform)
         {
             CarData carData = carTransform.GetComponent<CarController>().CarData;
