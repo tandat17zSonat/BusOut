@@ -1,9 +1,12 @@
-using System;
+﻿using System;
+using System.IO;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using Newtonsoft.Json;
+using System.Drawing;
 
 public class CarSpawner : MonoBehaviour
 {
@@ -14,7 +17,7 @@ public class CarSpawner : MonoBehaviour
     [SerializeField] ToggleGroup toggleGroupSize;
     [SerializeField] ToggleGroup toggleGroupDirection;
 
-    
+
 
     private CarData carData;
 
@@ -23,23 +26,39 @@ public class CarSpawner : MonoBehaviour
 
     }
 
-    public void create()
+    public void CreateFromToggle()
     {
-        string strColor = toggleGroupColor.GetComponent<ToggleGroupController>().SelectedToggleName;
-        CarColor color = (CarColor)Enum.Parse(typeof(CarColor), strColor);
+        try
+        {
+            string strColor = toggleGroupColor.GetComponent<ToggleGroupController>().SelectedToggleName;
+            CarColor color = (CarColor)Enum.Parse(typeof(CarColor), strColor);
 
-        string strSize = toggleGroupSize.GetComponent<ToggleGroupController>().SelectedToggleName;
-        CarSize size = (CarSize)Enum.Parse(typeof(CarSize), strSize);
+            string strSize = toggleGroupSize.GetComponent<ToggleGroupController>().SelectedToggleName;
+            CarSize size = (CarSize)Enum.Parse(typeof(CarSize), strSize);
 
-        string strDirection = toggleGroupDirection.GetComponent<ToggleGroupController>().SelectedToggleName;
-        CarDirection direction = (CarDirection)Enum.Parse(typeof(CarDirection), strDirection);
+            string strDirection = toggleGroupDirection.GetComponent<ToggleGroupController>().SelectedToggleName;
+            CarDirection direction = (CarDirection)Enum.Parse(typeof(CarDirection), strDirection);
+            
+            Debug.Log("Create " + color + "- " + size + "- " + direction);
+            this.carData = new CarData(color, size, direction);
 
-        Debug.Log("Create " + color + "- " + size + "- " + direction);
+            this.Create(this.carData);
+        }
+        catch
+        {
+            Debug.Log("ERROR create car");
+            return;
+        }
+    }
 
-        carData = new CarData(color, size, direction);
-
+    public void Create(CarData carData)
+    {
         GameObject newObject = Instantiate(prefabCar);
         newObject.transform.SetParent(parentObject.transform);
-        newObject.GetComponent<CarController>().SetData(carData);
+
+        // Hiển thị Object -------------------------
+        CarController controller = newObject.GetComponent<CarController>();
+        controller.SetCarData(carData);
+        controller.LoadView();
     }
 }

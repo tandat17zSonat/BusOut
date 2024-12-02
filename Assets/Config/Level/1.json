@@ -1,0 +1,73 @@
+{
+  "Level": 1,
+  "Cars": [
+    {
+      "Color": 6,
+      "Size": 4,
+      "Direction": 1,
+      "Position": {
+        "x": -7.16396141,
+        "y": 1.87592363,
+        "normalized": {
+          "x": -0.9673839,
+          "y": 0.2533149,
+          "magnitude": 1.0,
+          "sqrMagnitude": 1.00000012
+        },
+        "magnitude": 7.4055,
+        "sqrMagnitude": 54.84143
+      }
+    },
+    {
+      "Color": 6,
+      "Size": 4,
+      "Direction": 1,
+      "Position": {
+        "x": -7.123065,
+        "y": -12.6560955,
+        "normalized": {
+          "x": -0.490471035,
+          "y": -0.8714575,
+          "magnitude": 1.0,
+          "sqrMagnitude": 1.0
+        },
+        "magnitude": 14.5229063,
+        "sqrMagnitude": 210.91481
+      }
+    },
+    {
+      "Color": 5,
+      "Size": 10,
+      "Direction": 5,
+      "Position": {
+        "x": 8.064999,
+        "y": 1.50664806,
+        "normalized": {
+          "x": 0.9829943,
+          "y": 0.1836363,
+          "magnitude": 1.0,
+          "sqrMagnitude": 1.00000012
+        },
+        "magnitude": 8.204522,
+        "sqrMagnitude": 67.31419
+      }
+    },
+    {
+      "Color": 7,
+      "Size": 10,
+      "Direction": -1,
+      "Position": {
+        "x": 9.039885,
+        "y": -12.1418018,
+        "normalized": {
+          "x": 0.597186148,
+          "y": -0.8021027,
+          "magnitude": 1.0,
+          "sqrMagnitude": 1.0
+        },
+        "magnitude": 15.1374655,
+        "sqrMagnitude": 229.142868
+      }
+    }
+  ]
+}

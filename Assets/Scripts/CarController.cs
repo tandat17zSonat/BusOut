@@ -14,6 +14,8 @@ public class CarController : MonoBehaviour
 
     private Vector3 delta;
 
+    public CarData CarData { get => carData; set => carData = value; }
+
     // Start is called before the first frame update
     void Start()
     {
@@ -23,7 +25,7 @@ public class CarController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        carData.Position = transform.position;
     }
 
     private void OnMouseDown()
@@ -39,17 +41,23 @@ public class CarController : MonoBehaviour
 
     public void SetCarData(CarData carData)
     {
-        this.carData = carData;
+        this.CarData = carData;
+
+        color = this.CarData.Color;
+        size = this.CarData.Size;
+        direction = this.CarData.Direction;
+
+        transform.position = this.carData.Position;
     }
 
     public void LoadView()
     {
         SpriteRenderer spriteRenderer = GetComponent<SpriteRenderer>();
-        Sprite sprite = carScriptableObject.GetSprite(this.carData);
+        Sprite sprite = carScriptableObject.GetSprite(this.CarData);
         spriteRenderer.sprite = sprite;
 
         PolygonCollider2D collider = GetComponent<PolygonCollider2D>();
-        collider.points = carScriptableObject.GetCollisionPoints(this.carData);
+        collider.points = carScriptableObject.GetCollisionPoints(this.CarData);
 
         Vector3 currentScale = transform.localScale;
         if (direction == CarDirection.RB || direction == CarDirection.RT || direction == CarDirection.R)
@@ -66,19 +74,7 @@ public class CarController : MonoBehaviour
 
     private void OnValidate()
     {
-        this.carData.SetData(color, size, direction);
+        this.CarData.SetData(color, size, direction);
         LoadView();
-    }
-
-
-    public void SetData(CarData carData)
-    {
-        this.carData = carData;
-
-        color = this.carData.Color;
-        size = this.carData.Size;
-        direction = this.carData.Direction;
-
-        this.LoadView();
     }
 }
