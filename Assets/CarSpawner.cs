@@ -17,14 +17,8 @@ public class CarSpawner : MonoBehaviour
     [SerializeField] ToggleGroup toggleGroupSize;
     [SerializeField] ToggleGroup toggleGroupDirection;
 
-
-
     private CarData carData;
 
-    private void Start()
-    {
-
-    }
 
     public void CreateFromToggle()
     {

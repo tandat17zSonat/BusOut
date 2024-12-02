@@ -5,8 +5,8 @@ using UnityEngine.UI;
 
 public class ToggleGroupController : MonoBehaviour
 {
-    public ToggleGroup toggleGroup; // Gắn ToggleGroup từ Inspector
-    private string selectedToggleName; // Biến enum để lưu giá trị được chọn
+    public ToggleGroup toggleGroup;
+    private string selectedToggleName;
 
     public string SelectedToggleName { get; private set; }
     void Start()
@@ -22,7 +22,6 @@ public class ToggleGroupController : MonoBehaviour
     {
         if (isOn) // Nếu toggle được bật
         {
-            // Cập nhật giá trị enum dựa trên tên của toggle
             SelectedToggleName = toggle.name;
         }
     }

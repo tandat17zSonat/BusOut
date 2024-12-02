@@ -76,7 +76,7 @@ SpriteRenderer:
   m_SortingLayerID: -733754879
   m_SortingLayer: 1
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: fe48ef7246cf2544b809a415df30cfc5, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 4342baf0f86e85c4a835b69938ee6b25, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -176,6 +176,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   carScriptableObject: {fileID: 11400000, guid: 412ccd7494fb4634f86b0c8328e2c45a, type: 2}
-  color: 6
+  color: 0
   size: 4
   direction: 1

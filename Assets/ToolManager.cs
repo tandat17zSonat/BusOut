@@ -6,9 +6,12 @@ using UnityEngine;
 
 public class ToolManager : MonoBehaviour
 {
-    public GameObject parkingPlot;
-    public GameObject queuePassengers;
-    public CarSpawner carSpawner;
+    [SerializeField] CarScriptableObject carScriptableObject;
+
+    [SerializeField, Space(10)]  GameObject parkingPlot;
+    [SerializeField] GameObject queuePassengers;
+    [SerializeField] CarSpawner carSpawner;
+
 
     void Start()
     {
@@ -69,5 +72,17 @@ public class ToolManager : MonoBehaviour
         {
             carSpawner.Create(carData);
         }
+    }
+
+    public void RemoveCar()
+    {
+        if(carScriptableObject.SelectedCar == null)
+        {
+            Debug.LogWarning("RemoveCar -> selectedcar == null");
+            return;
+        }
+
+        GameObject.Destroy(carScriptableObject.SelectedCar.gameObject);
+        carScriptableObject.SelectedCar = null;
     }
 }

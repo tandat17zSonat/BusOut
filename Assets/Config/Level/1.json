@@ -38,7 +38,7 @@
     {
       "Color": 5,
       "Size": 10,
-      "Direction": 5,
+      "Direction": -1,
       "Position": {
         "x": 8.064999,
         "y": 1.50664806,
@@ -67,6 +67,23 @@
         },
         "magnitude": 15.1374655,
         "sqrMagnitude": 229.142868
+      }
+    },
+    {
+      "Color": 5,
+      "Size": 10,
+      "Direction": 5,
+      "Position": {
+        "x": 1.595274,
+        "y": -4.34268951,
+        "normalized": {
+          "x": 0.344817519,
+          "y": -0.938669741,
+          "magnitude": 1.0,
+          "sqrMagnitude": 1.0
+        },
+        "magnitude": 4.62642956,
+        "sqrMagnitude": 21.40385
       }
     }
   ]

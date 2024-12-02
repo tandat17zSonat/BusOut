@@ -6,12 +6,11 @@ public class CarController : MonoBehaviour
 {
     [SerializeField] CarScriptableObject carScriptableObject;
 
-    [SerializeField] CarColor color = CarColor.black;
+    [SerializeField, Space(10)] CarColor color = CarColor.black;
     [SerializeField] CarSize size = CarSize.four;
     [SerializeField] CarDirection direction = CarDirection.LB;
 
     private CarData carData = new CarData();
-
     private Vector3 delta;
 
     public CarData CarData { get => carData; set => carData = value; }
@@ -32,6 +31,8 @@ public class CarController : MonoBehaviour
     {
         Vector3 clickPoint = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         this.delta = clickPoint - this.transform.position;
+
+        carScriptableObject.SelectedCar = this;
     }
 
     private void OnMouseDrag()
@@ -77,4 +78,6 @@ public class CarController : MonoBehaviour
         this.CarData.SetData(color, size, direction);
         LoadView();
     }
+
+
 }

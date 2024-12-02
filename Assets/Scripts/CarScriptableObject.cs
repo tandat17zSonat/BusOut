@@ -7,8 +7,12 @@ public class CarScriptableObject : ScriptableObject
 {
     [SerializeField] List<Sprite> sprites;
     [SerializeField] List<PolygonCollider2D> colliders;
-
     private Dictionary<string, Sprite> spritesDict = new Dictionary<string, Sprite>();
+
+    private CarController selectedCar;
+    public CarController SelectedCar { get => selectedCar; set => selectedCar = value; }
+
+    
 
     public Sprite GetSprite(CarData car)
     {
