@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 7597729179115960814}
   - component: {fileID: 8654763212912997377}
   m_Layer: 0
-  m_Name: Car 1
+  m_Name: Car103
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -74,7 +74,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 7eefadac28b094e458c41ffabe57f5da, type: 3}
+  m_Sprite: {fileID: 21300000, guid: b8851b12a9694194185a4e0a27bc3ac6, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -121,7 +121,7 @@ PolygonCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 2.66, y: 2.07}
+    oldSize: {x: 1.68, y: 3.28}
     newSize: {x: 2.98, y: 2.62}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -129,8 +129,8 @@ PolygonCollider2D:
   m_AutoTiling: 0
   m_Points:
     m_Paths:
-    - - {x: -1.3436759, y: 0.59218264}
-      - {x: -1.2665406, y: -1.0448864}
-      - {x: 1.3448198, y: -1.0380347}
-      - {x: 1.2435422, y: 0.60813785}
+    - - {x: -0.86351067, y: 1.5144174}
+      - {x: -0.88776064, y: -1.6485196}
+      - {x: 0.88061386, y: -1.6606747}
+      - {x: 0.8756401, y: 1.5113237}
   m_UseDelaunayMesh: 0

@@ -35,7 +35,8 @@ public enum CarDirection
     RT = -3,
     R = -2,
     RB = -1,
-    B = 4
+    B = 4,
+    parking = 6
 }
 
 public class CarData

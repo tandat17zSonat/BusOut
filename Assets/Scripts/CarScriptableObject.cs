@@ -37,7 +37,7 @@ public class CarScriptableObject : ScriptableObject
 
     public Vector2[] GetCollisionPoints(CarData car)
     {
-        int idx = (car.GetDirectionId() - 1) + car.GetSizeId() * 5;
+        int idx = (car.GetDirectionId() - 1) + car.GetSizeId() * 6; // 6 = NUM_DIRECTION (enum)
         return this.colliders[idx].points;
     }
 }

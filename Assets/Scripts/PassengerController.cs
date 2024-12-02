@@ -7,7 +7,7 @@ public class PassengerController : MonoBehaviour
     [SerializeField] PassengerScriptableObject passengerScriptableObject;
 
     [SerializeField, Space(10)] CarColor color = CarColor.black;
-    [SerializeField] PassengerDirection direction = PassengerDirection.left1;
+    [SerializeField] int positionIndex = 0;
     [SerializeField] bool isSeat = false;
 
     private PassengerData passengerData = new PassengerData();
@@ -30,8 +30,10 @@ public class PassengerController : MonoBehaviour
         this.PassengerData = passengerData;
 
         color = this.PassengerData.Color;
-        direction = this.PassengerData.Direction;
+        positionIndex = this.PassengerData.PositionIndex;
         isSeat = this.PassengerData.IsSeat;
+
+        LoadView();
     }
 
     public void LoadView()
@@ -39,11 +41,13 @@ public class PassengerController : MonoBehaviour
         SpriteRenderer spriteRenderer = GetComponent<SpriteRenderer>();
         Sprite sprite = passengerScriptableObject.GetSprite(this.PassengerData);
         spriteRenderer.sprite = sprite;
+
+        transform.position = this.PassengerData.GetPosition();
     }
 
     private void OnValidate()
     {
-        this.PassengerData.SetData(color, direction, isSeat);
+        this.PassengerData.SetData(color, positionIndex, isSeat);
         LoadView();
     }
 }

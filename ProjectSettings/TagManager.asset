@@ -12,8 +12,8 @@ TagManager:
   - Water
   - UI
   - MainObject
-  - 
-  - 
+  - Passenger
+  - Building
   - 
   - 
   - 
@@ -43,6 +43,12 @@ TagManager:
     locked: 0
   - name: MainObject
     uniqueID: 3561212417
+    locked: 0
+  - name: Passenger
+    uniqueID: 3064339355
+    locked: 0
+  - name: Building
+    uniqueID: 1034710805
     locked: 0
   - name: UI
     uniqueID: 1326051001
