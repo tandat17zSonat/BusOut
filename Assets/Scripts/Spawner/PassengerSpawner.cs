@@ -1,6 +1,4 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -24,7 +22,7 @@ public class PassengerSpawner : BSpawner
         }
     }
 
-    public void Remove()
+    public override void Remove()
     {
         ((QueuePassengerController)controller).Remove(this.numIncrease);
     }

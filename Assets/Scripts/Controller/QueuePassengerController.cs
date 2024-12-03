@@ -1,8 +1,5 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using System.Drawing;
+﻿using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Rendering;
 
 public class QueuePassengerController : BController
 {
@@ -15,6 +12,34 @@ public class QueuePassengerController : BController
     {
         this.data = new QueuePassengerData();
         this.currentQueue = new Queue<GameObject>();
+    }
+
+    public override void Display()
+    {
+        while( currentQueue.Count > 0 )
+        {
+            var obj = currentQueue.Dequeue();
+            objectPool.ReturnObject(obj);
+        }
+
+        var queueData = (QueuePassengerData)this.data;
+        int size = queueData.GetSize();
+        for ( int  i = 0; i < queueSize; i++ )
+        {
+            if( i < size)
+            {
+                var obj = objectPool.GetObject();
+                var controller = obj.GetComponent<BController>();
+
+                var color = queueData.GetColorByIdx(i);
+                var iData = new PassengerData();
+                iData.SetData(color, i);
+                controller.SetInfo(iData);
+
+                currentQueue.Enqueue(obj);
+            }
+            
+        }
     }
 
     public void Add(CarColor color, int num)
@@ -37,36 +62,9 @@ public class QueuePassengerController : BController
 
         // update data
         queuePassengerData.DequeuePassenger(num);
-        SetInfo( queuePassengerData);
+        SetInfo(queuePassengerData);
 
         Debug.Log("Queue Size: " + queuePassengerData.GetSize());
     }
 
-    public override void Display()
-    {
-        while( currentQueue.Count > 0 )
-        {
-            var obj = currentQueue.Dequeue();
-            objectPool.ReturnObject(obj);
-        }
-
-        var queueData = (QueuePassengerData)this.data;
-        int size = queueData.GetSize();
-        for ( int  i = 0; i < queueSize; i++ )
-        {
-            if( i < size)
-            {
-                var obj = objectPool.GetObject();
-                var controller = obj.GetComponent<PassengerController>();
-
-                var color = queueData.GetColorByIdx(i);
-                var iData = new PassengerData();
-                iData.SetData(color, i);
-                controller.SetInfo(iData);
-
-                currentQueue.Enqueue(obj);
-            }
-            
-        }
-    }
 }

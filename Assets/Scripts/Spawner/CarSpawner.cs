@@ -1,23 +1,14 @@
 ﻿using System;
-using System.IO;
-using System.Collections;
-using System.Collections.Generic;
-using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
-using Newtonsoft.Json;
-using System.Drawing;
 
-public class CarSpawner : MonoBehaviour
+public class CarSpawner : BSpawner
 {
-    [SerializeField] GameObject prefab;
-    [SerializeField] GameObject parentObject;
-
     [SerializeField, Space(10)] ToggleGroup toggleGroupColor;
     [SerializeField] ToggleGroup toggleGroupSize;
     [SerializeField] ToggleGroup toggleGroupDirection;
 
-    public void CreateFromToggle()
+    public override void Create()
     {
         try
         {
@@ -29,11 +20,11 @@ public class CarSpawner : MonoBehaviour
 
             string strDirection = toggleGroupDirection.GetComponent<ToggleGroupController>().SelectedToggleName;
             CarDirection direction = (CarDirection)Enum.Parse(typeof(CarDirection), strDirection);
-            
+
             Debug.Log("Create Car -> " + color + "- " + size + "- " + direction);
             var carData = new CarData(color, size, direction);
 
-            this.Create(carData);
+            ((ParkingPlotController)controller).Add(carData);
         }
         catch
         {
@@ -42,14 +33,8 @@ public class CarSpawner : MonoBehaviour
         }
     }
 
-    public void Create(CarData carData)
+    public override void Remove()
     {
-        GameObject newObject = Instantiate(prefab);
-        newObject.transform.SetParent(parentObject.transform);
-
-        // Hiển thị Object -------------------------
-        CarController controller = newObject.GetComponent<CarController>();
-        controller.SetCarData(carData);
-        controller.LoadView();
+        ((ParkingPlotController)controller).Remove();
     }
 }

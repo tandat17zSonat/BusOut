@@ -1,10 +1,7 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using Newtonsoft.Json;
-using Unity.Mathematics;
+﻿using Unity.Mathematics;
 using UnityEngine;
 
-public class CarData
+public class CarData: BData
 {
     private CarColor color;
     private CarSize size;

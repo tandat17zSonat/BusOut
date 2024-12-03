@@ -37,6 +37,7 @@ public class PassengerController : BController
     }
     #endregion
 
+    // Cập nhật khi chỉnh sửa ở editor
     private void OnValidate()
     {
         if( this.data == null) this.data = new PassengerData();
