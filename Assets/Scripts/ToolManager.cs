@@ -12,6 +12,7 @@ public class ToolManager : MonoBehaviour
     [SerializeField] GameObject queuePassengers;
 
     [SerializeField, Space(10)] CarSpawner carSpawner;
+    [SerializeField] PassengerSpawner passengerSpawner;
 
     public void SaveToJson(int level)
     {

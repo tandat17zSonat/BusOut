@@ -43,9 +43,8 @@ public class QueuePassengerController : MonoBehaviour
     //    }
     //}
 
-    public void EnqueuePassenger(int num)
+    public void EnqueuePassenger(CarColor color, int num)
     {
-        CarColor color = CarColor.blue;
         queuePassengerData.EnqueuePassenger(color, num);
 
         for (int i = 0; i < num; i++)

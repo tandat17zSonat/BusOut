@@ -10,7 +10,7 @@ using System.Drawing;
 
 public class CarSpawner : MonoBehaviour
 {
-    [SerializeField] GameObject prefabCar;
+    [SerializeField] GameObject prefab;
     [SerializeField] GameObject parentObject;
 
     [SerializeField, Space(10)] ToggleGroup toggleGroupColor;
@@ -30,7 +30,7 @@ public class CarSpawner : MonoBehaviour
             string strDirection = toggleGroupDirection.GetComponent<ToggleGroupController>().SelectedToggleName;
             CarDirection direction = (CarDirection)Enum.Parse(typeof(CarDirection), strDirection);
             
-            Debug.Log("Create -> " + color + "- " + size + "- " + direction);
+            Debug.Log("Create Car -> " + color + "- " + size + "- " + direction);
             var carData = new CarData(color, size, direction);
 
             this.Create(carData);
@@ -44,7 +44,7 @@ public class CarSpawner : MonoBehaviour
 
     public void Create(CarData carData)
     {
-        GameObject newObject = Instantiate(prefabCar);
+        GameObject newObject = Instantiate(prefab);
         newObject.transform.SetParent(parentObject.transform);
 
         // Hiển thị Object -------------------------
