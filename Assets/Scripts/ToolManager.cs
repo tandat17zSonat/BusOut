@@ -4,6 +4,8 @@ using System.Collections.Generic;
 using Newtonsoft.Json;
 using UnityEngine;
 using Newtonsoft.Json.Linq;
+using UnityEngine.UI;
+using TMPro;
 
 public class ToolManager : MonoBehaviour
 {
@@ -15,14 +17,29 @@ public class ToolManager : MonoBehaviour
     [SerializeField, Space(10)] CarSpawner carSpawner;
     [SerializeField] PassengerSpawner passengerSpawner;
 
-    public void SaveToJson(int level)
+    [SerializeField] TMP_InputField inputLevel;
+
+    public void SaveToJson()
     {
+        int level;
+        try
+        {
+            level = int.Parse(inputLevel.text);
+        }
+        catch 
+        {
+            Debug.Log("ERROR: Nhập lại level");
+            return;
+        }
+        
+        
         if (parkingPlot == null)
         {
             Debug.LogError("Parking plot is not assigned!");
             return;
-        }
-
+        }   
+        
+        //--------------------------------------------------------------------------
         // data passenger
         var controller = queuePassengers.GetComponent<QueuePassengerController>();
         var queueData = controller.QueuePassengerData;
@@ -52,8 +69,20 @@ public class ToolManager : MonoBehaviour
         Debug.Log($"Parking plot saved to {filePath}");
     }
 
-    public void LoadFromJson(int level)
+    public void LoadFromJson()
     {
+        int level;
+        try
+        {
+            level = int.Parse(inputLevel.text);
+        }
+        catch
+        {
+            Debug.Log("ERROR: Nhập lại level");
+            return;
+        }
+
+        //--------------------------------------------------------------------
         string filePath = "Assets/Config/Level/" + level + ".json";
         if (!File.Exists(filePath))
         {
