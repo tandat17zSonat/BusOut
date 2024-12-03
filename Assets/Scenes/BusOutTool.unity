@@ -2098,7 +2098,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9c3ed8e04afa5804d914b69c5e7661bd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  prefab: {fileID: 0}
+  prefab: {fileID: 8382298084441418637, guid: 524a5ff0802e47f40bb5b50741c3db2c, type: 3}
   parentObject: {fileID: 1742640377}
   toggleGroupColor: {fileID: 2009171309}
   toggleGroupSize: {fileID: 1381198436}
