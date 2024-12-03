@@ -17,9 +17,6 @@ public class CarSpawner : MonoBehaviour
     [SerializeField] ToggleGroup toggleGroupSize;
     [SerializeField] ToggleGroup toggleGroupDirection;
 
-    private CarData carData;
-
-
     public void CreateFromToggle()
     {
         try
@@ -33,14 +30,14 @@ public class CarSpawner : MonoBehaviour
             string strDirection = toggleGroupDirection.GetComponent<ToggleGroupController>().SelectedToggleName;
             CarDirection direction = (CarDirection)Enum.Parse(typeof(CarDirection), strDirection);
             
-            Debug.Log("Create " + color + "- " + size + "- " + direction);
-            this.carData = new CarData(color, size, direction);
+            Debug.Log("Create -> " + color + "- " + size + "- " + direction);
+            var carData = new CarData(color, size, direction);
 
-            this.Create(this.carData);
+            this.Create(carData);
         }
         catch
         {
-            Debug.Log("ERROR create car");
+            Debug.Log("ERROR: create car");
             return;
         }
     }

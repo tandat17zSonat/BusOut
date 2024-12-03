@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -25,6 +25,7 @@ public class PassengerController : MonoBehaviour
 
     }
 
+    // region: Cập nhật info và hiển thị đúng
     public void SetData(PassengerData passengerData)
     {
         this.PassengerData = passengerData;
@@ -50,4 +51,5 @@ public class PassengerController : MonoBehaviour
         this.PassengerData.SetData(color, positionIndex, isSeat);
         LoadView();
     }
+    // endregion
 }

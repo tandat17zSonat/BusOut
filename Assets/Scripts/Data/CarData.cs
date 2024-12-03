@@ -4,41 +4,6 @@ using Newtonsoft.Json;
 using Unity.Mathematics;
 using UnityEngine;
 
-public enum CarColor
-{
-    black,
-    blue,
-    brown,
-    green,
-    grey,
-    oceanblue,
-    orange,
-    pink,
-    purple,
-    red,
-    yellow
-}
-
-public enum CarSize
-{
-    four = 4,
-    six = 6,
-    ten = 10
-}
-
-public enum CarDirection
-{
-    LB = 1,
-    L = 2,
-    LT = 3,
-    T = 5,
-    RT = -3,
-    R = -2,
-    RB = -1,
-    B = 4,
-    parking = 6
-}
-
 public class CarData
 {
     private CarColor color;
@@ -75,11 +40,6 @@ public class CarData
         return this.color.ToString() + "_car_" + (int)this.size + "_" + this.GetDirectionId();
     }
 
-    public void SetDirection(CarDirection direction)
-    {
-        this.direction = direction;
-    }
-
     public int GetDirectionId()
     {
         return math.abs((int)this.direction);
@@ -92,4 +52,39 @@ public class CarData
         if (this.size == CarSize.ten) return 2;
         return -1;
     }
+}
+
+public enum CarColor
+{
+    black,
+    blue,
+    brown,
+    green,
+    grey,
+    oceanblue,
+    orange,
+    pink,
+    purple,
+    red,
+    yellow
+}
+
+public enum CarSize
+{
+    four = 4,
+    six = 6,
+    ten = 10
+}
+
+public enum CarDirection
+{
+    LB = 1,
+    L = 2,
+    LT = 3,
+    T = 5,
+    RT = -3,
+    R = -2,
+    RB = -1,
+    B = 4,
+    parking = 6
 }

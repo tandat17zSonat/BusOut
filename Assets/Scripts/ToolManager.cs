@@ -10,13 +10,8 @@ public class ToolManager : MonoBehaviour
 
     [SerializeField, Space(10)]  GameObject parkingPlot;
     [SerializeField] GameObject queuePassengers;
-    [SerializeField] CarSpawner carSpawner;
 
-
-    void Start()
-    {
-        
-    }
+    [SerializeField, Space(10)] CarSpawner carSpawner;
 
     public void SaveToJson(int level)
     {
@@ -26,7 +21,7 @@ public class ToolManager : MonoBehaviour
             return;
         }
 
-        // Tạo
+        // Tạo data
         ParkingPlotData plotData = new ParkingPlotData();
         plotData.Level = level; 
         foreach (Transform carTransform in parkingPlot.transform)
@@ -40,11 +35,10 @@ public class ToolManager : MonoBehaviour
             ReferenceLoopHandling = ReferenceLoopHandling.Ignore // Bỏ qua vòng lặp
         };
 
+        // save
         string filePath = "Assets/Config/Level/" + level + ".json";
-        // Serialize dữ liệu thành JSON và lưu vào file
         string json = JsonConvert.SerializeObject(plotData, Formatting.Indented, settings);
         File.WriteAllText(filePath, json);
-
         Debug.Log($"Parking plot saved to {filePath}");
     }
 
@@ -57,11 +51,12 @@ public class ToolManager : MonoBehaviour
             return;
         }
 
-        // Đọc nội dung file JSON
+        // read
         string json = File.ReadAllText(filePath);
         ParkingPlotData plotData = JsonConvert.DeserializeObject<ParkingPlotData>(json);
-
         Debug.Log("ParkingPlot -> Load data: Level" + plotData.Level);
+
+        // display
         foreach (Transform child in parkingPlot.transform)
         {
             GameObject.Destroy(child.gameObject);

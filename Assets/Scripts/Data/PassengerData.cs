@@ -1,7 +1,6 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using static UnityEngine.RuleTile.TilingRuleOutput;
 
 public class PassengerData
 {
@@ -10,7 +9,7 @@ public class PassengerData
 
     private CarColor color;
     private bool isSeat = false;
-    private int positionIndex;
+    private int positionIndex; // index vị trí đừng
 
     public CarColor Color { get => color; set => color = value; }
     public bool IsSeat { get => isSeat; set => isSeat = value; }

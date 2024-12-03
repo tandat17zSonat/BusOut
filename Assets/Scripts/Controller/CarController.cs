@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -24,9 +24,10 @@ public class CarController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        carData.Position = transform.position;
+        carData.Position = transform.position; // Lưu lại vị trí xe mỗi khi xe di chuyển
     }
 
+    // region: Xử lý di chuyển xe bằng touch --------------------------------------
     private void OnMouseDown()
     {
         Vector3 clickPoint = Camera.main.ScreenToWorldPoint(Input.mousePosition);
@@ -39,7 +40,10 @@ public class CarController : MonoBehaviour
     {
         transform.position = Camera.main.ScreenToWorldPoint(Input.mousePosition) - this.delta;
     }
+    // endgion
 
+
+    // region: Cập nhật info và hiển thị đúng ------------------------------------
     public void SetCarData(CarData carData)
     {
         this.CarData = carData;
@@ -53,13 +57,16 @@ public class CarController : MonoBehaviour
 
     public void LoadView()
     {
+        // update sprite
         SpriteRenderer spriteRenderer = GetComponent<SpriteRenderer>();
         Sprite sprite = carScriptableObject.GetSprite(this.CarData);
         spriteRenderer.sprite = sprite;
 
+        // update collider
         PolygonCollider2D collider = GetComponent<PolygonCollider2D>();
         collider.points = carScriptableObject.GetCollisionPoints(this.CarData);
 
+        // lật object (vì phải lật ảnh)
         Vector3 currentScale = transform.localScale;
         if (direction == CarDirection.RB || direction == CarDirection.RT || direction == CarDirection.R)
         {
@@ -73,11 +80,13 @@ public class CarController : MonoBehaviour
         }
     }
 
+    /* Cập nhật khi chỉnh sửa ở editor
+     */
     private void OnValidate()
     {
         this.CarData.SetData(color, size, direction);
         LoadView();
     }
-
+    // endregion
 
 }
