@@ -8,11 +8,11 @@ using UnityEngine.UI;
 public class UIStatCar : MonoBehaviour
 {
     [SerializeField] ParkingPlotController parkingPlotController;
-
+    [SerializeField] ToggleGroup toggleGroup;
     public void UpdateInfo()
     {
         var plotData = parkingPlotController.ParkingPlotData;
-        foreach (var toggle in GetComponentsInChildren<Toggle>())
+        foreach (var toggle in toggleGroup.GetComponentsInChildren<Toggle>())
         {
             string strColor = toggle.name;
             var uiText = toggle.GetComponent<TextMeshProUGUI>();

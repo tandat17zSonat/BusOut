@@ -2754,7 +2754,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 1051121221}
+      - m_Target: {fileID: 1801533852}
         m_TargetAssemblyTypeName: UIStatPassenger, Assembly-CSharp
         m_MethodName: UpdateInfo
         m_Mode: 1
@@ -5321,7 +5321,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 2009171311}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: UIStatCar, Assembly-CSharp
         m_MethodName: UpdateInfo
         m_Mode: 1
@@ -44491,7 +44491,6 @@ GameObject:
   - component: {fileID: 1051121218}
   - component: {fileID: 1051121219}
   - component: {fileID: 1051121220}
-  - component: {fileID: 1051121221}
   m_Layer: 5
   m_Name: ToggleGroup Color
   m_TagString: Untagged
@@ -44555,19 +44554,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   toggleGroup: {fileID: 1051121219}
---- !u!114 &1051121221
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1051121217}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b8cf4e4ac535a38408fea1e43db31b4b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  queuePassengerController: {fileID: 907457026}
 --- !u!1 &1111181124
 GameObject:
   m_ObjectHideFlags: 0
@@ -44808,6 +44794,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1124192579}
+  - component: {fileID: 1124192580}
   m_Layer: 5
   m_Name: UI ToolCar
   m_TagString: Untagged
@@ -44840,6 +44827,20 @@ RectTransform:
   m_AnchoredPosition: {x: 150, y: -87.5}
   m_SizeDelta: {x: 300, y: 175}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1124192580
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1124192578}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d46b2ff9a710bd64d9319c5c21f5c5fc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  parkingPlotController: {fileID: 1742640379}
+  toggleGroup: {fileID: 2009171309}
 --- !u!1 &1133866344
 GameObject:
   m_ObjectHideFlags: 0
@@ -48659,7 +48660,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 1051121221}
+      - m_Target: {fileID: 1801533852}
         m_TargetAssemblyTypeName: UIStatPassenger, Assembly-CSharp
         m_MethodName: UpdateInfo
         m_Mode: 1
@@ -50604,6 +50605,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1801533851}
+  - component: {fileID: 1801533852}
   m_Layer: 5
   m_Name: UI ToolPassenger
   m_TagString: Untagged
@@ -50634,6 +50636,20 @@ RectTransform:
   m_AnchoredPosition: {x: -150, y: -100}
   m_SizeDelta: {x: 300, y: 200}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1801533852
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1801533850}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b8cf4e4ac535a38408fea1e43db31b4b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  queuePassengerController: {fileID: 907457026}
+  toggleGroup: {fileID: 1051121219}
 --- !u!1 &1821261636
 GameObject:
   m_ObjectHideFlags: 0
@@ -50729,7 +50745,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 1051121221}
+      - m_Target: {fileID: 1801533852}
         m_TargetAssemblyTypeName: UIStatPassenger, Assembly-CSharp
         m_MethodName: UpdateInfo
         m_Mode: 1
@@ -50741,7 +50757,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 2009171311}
+      - m_Target: {fileID: 1124192580}
         m_TargetAssemblyTypeName: UIStatCar, Assembly-CSharp
         m_MethodName: UpdateInfo
         m_Mode: 1
@@ -52657,7 +52673,6 @@ GameObject:
   - component: {fileID: 2009171308}
   - component: {fileID: 2009171309}
   - component: {fileID: 2009171310}
-  - component: {fileID: 2009171311}
   m_Layer: 5
   m_Name: ToggleGroup Color
   m_TagString: Untagged
@@ -52721,19 +52736,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   toggleGroup: {fileID: 2009171309}
---- !u!114 &2009171311
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2009171307}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d46b2ff9a710bd64d9319c5c21f5c5fc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  parkingPlotController: {fileID: 1742640379}
 --- !u!1 &2034674902
 GameObject:
   m_ObjectHideFlags: 0
