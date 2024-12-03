@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using System.Drawing;
 using UnityEngine;
@@ -11,9 +11,18 @@ public class QueuePassengerController : MonoBehaviour
     [SerializeField] int queueSize = 17;
 
     private Queue<GameObject> currentQueue;
-    private int remainNum;
 
-    public QueuePassengerData QueuePassengerData { get => queuePassengerData; set => queuePassengerData = value; }
+    public QueuePassengerData QueuePassengerData
+    {
+        get => queuePassengerData;
+        set {
+            DequeuePassenger(queuePassengerData.GetSize());
+            foreach(var group in value.QueuePassenger.ToList())
+            {
+                EnqueuePassenger(group.color, group.num);
+            }
+        }
+    }
 
     // Start is called before the first frame update
     void Start()
@@ -47,8 +56,10 @@ public class QueuePassengerController : MonoBehaviour
 
     public void EnqueuePassenger(CarColor color, int num)
     {
+        // update data
         queuePassengerData.EnqueuePassenger(color, num);
 
+        // updata view
         for (int i = 0; i < num; i++)
         {
             if (currentQueue.Count < queueSize)
@@ -70,21 +81,27 @@ public class QueuePassengerController : MonoBehaviour
         }
         Debug.Log("QueueData -> Size: " + queuePassengerData.GetSize());
     }
-
     public void DequeuePassenger(int num)
     {
+        // update view
         if (queuePassengerData.GetSize() == 0)
         {
             Debug.Log("queue is empty");
             return;
         }
 
+        // Dequeue currentQueue num người ở đầu
         for (int i = 0; i < num; i++)
         {
             GameObject passenger = currentQueue.Dequeue();
             objectPool.ReturnObject(passenger);
+            if( currentQueue.Count == 0)
+            {
+                break;
+            }
         }
 
+        // Enqueue currentQueue num người ở cuối
         for (int i = 0; i < num; i++)
         {
             int nextIdx = num + currentQueue.Count;
@@ -105,6 +122,7 @@ public class QueuePassengerController : MonoBehaviour
 
         }
 
+        // load lại toàn bộ passenger trong currentQueue để hiển thị đúng
         foreach (var passenger in currentQueue.ToArray())
         {
             var controller = passenger.GetComponent<PassengerController>();
@@ -114,6 +132,7 @@ public class QueuePassengerController : MonoBehaviour
             controller.SetData(data);
         }
 
+        // update data
         this.queuePassengerData.DequeuePassenger(num);
         Debug.Log("QueueData -> Size: " + queuePassengerData.GetSize());
     }

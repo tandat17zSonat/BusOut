@@ -63,7 +63,10 @@ public class ToolManager : MonoBehaviour
 
         // read
         string json = File.ReadAllText(filePath);
-        ParkingPlotData plotData = JsonConvert.DeserializeObject<ParkingPlotData>(json);
+        var gameData = JsonConvert.DeserializeObject<GameData>(json);
+
+        // load parkingPlotData---------------
+        var plotData = gameData.ParkingPlotData;
         Debug.Log("ParkingPlot -> Load data: Level" + plotData.Level);
 
         // display
@@ -76,6 +79,13 @@ public class ToolManager : MonoBehaviour
         {
             carSpawner.Create(carData);
         }
+
+        // load queuePassengerData -----------
+        var queueData = gameData.QueuePassengerData;
+        // display
+        // - dequeue về rỗng
+        var queueController = queuePassengers.GetComponent<QueuePassengerController>();
+        queueController.QueuePassengerData = queueData; 
     }
 
     public void RemoveCar()
