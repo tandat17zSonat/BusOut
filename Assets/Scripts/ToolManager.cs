@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Newtonsoft.Json;
 using UnityEngine;
+using Newtonsoft.Json.Linq;
 
 public class ToolManager : MonoBehaviour
 {
@@ -22,7 +23,7 @@ public class ToolManager : MonoBehaviour
             return;
         }
 
-        // Tạo data
+        // Tạo data của xe
         ParkingPlotData plotData = new ParkingPlotData();
         plotData.Level = level; 
         foreach (Transform carTransform in parkingPlot.transform)
@@ -36,10 +37,32 @@ public class ToolManager : MonoBehaviour
             ReferenceLoopHandling = ReferenceLoopHandling.Ignore // Bỏ qua vòng lặp
         };
 
-        // save
+        
         string filePath = "Assets/Config/Level/" + level + ".json";
-        string json = JsonConvert.SerializeObject(plotData, Formatting.Indented, settings);
-        File.WriteAllText(filePath, json);
+        string jsonCar = JsonConvert.SerializeObject(plotData, Formatting.Indented, settings);
+
+        // Tạo data của passenger
+        var controller = queuePassengers.GetComponent<QueuePassengerController>();
+        var queueData = controller.QueuePassengerData;
+        string jsonQueue = JsonConvert.SerializeObject(queueData, Formatting.Indented, settings);
+
+
+
+        // Merge obj2 into obj1
+        // Parse JSON strings into JObject
+        JObject obj1 = JObject.Parse(jsonCar);
+        JObject obj2 = JObject.Parse(jsonQueue);
+        obj1.Merge(obj2, new JsonMergeSettings
+        {
+            MergeArrayHandling = MergeArrayHandling.Union
+        });
+
+        // Convert back to string
+        string mergedJson = obj1.ToString();
+
+
+        // save
+        File.WriteAllText(filePath, mergedJson);
         Debug.Log($"Parking plot saved to {filePath}");
     }
 

@@ -25,7 +25,7 @@ public class PassengerSpawner : MonoBehaviour
         }
         catch
         {
-            Debug.Log("ERROR: create car");
+            Debug.Log("ERROR: create Passenger");
             return;
         }
     }

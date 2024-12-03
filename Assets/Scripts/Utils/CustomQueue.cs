@@ -11,6 +11,7 @@ using UnityEngine;
 public class CustomQueue<T>
 {
     private LinkedList<T> list = new LinkedList<T>();
+    public LinkedList<T> List { get => list; set => list = value; }
 
     public void Enqueue(T item)
     {

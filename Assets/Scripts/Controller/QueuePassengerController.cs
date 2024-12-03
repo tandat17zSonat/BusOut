@@ -13,6 +13,8 @@ public class QueuePassengerController : MonoBehaviour
     private Queue<GameObject> currentQueue;
     private int remainNum;
 
+    public QueuePassengerData QueuePassengerData { get => queuePassengerData; set => queuePassengerData = value; }
+
     // Start is called before the first frame update
     void Start()
     {
