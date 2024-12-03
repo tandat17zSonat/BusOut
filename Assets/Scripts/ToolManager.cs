@@ -11,113 +11,61 @@ using UnityEditor.Build.Content;
 public class ToolManager : MonoBehaviour
 {
     [SerializeField] GameController gameController;
-
-    //[SerializeField, Space(10)]  GameObject parkingPlot;
-    //[SerializeField] GameObject queuePassengers;
-
-    [SerializeField, Space(10)] CarSpawner carSpawner;
-    [SerializeField] PassengerSpawner passengerSpawner;
-
-    //[SerializeField] TMP_InputField inputLevel;
+    [SerializeField, Space(10)] TMP_InputField inputLevel;
 
     public void SaveToJson()
     {
-        //int level;
-        //try
-        //{
-        //    level = int.Parse(inputLevel.text);
-        //}
-        //catch 
-        //{
-        //    Debug.Log("ERROR: Nhập lại level");
-        //    return;
-        //}
-        
-        
-        //if (parkingPlot == null)
-        //{
-        //    Debug.LogError("Parking plot is not assigned!");
-        //    return;
-        //}   
-        
-        ////--------------------------------------------------------------------------
-        //// data passenger
-        //var controller = queuePassengers.GetComponent<QueuePassengerController>();
-        //var queueData = controller.Data;
+        // Get level ------------------------------------
+        int level;
+        try
+        {
+            level = int.Parse(inputLevel.text);
+        }
+        catch
+        {
+            Debug.Log("ERROR: Nhập lại level");
+            return;
+        }
 
-        //// data car
-        //ParkingPlotData plotData = new ParkingPlotData();
-        //plotData.Level = level; 
-        //foreach (Transform carTransform in parkingPlot.transform)
-        //{
-        //    CarData carData = carTransform.GetComponent<CarController>().CarData;
-        //    plotData.Cars.Add(carData);
-        //}
-
-        //// Tạo game data --------------------------
-        //GameData gameData = new GameData();
-        //gameData.ParkingPlotData = plotData;
-        //gameData.QueuePassengerData = queueData;
-
-        //// Save to json 
-        //string filePath = "Assets/Config/Level/" + level + ".json";
-        //var settings = new JsonSerializerSettings
-        //{
-        //    ReferenceLoopHandling = ReferenceLoopHandling.Ignore // Bỏ qua vòng lặp
-        //};
-        //string json = JsonConvert.SerializeObject(gameData, Formatting.Indented, settings);
-        //File.WriteAllText(filePath, json);
-        //Debug.Log($"Parking plot saved to {filePath}");
+        // Save gameData to json 
+        string filePath = $"Assets/Config/Level/{level}.json";
+        var settings = new JsonSerializerSettings
+        {
+            ReferenceLoopHandling = ReferenceLoopHandling.Ignore // Bỏ qua vòng lặp
+        };
+        var gameData = gameController.Data as GameData;
+        string json = JsonConvert.SerializeObject(gameData, Formatting.Indented, settings);
+        File.WriteAllText(filePath, json);
+        Debug.Log($"Parking plot saved to {filePath}");
     }
 
     public void LoadFromJson()
     {
-        //int level;
-        //try
-        //{
-        //    level = int.Parse(inputLevel.text);
-        //}
-        //catch
-        //{
-        //    Debug.Log("ERROR: Nhập lại level");
-        //    return;
-        //}
+        // Get level ------------------------------------------------
+        int level;
+        try
+        {
+            level = int.Parse(inputLevel.text);
+        }
+        catch
+        {
+            Debug.Log("ERROR: Nhập lại level");
+            return;
+        }
 
-        ////--------------------------------------------------------------------
-        //string filePath = "Assets/Config/Level/" + level + ".json";
-        //if (!File.Exists(filePath))
-        //{
-        //    Debug.LogWarning("Save file not found!");
-        //    return;
-        //}
+        //--------------------------------------------------------------------
+        string filePath = $"Assets/Config/Level/{level}.json";
+        if (!File.Exists(filePath))
+        {
+            Debug.LogWarning("Save file not found!");
+            return;
+        }
 
-        //// read
-        //string json = File.ReadAllText(filePath);
-        //var gameData = JsonConvert.DeserializeObject<GameData>(json);
+        // read
+        string json = File.ReadAllText(filePath);
+        var gameData = JsonConvert.DeserializeObject<GameData>(json);
 
-        //// load parkingPlotData---------------
-        //var plotData = gameData.ParkingPlotData;
-        //Debug.Log("ParkingPlot -> Load data: Level" + plotData.Level);
-        //var plotController = parkingPlot.GetComponent<ParkingPlotController>();
-        //plotController.ParkingPlotData = plotData;
-
-        //// display
-        //foreach (Transform child in parkingPlot.transform)
-        //{
-        //    GameObject.Destroy(child.gameObject);
-        //}
-
-        //foreach (CarData carData in plotData.Cars)
-        //{
-        //    carSpawner.Create(carData);
-        //}
-
-        //// load queuePassengerData -----------
-        //var queueData = gameData.QueuePassengerData;
-        //// display
-        //// - dequeue về rỗng
-        //var queueController = queuePassengers.GetComponent<QueuePassengerController>();
-        //queueController.QueuePassengerData = queueData; 
+        gameController.SetInfo(gameData);
     }
 
     public void RemoveCar()

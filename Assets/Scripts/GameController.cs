@@ -31,9 +31,9 @@ public class GameController : BController
 
     public override void Display()
     {
-        //var plotData = ((GameData)data).ParkingPlotData;
-        //var plotController = parkingPlot.GetComponent<BController>();
-        //plotController.SetInfo(plotData);
+        var plotData = ((GameData)data).ParkingPlotData;
+        var plotController = parkingPlot.GetComponent<BController>();
+        plotController.SetInfo(plotData);
 
         var queueData = ((GameData)data).QueuePassengerData;
         var queueController = queuePassengers.GetComponent<BController>();

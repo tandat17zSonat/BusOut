@@ -2592,9 +2592,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 343346149}
-  - component: {fileID: 343346148}
   - component: {fileID: 343346150}
-  - component: {fileID: 343346151}
   m_Layer: 0
   m_Name: ToolManager
   m_TagString: Untagged
@@ -2602,18 +2600,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &343346148
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 343346147}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 458f937e12b9dfe489e7a4cf7cde2afc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!4 &343346149
 Transform:
   m_ObjectHideFlags: 0
@@ -2638,21 +2624,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 343346147}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9c3ed8e04afa5804d914b69c5e7661bd, type: 3}
+  m_Script: {fileID: 11500000, guid: 2f8f7b5038f4fbc499feed5ef1577dac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &343346151
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 343346147}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 81790cf58932d6d4c8c4695bfab9a188, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  gameController: {fileID: 1410294007}
+  inputLevel: {fileID: 1724139624}
 --- !u!1 &348604578
 GameObject:
   m_ObjectHideFlags: 0
@@ -46344,7 +46320,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 343346148}
+      - m_Target: {fileID: 343346150}
         m_TargetAssemblyTypeName: ToolManager, Assembly-CSharp
         m_MethodName: SaveToJson
         m_Mode: 1
@@ -50794,7 +50770,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 343346148}
+      - m_Target: {fileID: 343346150}
         m_TargetAssemblyTypeName: ToolManager, Assembly-CSharp
         m_MethodName: LoadFromJson
         m_Mode: 1
