@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ParkingPlotData
+public class ParkingPlotData: BData
 {
     private int level;
     private List<CarData> cars = new List<CarData>();

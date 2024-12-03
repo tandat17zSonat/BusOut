@@ -4,137 +4,69 @@ using System.Drawing;
 using UnityEngine;
 using UnityEngine.Rendering;
 
-public class QueuePassengerController : MonoBehaviour
+public class QueuePassengerController : BController
 {
-    private QueuePassengerData queuePassengerData = new QueuePassengerData();
     [SerializeField] ObjectPool objectPool;
     [SerializeField] int queueSize = 17;
 
     private Queue<GameObject> currentQueue;
 
-    public QueuePassengerData QueuePassengerData
+    public override void Init()
     {
-        get => queuePassengerData;
-        set {
-            DequeuePassenger(queuePassengerData.GetSize());
-            foreach(var group in value.QueuePassenger.ToList())
-            {
-                EnqueuePassenger(group.color, group.num);
-            }
-        }
+        this.data = new QueuePassengerData();
+        this.currentQueue = new Queue<GameObject>();
     }
 
-    // Start is called before the first frame update
-    void Start()
+    public void Add(CarColor color, int num)
     {
-        currentQueue = new Queue<GameObject>();
-    }
+        Debug.Log("Queue -> Add");
+        var queuePassengerData = (QueuePassengerData)this.data;
 
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
-
-    //public void Rearrange()
-    //{
-    //    currentQueue = new Queue<GameObject>();
-    //    for (int i = 0; i < queueSize; i++)
-    //    {
-    //        GameObject passenger = objectPool.GetObject();
-    //        currentQueue.Enqueue(passenger);
-    //        if (i > queuePassengerData.QueuePassenger.Count)
-    //        {
-    //            passenger.SetActive(false);
-    //        }
-    //        else
-    //        {
-    //            passenger.GetComponent<PassengerBehaviour>().MoveTo(queueSize - i - 1);
-    //        }
-    //    }
-    //}
-
-    public void EnqueuePassenger(CarColor color, int num)
-    {
         // update data
         queuePassengerData.EnqueuePassenger(color, num);
+        SetInfo(queuePassengerData);
 
-        // updata view
-        for (int i = 0; i < num; i++)
-        {
-            if (currentQueue.Count < queueSize)
-            {
-                GameObject passenger = objectPool.GetObject();
-                var controller = passenger.GetComponent<PassengerController>();
-
-                var data = controller.PassengerData;
-                data.Color = color;
-                data.PositionIndex = currentQueue.Count;
-                controller.SetData(data);
-
-                currentQueue.Enqueue(passenger);
-            }
-            else
-            {
-                break;
-            }
-        }
-        Debug.Log("QueueData -> Size: " + queuePassengerData.GetSize());
+        Debug.Log("Queue Size: " + queuePassengerData.GetSize());
+        Debug.Log("QueuePassengerController -> Add: " + color.ToString() + num);
     }
-    
-    public void DequeuePassenger(int num)
+
+    public void Remove(int num)
     {
-        // update view
-        if (queuePassengerData.GetSize() == 0)
-        {
-            Debug.Log("queue is empty");
-            return;
-        }
-
-        // Dequeue currentQueue num người ở đầu
-        for (int i = 0; i < num; i++)
-        {
-            GameObject passenger = currentQueue.Dequeue();
-            objectPool.ReturnObject(passenger);
-            if( currentQueue.Count == 0)
-            {
-                break;
-            }
-        }
-
-        // Enqueue currentQueue num người ở cuối
-        for (int i = 0; i < num; i++)
-        {
-            int nextIdx = num + currentQueue.Count;
-            if (nextIdx < queuePassengerData.GetSize())
-            {
-                GameObject passenger = objectPool.GetObject();
-                var controller = passenger.GetComponent<PassengerController>();
-
-                var data = controller.PassengerData;
-                data.Color = queuePassengerData.GetColorByIdx(nextIdx);
-                data.PositionIndex = nextIdx;
-                currentQueue.Enqueue(passenger);
-            }
-            else
-            {
-                break;
-            }
-
-        }
-
-        // load lại toàn bộ passenger trong currentQueue để hiển thị đúng
-        foreach (var passenger in currentQueue.ToArray())
-        {
-            var controller = passenger.GetComponent<PassengerController>();
-
-            var data = controller.PassengerData;
-            data.PositionIndex = data.PositionIndex - num;
-            controller.SetData(data);
-        }
+        Debug.Log("Queue -> Remove");
+        var queuePassengerData = (QueuePassengerData)this.data;
 
         // update data
-        this.queuePassengerData.DequeuePassenger(num);
-        Debug.Log("QueueData -> Size: " + queuePassengerData.GetSize());
+        queuePassengerData.DequeuePassenger(num);
+        SetInfo( queuePassengerData);
+
+        Debug.Log("Queue Size: " + queuePassengerData.GetSize());
+    }
+
+    public override void Display()
+    {
+        while( currentQueue.Count > 0 )
+        {
+            var obj = currentQueue.Dequeue();
+            objectPool.ReturnObject(obj);
+        }
+
+        var queueData = (QueuePassengerData)this.data;
+        int size = queueData.GetSize();
+        for ( int  i = 0; i < queueSize; i++ )
+        {
+            if( i < size)
+            {
+                var obj = objectPool.GetObject();
+                var controller = obj.GetComponent<PassengerController>();
+
+                var color = queueData.GetColorByIdx(i);
+                var iData = new PassengerData();
+                iData.SetData(color, i);
+                controller.SetInfo(iData);
+
+                currentQueue.Enqueue(obj);
+            }
+            
+        }
     }
 }

@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class QueuePassengerData
+public class QueuePassengerData: BData
 {
     public struct GroupPassenger
     {
@@ -20,11 +20,6 @@ public class QueuePassengerData
 
     private CustomQueue<GroupPassenger> queue = new CustomQueue<GroupPassenger>();
     public CustomQueue<GroupPassenger> QueuePassenger { get => queue; set => queue = value; }
-
-    public void LoadData()
-    {
-
-    }
 
     // enqueue
     public void EnqueuePassenger(CarColor color, int num)

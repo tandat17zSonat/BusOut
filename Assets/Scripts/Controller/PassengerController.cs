@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PassengerController : MonoBehaviour
+public class PassengerController : BController
 {
     [SerializeField] PassengerScriptableObject passengerScriptableObject;
 
@@ -10,46 +10,46 @@ public class PassengerController : MonoBehaviour
     [SerializeField] int positionIndex = 0;
     [SerializeField] bool isSeat = false;
 
-    private PassengerData passengerData = new PassengerData();
-    public PassengerData PassengerData { get => passengerData; set => passengerData = value; }
-
-    // Start is called before the first frame update
-    void Start()
+    public override void Init()
     {
-
+        this.data = new PassengerData();
     }
 
-    // Update is called once per frame
-    void Update()
+    //------------------------------------------------------------
+    #region: Cập nhật info và hiển thị đúng
+    public override void SetInfo(BData data)
     {
+        base.SetInfo(data);
 
+        var passengerData = (PassengerData)data;
+        color = passengerData.Color;
+        positionIndex = passengerData.PositionIndex;
+        isSeat = passengerData.IsSeat;
     }
 
-    // region: Cập nhật info và hiển thị đúng
-    public void SetData(PassengerData passengerData)
-    {
-        this.PassengerData = passengerData;
-
-        color = this.PassengerData.Color;
-        positionIndex = this.PassengerData.PositionIndex;
-        isSeat = this.PassengerData.IsSeat;
-
-        LoadView();
-    }
-
-    public void LoadView()
+    public override void Display()
     {
         SpriteRenderer spriteRenderer = GetComponent<SpriteRenderer>();
-        Sprite sprite = passengerScriptableObject.GetSprite(this.PassengerData);
+        Sprite sprite = passengerScriptableObject.GetSprite((PassengerData) this.data);
         spriteRenderer.sprite = sprite;
 
-        transform.localPosition = this.PassengerData.GetPosition();
+        transform.localPosition = GetPosition();
     }
+    #endregion
 
     private void OnValidate()
     {
-        this.PassengerData.SetData(color, positionIndex, isSeat);
-        LoadView();
+        if( this.data == null) this.data = new PassengerData();
+        ((PassengerData) this.data).SetData(color, positionIndex, isSeat);
+        Display();
     }
-    // endregion
+    
+
+    public Vector2 GetPosition()
+    {
+        var pIdx = ((PassengerData)this.data).PositionIndex;
+        int cellX = pIdx - 12 > 0 ? 12 : pIdx;
+        int cellY = pIdx - 12 > 0 ? pIdx - 12 : 0;
+        return new Vector2(cellX * 0.6f, cellY * 0.6f);
+    }
 }

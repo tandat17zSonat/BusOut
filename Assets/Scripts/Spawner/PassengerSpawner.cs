@@ -4,24 +4,18 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class PassengerSpawner : MonoBehaviour
+public class PassengerSpawner : BSpawner
 {
-    [SerializeField] GameObject prefab;
-    [SerializeField] GameObject parentObject;
-    [SerializeField] QueuePassengerController queueController;
-
     [SerializeField, Space(10)] ToggleGroup toggleGroupColor;
     [SerializeField] int numIncrease = 1;
-    
-    public void CreateFromToggle()
+
+    public override void Create()
     {
         try
         {
             string strColor = toggleGroupColor.GetComponent<ToggleGroupController>().SelectedToggleName;
             CarColor color = (CarColor)Enum.Parse(typeof(CarColor), strColor);
-
-            Debug.Log("Create Passenger-> " + color);
-            queueController.EnqueuePassenger(color, this.numIncrease);
+            ((QueuePassengerController)controller).Add(color, numIncrease);
         }
         catch
         {
@@ -30,8 +24,8 @@ public class PassengerSpawner : MonoBehaviour
         }
     }
 
-    public void RemovePassenger()
+    public void Remove()
     {
-        queueController.DequeuePassenger(this.numIncrease);
+        ((QueuePassengerController)controller).Remove(this.numIncrease);
     }
 }

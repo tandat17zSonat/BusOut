@@ -2,25 +2,22 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PassengerData
+public class PassengerData :BData
 {
-    private int width = 12;
-    private int height = 7;
-
     private CarColor color;
     private bool isSeat = false;
     private int positionIndex; // index vị trí đừng
 
-    public CarColor Color { get => color; set => color = value; }
-    public bool IsSeat { get => isSeat; set => isSeat = value; }
-    public int PositionIndex { get => positionIndex; set => positionIndex = value; }
+    public CarColor Color { get => color;}
+    public bool IsSeat { get => isSeat;}
+    public int PositionIndex { get => positionIndex;}
 
     public PassengerData()
     {
-        this.SetData(CarColor.black, 0, false);
+        //this.SetData(CarColor.black, 0, false);
     }
 
-    public void SetData(CarColor color, int positionIndex, bool isSeat)
+    public void SetData(CarColor color, int positionIndex, bool isSeat = false)
     {
         this.color = color;
         this.positionIndex = positionIndex;
@@ -38,13 +35,5 @@ public class PassengerData
             return "boy" + "_" + color.ToString() + "_seat";
         }
         
-    }
-
-    public Vector2 GetPosition()
-    {
-        int cellX = this.positionIndex - width > 0 ? width : this.positionIndex;
-        int cellY = this.positionIndex - width > 0 ? this.positionIndex - 12 : 0;
-
-        return new Vector2(cellX * 0.6f, cellY * 0.6f);
     }
 }
