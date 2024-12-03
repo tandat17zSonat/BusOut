@@ -82,4 +82,15 @@ public class QueuePassengerData
         Debug.LogError("GetColorByIdx");
         return CarColor.black;
     }
+
+    public int GetNumberByColor(CarColor color)
+    {
+        int cnt = 0;
+        foreach (var info in queue.ToList())
+        {
+            if (info.color == color) cnt += info.num;
+        }
+        return cnt;
+    }
+
 }

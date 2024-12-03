@@ -97,6 +97,8 @@ public class ToolManager : MonoBehaviour
         // load parkingPlotData---------------
         var plotData = gameData.ParkingPlotData;
         Debug.Log("ParkingPlot -> Load data: Level" + plotData.Level);
+        var plotController = parkingPlot.GetComponent<ParkingPlotController>();
+        plotController.ParkingPlotData = plotData;
 
         // display
         foreach (Transform child in parkingPlot.transform)

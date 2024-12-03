@@ -81,6 +81,7 @@ public class QueuePassengerController : MonoBehaviour
         }
         Debug.Log("QueueData -> Size: " + queuePassengerData.GetSize());
     }
+    
     public void DequeuePassenger(int num)
     {
         // update view
