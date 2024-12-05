@@ -34,6 +34,7 @@ public class ObjectPool : MonoBehaviour
         else
         {
             GameObject obj = Instantiate(prefab);
+            obj.transform.SetParent(parent.transform, false);
             return obj;
         }
     }

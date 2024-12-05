@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.UI;
 
 public class ParkingPlotController : BController
 {
@@ -32,5 +33,19 @@ public class ParkingPlotController : BController
     public void Remove()
     {
         Debug.Log("Remove Car ???");
+    }
+
+    public void SetScale(float scale)
+    {
+
+    }
+
+    public void EnableTrigger(Toggle toggle)
+    {
+        bool enabled = toggle.isOn;
+        foreach (Transform child in transform)
+        {
+            child.gameObject.GetComponent<Collider2D>().isTrigger = enabled;
+        }
     }
 }
