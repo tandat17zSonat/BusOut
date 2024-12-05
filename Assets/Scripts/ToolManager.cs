@@ -1,17 +1,19 @@
 ﻿using System.IO;
-using System.Collections;
-using System.Collections.Generic;
 using Newtonsoft.Json;
 using UnityEngine;
-using Newtonsoft.Json.Linq;
-using UnityEngine.UI;
 using TMPro;
-using UnityEditor.Build.Content;
+using System;
+using UnityEngine.UI;
 
-public class ToolManager : MonoBehaviour
+public class ToolManager : Singleton<ToolManager>
 {
     [SerializeField] GameController gameController;
     [SerializeField, Space(10)] TMP_InputField inputLevel;
+
+    [SerializeField] ToggleGroup toggleGroupColor;
+    private GameObject selectedCar;
+
+    public GameObject SelectedCar { get => selectedCar; set => selectedCar = value; }
 
     public void SaveToJson()
     {
@@ -70,15 +72,31 @@ public class ToolManager : MonoBehaviour
 
     public void RemoveCar()
     {
-        //if(carScriptableObject.SelectedCar == null)
-        //{
-        //    Debug.LogWarning("RemoveCar -> selectedcar == null");
-        //    return;
-        //}
+        if ( selectedCar != null )
+        {
+            GameObject.Destroy(selectedCar.gameObject);
+            selectedCar = null;
 
-        //GameObject.Destroy(carScriptableObject.SelectedCar.gameObject);
-        //carScriptableObject.SelectedCar = null;
+        }
     }
 
+    public void DisplayCar()
+    {
+        if (selectedCar == null) return;
+
+        var controller = selectedCar.GetComponent<CarController>();
+
+        string strColor = toggleGroupColor.GetComponent<ToggleGroupController>().SelectedToggleName;
+        CarColor color = (CarColor)Enum.Parse(typeof(CarColor), strColor);
+
+        var newData = ((CarData)controller.Data);
+        Debug.Log(newData.Color + "_" + newData.Size.ToString() + "_" + newData.Direction.ToString());
+
+        newData.Color = color;
+        newData.Size = CarSize.four;
+        newData.Direction = CarDirection.L;
+
+        controller.SetInfo(newData);
+    }
 }
 

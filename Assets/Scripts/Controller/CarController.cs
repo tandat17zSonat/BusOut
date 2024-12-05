@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Net.WebSockets;
 using UnityEngine;
 
+[RequireComponent(typeof(PolygonCollider2D))]
 public class CarController : BController
 {
     [SerializeField] CarScriptableObject carScriptableObject;
@@ -11,7 +12,7 @@ public class CarController : BController
     [SerializeField] CarSize size = CarSize.four;
     [SerializeField] CarDirection direction = CarDirection.LB;
 
-    private Vector3 delta;
+    private bool showGizmos = false; // Biến cờ để kiểm soát việc vẽ Gizmos
 
     public override void Init()
     {
@@ -65,22 +66,6 @@ public class CarController : BController
         ((CarData)data).Position = transform.position; // Lưu lại vị trí xe mỗi khi xe di chuyển
     }
 
-    //----------------------------------------------------------------
-    #region: Xử lý di chuyển xe bằng touch 
-    private void OnMouseDown()
-    {
-        Vector3 clickPoint = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        this.delta = clickPoint - this.transform.position;
-
-        carScriptableObject.SelectedCar = this;
-    }
-
-    private void OnMouseDrag()
-    {
-        transform.position = Camera.main.ScreenToWorldPoint(Input.mousePosition) - this.delta;
-    }
-    #endregion
-
     // Cập nhật khi chỉnh sửa ở editor
     private void OnValidate()
     {
@@ -88,6 +73,4 @@ public class CarController : BController
         ((CarData)this.data).SetData(color, size, direction);
         Display();
     }
-    
-
 }

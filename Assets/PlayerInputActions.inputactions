@@ -1,0 +1,34 @@
+{
+    "name": "ToolInputActions",
+    "maps": [
+        {
+            "name": "Player",
+            "id": "7a0b3946-f430-4582-8fc9-cd6fc23b5b06",
+            "actions": [
+                {
+                    "name": "DeleteObject",
+                    "type": "Value",
+                    "id": "b688d8b5-67f9-49ea-9029-c6dc80342145",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "6159e926-6336-4076-a9b4-0e433ea9a94f",
+                    "path": "<Keyboard>/r",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "DeleteObject",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        }
+    ],
+    "controlSchemes": []
+}
