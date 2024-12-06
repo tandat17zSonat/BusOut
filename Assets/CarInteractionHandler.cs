@@ -33,33 +33,19 @@ public class CarInteractionHandler : MonoBehaviour
         Vector3 clickPoint = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         this.delta = clickPoint - this.transform.position;
 
-        // Tắt xe trước đó
-        var selectedCar = Singleton<ToolManager>.Instance.SelectedCar;
-        if (selectedCar != null)
-        {
-            selectedCar.GetComponent<LineRenderer>().enabled = false;
-        }
-        //Debug.Log("onMouseDown1");
-        //if (selectedCar == gameObject)
-        //{
-        //    Singleton<ToolManager>.Instance.SelectedCar = null;
-        //    return;
-        //}
-        Debug.Log("onMouseDown2");
-        // Bật xe hiện tại 
         Singleton<ToolManager>.Instance.SelectedCar = gameObject;
-        lineRenderer.enabled = true; // Hiển thị hoặc ẩn đường viền
     }
 
     private void OnMouseDrag()
     {
-        transform.position = Camera.main.ScreenToWorldPoint(Input.mousePosition) - this.delta;
-        // Bật xe hiện tại 
-        Singleton<ToolManager>.Instance.SelectedCar = gameObject;
-        lineRenderer.enabled = true; // Hiển thị hoặc ẩn đường viền
+        if (lineRenderer.enabled)
+        {
+            transform.position = Camera.main.ScreenToWorldPoint(Input.mousePosition) - this.delta;
+        }
     }
 
     #endregion
+
     private void UpdateOutline()
     {
         if (polygonCollider != null && lineRenderer.enabled == true)

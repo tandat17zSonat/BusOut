@@ -4,6 +4,7 @@ using UnityEngine;
 using TMPro;
 using System;
 using UnityEngine.UI;
+using Unity.VisualScripting;
 
 public class ToolManager : Singleton<ToolManager>
 {
@@ -13,7 +14,34 @@ public class ToolManager : Singleton<ToolManager>
     [SerializeField] ToggleGroup toggleGroupColor;
     private GameObject selectedCar;
 
-    public GameObject SelectedCar { get => selectedCar; set => selectedCar = value; }
+    public GameObject SelectedCar
+    {
+        get
+        {
+            return selectedCar;
+        }
+        set
+        {
+            if( selectedCar != null)
+            {
+                selectedCar.GetComponent<LineRenderer>().enabled = false;
+            }
+
+            if(  selectedCar == value)
+            {
+                Debug.Log("selected = null");
+                selectedCar = null;
+                return;
+            }
+            else
+            {
+                Debug.Log("selected = value");
+                selectedCar = value;
+                selectedCar.GetComponent<LineRenderer>().enabled = true;
+            }
+            
+        }
+    }
 
     public void SaveToJson()
     {
