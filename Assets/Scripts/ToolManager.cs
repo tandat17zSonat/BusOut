@@ -70,16 +70,6 @@ public class ToolManager : Singleton<ToolManager>
         gameController.SetInfo(gameData);
     }
 
-    public void RemoveCar()
-    {
-        if ( selectedCar != null )
-        {
-            GameObject.Destroy(selectedCar.gameObject);
-            selectedCar = null;
-
-        }
-    }
-
     public void DisplayCar()
     {
         if (selectedCar == null) return;

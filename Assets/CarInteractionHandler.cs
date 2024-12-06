@@ -39,13 +39,13 @@ public class CarInteractionHandler : MonoBehaviour
         {
             selectedCar.GetComponent<LineRenderer>().enabled = false;
         }
-
-        if (selectedCar == gameObject)
-        {
-            Singleton<ToolManager>.Instance.SelectedCar = null;
-            return;
-        }
-
+        //Debug.Log("onMouseDown1");
+        //if (selectedCar == gameObject)
+        //{
+        //    Singleton<ToolManager>.Instance.SelectedCar = null;
+        //    return;
+        //}
+        Debug.Log("onMouseDown2");
         // Bật xe hiện tại 
         Singleton<ToolManager>.Instance.SelectedCar = gameObject;
         lineRenderer.enabled = true; // Hiển thị hoặc ẩn đường viền
