@@ -6612,6 +6612,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 1124192580}
+        m_TargetAssemblyTypeName: UIStatCar, Assembly-CSharp
+        m_MethodName: UpdateInfo
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &547920163
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8749,6 +8761,18 @@ MonoBehaviour:
       - m_Target: {fileID: 731798392}
         m_TargetAssemblyTypeName: GenCarHandller, Assembly-CSharp
         m_MethodName: GenCar
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1124192580}
+        m_TargetAssemblyTypeName: UIStatCar, Assembly-CSharp
+        m_MethodName: UpdateInfo
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -48285,6 +48309,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 1124192580}
+        m_TargetAssemblyTypeName: UIStatCar, Assembly-CSharp
+        m_MethodName: UpdateInfo
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1019664675
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -49156,7 +49192,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   parkingPlotController: {fileID: 1742640379}
-  toggleGroup: {fileID: 2009171309}
+  toggles:
+  - {fileID: 650814166}
+  - {fileID: 1242581170}
+  - {fileID: 2117390914}
+  - {fileID: 794745109}
+  - {fileID: 755220787}
+  - {fileID: 485722861}
+  - {fileID: 286796684}
+  - {fileID: 734034760}
+  - {fileID: 322829287}
+  - {fileID: 2079948521}
+  - {fileID: 2134265015}
 --- !u!1 &1133866344
 GameObject:
   m_ObjectHideFlags: 0
@@ -56614,6 +56661,18 @@ MonoBehaviour:
       - m_Target: {fileID: 85511460}
         m_TargetAssemblyTypeName: RandomColorHandler, Assembly-CSharp
         m_MethodName: RandomColor
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1124192580}
+        m_TargetAssemblyTypeName: UIStatCar, Assembly-CSharp
+        m_MethodName: UpdateInfo
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
