@@ -958,6 +958,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 85511459}
+  - component: {fileID: 85511460}
   m_Layer: 5
   m_Name: RandColor
   m_TagString: Untagged
@@ -986,6 +987,31 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: -110}
   m_SizeDelta: {x: 323, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &85511460
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 85511458}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ea742ac7176d2da4587fc49a4852cf70, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  toggles:
+  - {fileID: 2000121823}
+  - {fileID: 727816448}
+  - {fileID: 246845484}
+  - {fileID: 1737914279}
+  - {fileID: 841510558}
+  - {fileID: 2146171745}
+  - {fileID: 1626251828}
+  - {fileID: 1391769809}
+  - {fileID: 1272473507}
+  - {fileID: 2118666245}
+  - {fileID: 1998590220}
+  plotController: {fileID: 1742640379}
 --- !u!1 &105433099
 GameObject:
   m_ObjectHideFlags: 0
@@ -2898,22 +2924,10 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1317975283}
   toggleTransition: 1
   graphic: {fileID: 373000567}
-  m_Group: {fileID: 292321898}
+  m_Group: {fileID: 0}
   onValueChanged:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 343346150}
-        m_TargetAssemblyTypeName: ToolManager, Assembly-CSharp
-        m_MethodName: DisplayCar
-        m_Mode: 2
-        m_Arguments:
-          m_ObjectArgument: {fileID: 2000121820}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
   m_IsOn: 0
 --- !u!1 &252489561
 GameObject:
@@ -8556,22 +8570,10 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 276008769}
   toggleTransition: 1
   graphic: {fileID: 1523172660}
-  m_Group: {fileID: 292321898}
+  m_Group: {fileID: 0}
   onValueChanged:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 343346150}
-        m_TargetAssemblyTypeName: ToolManager, Assembly-CSharp
-        m_MethodName: DisplayCar
-        m_Mode: 2
-        m_Arguments:
-          m_ObjectArgument: {fileID: 2000121820}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
   m_IsOn: 0
 --- !u!1 &731331283
 GameObject:
@@ -46371,22 +46373,10 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 654713360}
   toggleTransition: 1
   graphic: {fileID: 1786849716}
-  m_Group: {fileID: 292321898}
+  m_Group: {fileID: 0}
   onValueChanged:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 343346150}
-        m_TargetAssemblyTypeName: ToolManager, Assembly-CSharp
-        m_MethodName: DisplayCar
-        m_Mode: 2
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
   m_IsOn: 0
 --- !u!1 &846170884
 GameObject:
@@ -50342,22 +50332,10 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1980494727}
   toggleTransition: 1
   graphic: {fileID: 698655197}
-  m_Group: {fileID: 292321898}
+  m_Group: {fileID: 0}
   onValueChanged:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 343346150}
-        m_TargetAssemblyTypeName: ToolManager, Assembly-CSharp
-        m_MethodName: DisplayCar
-        m_Mode: 2
-        m_Arguments:
-          m_ObjectArgument: {fileID: 2000121820}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
   m_IsOn: 0
 --- !u!1 &1280771435
 GameObject:
@@ -51633,22 +51611,10 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 2068511740}
   toggleTransition: 1
   graphic: {fileID: 2011965095}
-  m_Group: {fileID: 292321898}
+  m_Group: {fileID: 0}
   onValueChanged:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 343346150}
-        m_TargetAssemblyTypeName: ToolManager, Assembly-CSharp
-        m_MethodName: DisplayCar
-        m_Mode: 2
-        m_Arguments:
-          m_ObjectArgument: {fileID: 2000121820}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
   m_IsOn: 0
 --- !u!1 &1398443604
 GameObject:
@@ -54432,22 +54398,10 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1280771437}
   toggleTransition: 1
   graphic: {fileID: 1519962517}
-  m_Group: {fileID: 292321898}
+  m_Group: {fileID: 0}
   onValueChanged:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 343346150}
-        m_TargetAssemblyTypeName: ToolManager, Assembly-CSharp
-        m_MethodName: DisplayCar
-        m_Mode: 2
-        m_Arguments:
-          m_ObjectArgument: {fileID: 2000121820}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
   m_IsOn: 0
 --- !u!1 &1652790522
 GameObject:
@@ -55727,22 +55681,10 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1897283039}
   toggleTransition: 1
   graphic: {fileID: 305748627}
-  m_Group: {fileID: 292321898}
+  m_Group: {fileID: 0}
   onValueChanged:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 343346150}
-        m_TargetAssemblyTypeName: ToolManager, Assembly-CSharp
-        m_MethodName: DisplayCar
-        m_Mode: 2
-        m_Arguments:
-          m_ObjectArgument: {fileID: 2000121820}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
   m_IsOn: 0
 --- !u!1 &1742640377
 GameObject:
@@ -56668,7 +56610,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1785548618}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 85511460}
+        m_TargetAssemblyTypeName: RandomColorHandler, Assembly-CSharp
+        m_MethodName: RandomColor
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1785548618
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -59767,22 +59721,10 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 637570537}
   toggleTransition: 1
   graphic: {fileID: 1768708494}
-  m_Group: {fileID: 292321898}
+  m_Group: {fileID: 0}
   onValueChanged:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 343346150}
-        m_TargetAssemblyTypeName: ToolManager, Assembly-CSharp
-        m_MethodName: DisplayCar
-        m_Mode: 2
-        m_Arguments:
-          m_ObjectArgument: {fileID: 2000121820}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
   m_IsOn: 0
 --- !u!1 &1998628970
 GameObject:
@@ -60018,22 +59960,10 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1590766929}
   toggleTransition: 1
   graphic: {fileID: 2090657936}
-  m_Group: {fileID: 292321898}
+  m_Group: {fileID: 0}
   onValueChanged:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 343346150}
-        m_TargetAssemblyTypeName: ToolManager, Assembly-CSharp
-        m_MethodName: DisplayCar
-        m_Mode: 2
-        m_Arguments:
-          m_ObjectArgument: {fileID: 2000121820}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
   m_IsOn: 1
 --- !u!224 &2000121824
 RectTransform:
@@ -61795,22 +61725,10 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1703611569}
   toggleTransition: 1
   graphic: {fileID: 697225167}
-  m_Group: {fileID: 292321898}
+  m_Group: {fileID: 0}
   onValueChanged:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 343346150}
-        m_TargetAssemblyTypeName: ToolManager, Assembly-CSharp
-        m_MethodName: DisplayCar
-        m_Mode: 2
-        m_Arguments:
-          m_ObjectArgument: {fileID: 2000121820}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
   m_IsOn: 0
 --- !u!1 &2121953178
 GameObject:
@@ -62455,22 +62373,10 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 199482137}
   toggleTransition: 1
   graphic: {fileID: 388717618}
-  m_Group: {fileID: 292321898}
+  m_Group: {fileID: 0}
   onValueChanged:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 343346150}
-        m_TargetAssemblyTypeName: ToolManager, Assembly-CSharp
-        m_MethodName: DisplayCar
-        m_Mode: 2
-        m_Arguments:
-          m_ObjectArgument: {fileID: 2000121820}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
   m_IsOn: 0
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
