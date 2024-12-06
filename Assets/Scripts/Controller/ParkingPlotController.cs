@@ -12,13 +12,7 @@ public class ParkingPlotController : BController
 
     public override void Display()
     {
-        foreach (Transform child in transform)
-        {
-            if(child.gameObject.activeSelf == true)
-            {
-                objectPool.ReturnObject(child.gameObject);
-            }
-        }
+        RemoveAll();
 
         var plotData = this.data as ParkingPlotData;
         foreach (var carData in plotData.Cars)
@@ -39,9 +33,20 @@ public class ParkingPlotController : BController
         plotData.Cars.Add(carData);
     }
 
-    public void Remove()
+    public void Remove(GameObject obj)
     {
-        Debug.Log("Remove Car ???");
+        objectPool.ReturnObject(obj);
+    }
+
+    public void RemoveAll()
+    {
+        foreach (Transform child in transform)
+        {
+            if (child.gameObject.activeSelf == true)
+            {
+                objectPool.ReturnObject(child.gameObject);
+            }
+        }
     }
 
     public void SetScale(float scale)

@@ -27,7 +27,7 @@ public class ToolManager : Singleton<ToolManager>
                 selectedCar.GetComponent<LineRenderer>().enabled = false;
             }
 
-            if(  selectedCar == value)
+            if(  selectedCar == value || value == null)
             {
                 selectedCar = null;
                 return;

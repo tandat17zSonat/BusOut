@@ -37,7 +37,7 @@ public class CarSpawner : BSpawner
 
     public override void Remove()
     {
-        ((ParkingPlotController)controller).Remove();
+        
     }
 
     public void GenCar(int numCar4, int numCar6, int numCar10)

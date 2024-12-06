@@ -42,4 +42,21 @@ public class GameController : BController
         queueController.SetInfo(queueData);
 
     }
+
+    public void Remove()
+    {
+        var selectedCar = Singleton<ToolManager>.Instance.SelectedCar;
+        if (selectedCar != null)
+        {
+            var plotController = parkingPlot.GetComponent<BController>();
+            ((ParkingPlotController)plotController).Remove(selectedCar);
+
+            Singleton<ToolManager>.Instance.SelectedCar = null;
+        }
+    }
+    public void RemoveAll()
+    {
+        var plotController = parkingPlot.GetComponent<BController>();
+        ((ParkingPlotController) plotController).RemoveAll();
+    }
 }
