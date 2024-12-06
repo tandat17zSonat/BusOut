@@ -13,6 +13,7 @@ public class GameController : BController
         {
             var plotData = (ParkingPlotData) parkingPlot.GetComponent<BController>().Data;
             ((GameData)data).ParkingPlotData = plotData;
+            Debug.Log(plotData.Cars.Count);
 
             var queueData = (QueuePassengerData) queuePassengers.GetComponent<BController>().Data;
             ((GameData)data).QueuePassengerData = queueData;
@@ -31,6 +32,7 @@ public class GameController : BController
 
     public override void Display()
     {
+        Debug.Log("GameController -> Display");
         var plotData = ((GameData)data).ParkingPlotData;
         var plotController = parkingPlot.GetComponent<BController>();
         plotController.SetInfo(plotData);

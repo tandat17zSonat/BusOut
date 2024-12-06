@@ -29,13 +29,11 @@ public class ToolManager : Singleton<ToolManager>
 
             if(  selectedCar == value)
             {
-                Debug.Log("selected = null");
                 selectedCar = null;
                 return;
             }
             else
             {
-                Debug.Log("selected = value");
                 selectedCar = value;
                 selectedCar.GetComponent<LineRenderer>().enabled = true;
             }

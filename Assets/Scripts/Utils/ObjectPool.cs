@@ -44,12 +44,4 @@ public class ObjectPool : MonoBehaviour
         obj.SetActive(false);
         pool.Enqueue(obj);
     }
-
-    public void ResetActive(bool active)
-    {
-        foreach( var obj in pool.ToArray())
-        {
-            obj.SetActive(active);
-        }
-    }
 }

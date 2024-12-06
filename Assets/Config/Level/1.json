@@ -1,8 +1,93 @@
 {
   "Level": 0,
   "ParkingPlotData": {
-    "Level": 0,
-    "Cars": []
+    "Cars": [
+      {
+        "Color": 7,
+        "Size": 6,
+        "Direction": 6,
+        "Position": {
+          "x": -2.1390667,
+          "y": 0.3689785,
+          "normalized": {
+            "x": -0.9854467,
+            "y": 0.169984713,
+            "magnitude": 1.0,
+            "sqrMagnitude": 1.0
+          },
+          "magnitude": 2.170657,
+          "sqrMagnitude": 4.71175146
+        }
+      },
+      {
+        "Color": 6,
+        "Size": 6,
+        "Direction": -3,
+        "Position": {
+          "x": 0.735400736,
+          "y": -0.638278961,
+          "normalized": {
+            "x": 0.755215347,
+            "y": -0.655476749,
+            "magnitude": 1.0,
+            "sqrMagnitude": 1.0
+          },
+          "magnitude": 0.9737629,
+          "sqrMagnitude": 0.9482143
+        }
+      },
+      {
+        "Color": 6,
+        "Size": 4,
+        "Direction": 4,
+        "Position": {
+          "x": -0.406712532,
+          "y": 1.58022881,
+          "normalized": {
+            "x": -0.249252573,
+            "y": 0.968438566,
+            "magnitude": 1.0,
+            "sqrMagnitude": 1.00000012
+          },
+          "magnitude": 1.63172853,
+          "sqrMagnitude": 2.662538
+        }
+      },
+      {
+        "Color": 8,
+        "Size": 4,
+        "Direction": 2,
+        "Position": {
+          "x": 0.0227316953,
+          "y": -2.88237381,
+          "normalized": {
+            "x": 0.007886204,
+            "y": -0.9999689,
+            "magnitude": 1.0,
+            "sqrMagnitude": 0.99999994
+          },
+          "magnitude": 2.88246346,
+          "sqrMagnitude": 8.308596
+        }
+      },
+      {
+        "Color": 8,
+        "Size": 4,
+        "Direction": 6,
+        "Position": {
+          "x": 1.78764558,
+          "y": 1.57144547,
+          "normalized": {
+            "x": 0.751064,
+            "y": 0.6602294,
+            "magnitude": 1.0,
+            "sqrMagnitude": 1.0
+          },
+          "magnitude": 2.38015079,
+          "sqrMagnitude": 5.66511774
+        }
+      }
+    ]
   },
   "QueuePassengerData": {
     "QueuePassenger": {

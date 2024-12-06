@@ -12,10 +12,16 @@ public class ParkingPlotController : BController
 
     public override void Display()
     {
-        objectPool.ResetActive(false);
+        foreach (Transform child in transform)
+        {
+            if(child.gameObject.activeSelf == true)
+            {
+                objectPool.ReturnObject(child.gameObject);
+            }
+        }
 
-        var plotData = this.data as ParkingPlotData; 
-        foreach( var carData in plotData.Cars)
+        var plotData = this.data as ParkingPlotData;
+        foreach (var carData in plotData.Cars)
         {
             var obj = objectPool.GetObject();
             var controller = obj.GetComponent<BController>();
@@ -28,6 +34,9 @@ public class ParkingPlotController : BController
         var obj = objectPool.GetObject();
         var controller = obj.GetComponent<BController>();
         controller.SetInfo(carData);
+
+        var plotData = this.data as ParkingPlotData;
+        plotData.Cars.Add(carData);
     }
 
     public void Remove()
