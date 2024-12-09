@@ -72,6 +72,42 @@ public class QueuePassengerData: BData
         return cnt;
     }
 
+    public void MergeQueue()
+    {
+        var tempQueue = queue;
+
+        queue = new CustomQueue<GroupPassenger>();
+        CarColor curColor = CarColor.black;
+        int curNum = 0;
+        while( tempQueue.Count > 0)
+        {
+            var temp = tempQueue.Dequeue();
+            if(curNum == 0 || temp.color != curColor)
+            {
+                if(curNum != 0)
+                {
+                    var item = new GroupPassenger();
+                    item.num = curNum;
+                    item.color = curColor;
+                    queue.Enqueue(item);
+                }
+                
+                curNum = temp.num;
+                curColor = temp.color;
+            }
+            else
+            {
+                curNum += temp.num;
+                curColor = temp.color;
+            }            
+        }
+
+        var lastItem = new GroupPassenger();
+        lastItem.num = curNum;
+        lastItem.color = curColor;
+        queue.Enqueue(lastItem);
+    }
+
 }
 
 public struct GroupPassenger

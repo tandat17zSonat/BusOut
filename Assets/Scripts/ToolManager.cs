@@ -96,5 +96,23 @@ public class ToolManager : Singleton<ToolManager>
     {
         Singleton<QueuePassengerController>.Instance.UpdatePassenger(oldIndexInQueue, newIndexInQueue);
     }
+
+    public void GeneratePassenger(int num)
+    {
+        CarColor[] values = (CarColor[])System.Enum.GetValues(typeof(CarColor)); // Lấy tất cả các giá trị của enum
+        
+        for (int i = 0; i < num; i++)
+        {
+            var color = values[UnityEngine.Random.Range(0, values.Length)];
+            Singleton<QueuePassengerController>.Instance.Add(color, 1);
+        }
+    }
+
+    public void MergeQueue()
+    {
+        QueuePassengerData  queueData = Singleton<QueuePassengerController>.Instance.Data;
+        queueData.MergeQueue();
+        Singleton<CellManager>.Instance.SetInfo();
+    }
 }
 

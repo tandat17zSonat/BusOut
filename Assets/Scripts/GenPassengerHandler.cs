@@ -29,4 +29,15 @@ public class GenPassengerHandler : MonoBehaviour
         }
         Singleton<ToolManager>.Instance.RemovePassenger(num);
     }
+
+    public void Generate()
+    {
+        int num = 0;
+        if (int.TryParse(inputNum.text, out num) == false)
+        {
+            num = 10;
+        }
+        Singleton<ToolManager>.Instance.GeneratePassenger(num);
+
+    }
 }
