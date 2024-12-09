@@ -81,5 +81,15 @@ public class ToolManager : Singleton<ToolManager>
         bool isTrigger = toggle.isOn;
         Singleton<PlotManager>.Instance.OnPhysic(isTrigger);
     }
+
+    public void AddPassenger(CarColor color, int num)
+    {
+        Singleton<QueuePassengerController>.Instance.Add(color, num);
+    }
+
+    public void RemovePassenger(int num)
+    {
+        Singleton<QueuePassengerController>.Instance.Remove(num);
+    }
 }
 

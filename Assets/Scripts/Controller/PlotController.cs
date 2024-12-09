@@ -6,7 +6,7 @@ public class PlotManager : Singleton<PlotManager>
 {
     [SerializeField] ObjectPool objectPool;
 
-    public ParkingPlotData PlotData
+    public ParkingPlotData Data
     {
         get
         {

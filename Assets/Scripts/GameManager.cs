@@ -5,14 +5,15 @@ using UnityEngine;
 public class GameManager : Singleton<GameManager>
 {
     [SerializeField] PlotManager plotManager;
-
+    [SerializeField] QueuePassengerController queueManager;
     private GameData data;
     public GameData Data
     {
         get
         {
             var gameData = new GameData();
-            gameData.ParkingPlotData = plotManager.PlotData;
+            gameData.ParkingPlotData = plotManager.Data;
+            gameData.QueuePassengerData = queueManager.Data;
             return gameData;
         }
         set
@@ -24,6 +25,7 @@ public class GameManager : Singleton<GameManager>
 
     public void Display()
     {
-        plotManager.PlotData = data.ParkingPlotData;
+        plotManager.Data = data.ParkingPlotData;
+        queueManager.Data = data.QueuePassengerData;
     }
 }

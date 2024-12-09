@@ -11,7 +11,7 @@ public class UIStatCar : MonoBehaviour
 
     public void UpdateInfo()
     {
-        var plotData = Singleton<PlotManager>.Instance.PlotData;
+        var plotData = Singleton<PlotManager>.Instance.Data;
         foreach (var toggle in toggles)
         {
             string strColor = toggle.name;

@@ -1,20 +1,24 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 
-public class QueuePassengerController : BController
+public class QueuePassengerController : Singleton<QueuePassengerController>
 {
     [SerializeField] ObjectPool objectPool;
     [SerializeField] int queueSize = 17;
 
-    private Queue<GameObject> currentQueue;
+    private QueuePassengerData data = new QueuePassengerData();
+    private Queue<GameObject> currentQueue = new Queue<GameObject>();
 
-    public override void Init()
-    {
-        this.data = new QueuePassengerData();
-        this.currentQueue = new Queue<GameObject>();
+    public QueuePassengerData Data 
+    { 
+        get => data; 
+        set {
+            data = value;
+            Display();
+        }
     }
 
-    public override void Display()
+    public void Display()
     {
         while( currentQueue.Count > 0 )
         {
@@ -38,33 +42,26 @@ public class QueuePassengerController : BController
 
                 currentQueue.Enqueue(obj);
             }
-            
+            else
+            {
+                break;
+            }
         }
     }
 
     public void Add(CarColor color, int num)
     {
-        Debug.Log("Queue -> Add");
-        var queuePassengerData = (QueuePassengerData)this.data;
-
         // update data
-        queuePassengerData.EnqueuePassenger(color, num);
-        SetInfo(queuePassengerData);
-
-        Debug.Log("Queue Size: " + queuePassengerData.GetSize());
-        Debug.Log("QueuePassengerController -> Add: " + color.ToString() + num);
+        this.data.EnqueuePassenger(color, num);
+        this.Display();
+        Debug.Log("Queue Size: " + this.data.GetSize());
     }
 
     public void Remove(int num)
     {
-        Debug.Log("Queue -> Remove");
-        var queuePassengerData = (QueuePassengerData)this.data;
-
-        // update data
-        queuePassengerData.DequeuePassenger(num);
-        SetInfo(queuePassengerData);
-
-        Debug.Log("Queue Size: " + queuePassengerData.GetSize());
+        this.data.DequeuePassenger(num);
+        this.Display();
+        Debug.Log("Queue Size: " + this.data.GetSize());
     }
 
 }

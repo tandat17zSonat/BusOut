@@ -2,18 +2,6 @@
 
 public class QueuePassengerData: BData
 {
-    public struct GroupPassenger
-    {
-        public CarColor color;
-        public int num;
-
-        public GroupPassenger(CarColor color, int num)
-        {
-            this.color = color;
-            this.num = num;
-        }
-    }
-
     private CustomQueue<GroupPassenger> queue = new CustomQueue<GroupPassenger>();
     public CustomQueue<GroupPassenger> QueuePassenger { get => queue; set => queue = value; }
 
@@ -84,4 +72,16 @@ public class QueuePassengerData: BData
         return cnt;
     }
 
+}
+
+public struct GroupPassenger
+{
+    public CarColor color;
+    public int num;
+
+    public GroupPassenger(CarColor color, int num)
+    {
+        this.color = color;
+        this.num = num;
+    }
 }
