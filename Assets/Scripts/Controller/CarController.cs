@@ -24,7 +24,7 @@ public class CarController : BController
         size = carData.Size;
         direction = carData.Direction;
 
-        transform.position = carData.Position;
+        transform.localPosition = carData.Position;
     }
 
     public override void Display()
@@ -57,7 +57,7 @@ public class CarController : BController
     // Update is called once per frame
     void Update()
     {
-        ((CarData)data).Position = transform.position; // Lưu lại vị trí xe mỗi khi xe di chuyển
+        ((CarData)data).Position = transform.localPosition; // Lưu lại vị trí xe mỗi khi xe di chuyển
     }
 
     // Cập nhật khi chỉnh sửa ở editor

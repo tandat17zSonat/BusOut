@@ -13,15 +13,6 @@ public class CarInteractionHandler : MonoBehaviour
         lineRenderer = GetComponent<LineRenderer>();
         polygonCollider = GetComponent<PolygonCollider2D>();
 
-        // Cấu hình LineRenderer
-        lineRenderer.loop = true; // Kết nối điểm cuối với điểm đầu
-        lineRenderer.startWidth = 0.25f; // Độ dày đường
-        lineRenderer.endWidth = 0.02f;
-        lineRenderer.useWorldSpace = true; // Sử dụng tọa độ thế giới
-        lineRenderer.material = new Material(Shader.Find("Sprites/Default")); // Vật liệu mặc định
-        lineRenderer.startColor = Color.green; // Màu đường (có thể thay đổi)
-        lineRenderer.endColor = Color.green;
-
         lineRenderer.enabled = false; // Ẩn đường viền lúc đầu
     }
 
@@ -65,6 +56,6 @@ public class CarInteractionHandler : MonoBehaviour
 
     private void Update()
     {
-        UpdateOutline(); // Liên tục cập nhật đường viền theo vị trí của GameObject
+        UpdateOutline();
     }
 }

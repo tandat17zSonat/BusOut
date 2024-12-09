@@ -10,16 +10,12 @@ public class UIRandomColorController: MonoBehaviour
 
     public void RandomColor()
     {
-        List<CarColor> colors = new List<CarColor>();
-        foreach (var toggle in toggles)
+        CarColor[] colors = (CarColor[])Enum.GetValues(typeof(CarColor));
+        List<CarColor> listColor = new List<CarColor>();
+        foreach(var color in colors)
         {
-            if(toggle.isOn)
-            {
-                CarColor color = (CarColor)Enum.Parse(typeof(CarColor), toggle.name);
-                colors.Add(color);
-            }
+            listColor.Add(color);
         }
-
-        Singleton<ToolManager>.Instance.RandomColorCar(colors);
+        Singleton<ToolManager>.Instance.RandomColorCar(listColor);
     }
 }

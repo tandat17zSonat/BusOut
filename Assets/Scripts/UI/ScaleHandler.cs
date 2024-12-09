@@ -21,7 +21,7 @@ public class ScaleHandler : MonoBehaviour
 
     public void ScaleBy(float delta)
     {
-        Vector3 scale = gameObject.transform.localScale;
+        Vector3 scale = go.transform.localScale;
         go.transform.localScale = scale + Vector3.one * delta;
     }
 }
