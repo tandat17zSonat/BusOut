@@ -59,14 +59,23 @@ public class CustomQueue<T>
             return;
         }
 
-        // Lấy node tại vị trí fromIndex
-        LinkedListNode<T> node = GetNodeAt(fromIndex);
-
+        var node = Remove(fromIndex);
         if (node == null) return;
+        Add(node, toIndex);
+        
+    }
 
-        // Xóa node khỏi vị trí hiện tại
+    public LinkedListNode<T> Remove(int index)
+    {
+        // Lấy node tại vị trí fromIndex
+        LinkedListNode<T> node = GetNodeAt(index);
+        if (node == null) return null;
         list.Remove(node);
+        return node;
+    }
 
+    public void Add(LinkedListNode<T> node, int toIndex)
+    {
         // Tìm vị trí mới (toIndex)
         LinkedListNode<T> targetNode = GetNodeAt(toIndex);
 
@@ -78,15 +87,6 @@ public class CustomQueue<T>
         {
             list.AddLast(node);
         }
-    }
-
-    public LinkedListNode<T> Remove(int index)
-    {
-        // Lấy node tại vị trí fromIndex
-        LinkedListNode<T> node = GetNodeAt(index);
-        if (node == null) return null;
-        list.Remove(node);
-        return node;
     }
 
     public LinkedListNode<T> GetNodeAt(int index)

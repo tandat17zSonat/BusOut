@@ -123,5 +123,38 @@ public class ToolManager : Singleton<ToolManager>
         Singleton<QueuePassengerController>.Instance.Data = queueData;
         Singleton<CellManager>.Instance.SetInfo();
     }
+
+    public void DevidePassengerGroup(int index, int divisor)
+    {
+        QueuePassengerData queueData = Singleton<QueuePassengerController>.Instance.Data;
+
+        LinkedListNode<GroupPassenger> node = queueData.QueuePassenger.GetNodeAt(index);
+
+        if (node != null)
+        {
+            CarColor color = node.Value.color;
+            int num = node.Value.num;
+
+            int q = num / divisor,
+                r = num % divisor;
+
+            if( r != 0)
+            {
+                var item = new GroupPassenger(color, r);
+                queueData.QueuePassenger.ToList().AddAfter(node, item);
+            }
+            
+
+            for ( int i = 0; i<q; i++ )
+            {
+                var item = new GroupPassenger(color, divisor);
+                queueData.QueuePassenger.ToList().AddAfter(node, item);
+            }
+            queueData.QueuePassenger.Remove(index);
+
+            Singleton<QueuePassengerController>.Instance.Data = queueData;
+            Singleton<CellManager>.Instance.SetInfo();
+        }
+    }
 }
 

@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Net.WebSockets;
 using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -102,5 +103,13 @@ public class CellManager : Singleton<CellManager>
     {
         int idx = (curPage - 1) * NUM_CELL + selectedCell.transform.GetSiblingIndex();
         Singleton<ToolManager>.Instance.RemovePassengerGroup(idx);
+    }
+
+    public void DividePassengerGroup(int num)
+    {
+        int idx = (curPage - 1) * NUM_CELL + selectedCell.transform.GetSiblingIndex();
+
+        Singleton<ToolManager>.Instance.DevidePassengerGroup(idx, num);
+
     }
 }
