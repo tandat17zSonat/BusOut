@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class PassengerController : BController
 {
@@ -15,7 +13,6 @@ public class PassengerController : BController
         this.data = new PassengerData();
     }
 
-    //------------------------------------------------------------
     #region: Cập nhật info và hiển thị đúng
     public override void SetInfo(BData data)
     {
@@ -49,8 +46,10 @@ public class PassengerController : BController
     public Vector2 GetPosition()
     {
         var pIdx = ((PassengerData)this.data).PositionIndex;
-        int cellX = pIdx - 12 > 0 ? 12 : pIdx;
-        int cellY = pIdx - 12 > 0 ? pIdx - 12 : 0;
-        return new Vector2(cellX * 0.6f, cellY * 0.6f);
+
+        int cellX = pIdx - Config.WIDTH_QUEUE_PASSENGER > 0 ? Config.WIDTH_QUEUE_PASSENGER : pIdx;
+        int cellY = pIdx - Config.WIDTH_QUEUE_PASSENGER > 0 ? pIdx - Config.WIDTH_QUEUE_PASSENGER : 0;
+
+        return new Vector2(cellX * Config.DISTANCE_PASSENGER, cellY * Config.DISTANCE_PASSENGER);
     }
 }

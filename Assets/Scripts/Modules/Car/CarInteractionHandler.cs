@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 
+[RequireComponent (typeof(LineRenderer), typeof(PolygonCollider2D))]
 public class CarInteractionHandler : MonoBehaviour
 {
     private LineRenderer lineRenderer;
@@ -9,14 +10,12 @@ public class CarInteractionHandler : MonoBehaviour
 
     private void Awake()
     {
-        // Lấy các component cần thiết
         lineRenderer = GetComponent<LineRenderer>();
         polygonCollider = GetComponent<PolygonCollider2D>();
 
-        lineRenderer.enabled = false; // Ẩn đường viền lúc đầu
+        lineRenderer.enabled = false; 
     }
 
-    //----------------------------------------------------------------
     #region: Xử lý di chuyển xe bằng touch 
     private void OnMouseDown()
     {
@@ -44,8 +43,6 @@ public class CarInteractionHandler : MonoBehaviour
 
             // Đặt số lượng điểm cho LineRenderer
             lineRenderer.positionCount = points.Length;
-
-            // Gán các điểm cho LineRenderer
             for (int i = 0; i < points.Length; i++)
             {
                 Vector3 worldPoint = transform.TransformPoint(points[i]);

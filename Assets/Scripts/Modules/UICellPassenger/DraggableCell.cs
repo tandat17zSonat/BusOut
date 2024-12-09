@@ -5,7 +5,6 @@ using UnityEngine.UI;
 public class DraggableCell : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler, IPointerClickHandler
 {
     private Transform originalParent;
-    private Vector2 originalPosition;
 
     private int oldIndex = 0;
 
@@ -18,7 +17,6 @@ public class DraggableCell : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
     {
         // Lưu lại vị trí và cha gốc
         originalParent = transform.parent;
-        originalPosition = transform.localPosition;
         oldIndex = transform.GetSiblingIndex();
 
         // Đưa cell ra ngoài Layout Group để kéo tự do

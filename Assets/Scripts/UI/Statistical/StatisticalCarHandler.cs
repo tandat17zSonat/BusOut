@@ -1,11 +1,10 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class UIStatCar : MonoBehaviour
+public class StatisticalCarHandler : MonoBehaviour
 {
     [SerializeField] List<Toggle> toggles;
 

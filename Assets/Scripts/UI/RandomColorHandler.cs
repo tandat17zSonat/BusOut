@@ -1,10 +1,9 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class UIRandomColorController: MonoBehaviour
+public class RandomColorHandler: MonoBehaviour
 {
     [SerializeField] List<Toggle> toggles;
 

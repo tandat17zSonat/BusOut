@@ -1,12 +1,8 @@
 ﻿using System.IO;
 using Newtonsoft.Json;
 using UnityEngine;
-using TMPro;
-using System;
 using UnityEngine.UI;
-using Unity.VisualScripting;
 using System.Collections.Generic;
-using System.Drawing;
 
 public class ToolManager : Singleton<ToolManager>
 {
@@ -52,13 +48,13 @@ public class ToolManager : Singleton<ToolManager>
         Debug.Log("Update car: " + color + " " + size + " " + direction);
     }
 
-    public void Remove()
+    public void RemoveCar()
     {
         if (selectedCar == null) return;
         Singleton<PlotManager>.Instance.Remove(selectedCar);
     }
 
-    public void RemoveAll()
+    public void RemoveAllCar()
     {
         if (selectedCar == null) return;
         Singleton<PlotManager>.Instance.RemoveAll();
@@ -74,12 +70,6 @@ public class ToolManager : Singleton<ToolManager>
             carData.Color = colors[UnityEngine.Random.Range(0, colors.Count)];
             controller.SetInfo(carData);
         }
-    }
-
-    public void OnPhysic(Toggle toggle)
-    {
-        bool isTrigger = toggle.isOn;
-        Singleton<PlotManager>.Instance.OnPhysic(isTrigger);
     }
 
     public void AddPassenger(CarColor color, int num)

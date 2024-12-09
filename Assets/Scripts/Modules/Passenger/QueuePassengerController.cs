@@ -26,8 +26,7 @@ public class QueuePassengerController : Singleton<QueuePassengerController>
             objectPool.ReturnObject(obj);
         }
 
-        var queueData = (QueuePassengerData)this.data;
-        int size = queueData.GetSize();
+        int size = data.GetSize();
         for ( int  i = 0; i < queueSize; i++ )
         {
             if( i < size)
@@ -35,7 +34,7 @@ public class QueuePassengerController : Singleton<QueuePassengerController>
                 var obj = objectPool.GetObject();
                 var controller = obj.GetComponent<BController>();
 
-                var color = queueData.GetColorByIdx(i);
+                var color = data.GetColorByIdx(i);
                 var iData = new PassengerData();
                 iData.SetData(color, i);
                 controller.SetInfo(iData);
@@ -52,16 +51,14 @@ public class QueuePassengerController : Singleton<QueuePassengerController>
     public void Add(CarColor color, int num)
     {
         // update data
-        this.data.EnqueuePassenger(color, num);
-        this.Display();
-        Debug.Log("Queue Size: " + this.data.GetSize());
+        data.EnqueuePassenger(color, num);
+        Display();
     }
 
     public void Remove(int num)
     {
-        this.data.DequeuePassenger(num);
-        this.Display();
-        Debug.Log("Queue Size: " + this.data.GetSize());
+        data.DequeuePassenger(num);
+        Display();
     }
 
     public void UpdatePassenger(int oldIndex, int newIndex)

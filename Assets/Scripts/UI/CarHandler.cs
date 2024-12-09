@@ -1,7 +1,7 @@
 ﻿using System.Threading.Tasks;
 using UnityEngine;
 
-public class UICarController : MonoBehaviour
+public class CarHandler : MonoBehaviour
 {
     [SerializeField] ToggleGroupController toggleGroupColor;
     [SerializeField] ToggleGroupController toggleGroupSize;

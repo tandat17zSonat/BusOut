@@ -1,9 +1,7 @@
-using System.Collections;
-using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
-public class GenPassengerHandler : MonoBehaviour
+public class GeneratePassengerHandler : MonoBehaviour
 {
     [SerializeField] TMP_InputField inputNum;
     [SerializeField] ToggleGroupController toggleGroupColor;

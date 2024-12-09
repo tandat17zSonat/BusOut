@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class CarSpawner : MonoBehaviour
 {
-    public void GenCar(int numCar4, int numCar6, int numCar10)
+    public void GenerateCar(int numCar4, int numCar6, int numCar10)
     {
         Debug.Log("GenCar: " + numCar4 + " " + numCar6 + " " + numCar10);
         var mapCount = new Dictionary<int, int>();
@@ -14,9 +14,9 @@ public class CarSpawner : MonoBehaviour
         while (count < 1000)
         {
             count++;
-            var rColor = GetRandomEnumValue<CarColor>();
-            var rDirection = GetRandomEnumValue<CarDirection>();
-            var rSize = GetRandomEnumValue<CarSize>();
+            var rColor = Util.GetRandomEnumValue<CarColor>();
+            var rDirection = Util.GetRandomEnumValue<CarDirection>();
+            var rSize = Util.GetRandomEnumValue<CarSize>();
 
             if(mapCount[(int) rSize] > 0)
             {
@@ -25,6 +25,7 @@ public class CarSpawner : MonoBehaviour
 
                 var carData = new CarData(rColor, rSize, rDirection);
                 carData.Position = position;
+
                 Singleton<PlotManager>.Instance.Add(carData);
             }
         }
@@ -34,11 +35,5 @@ public class CarSpawner : MonoBehaviour
     Vector2 GetRandomPosition()
     {
         return Vector2.zero;
-    }
-
-    T GetRandomEnumValue<T>()
-    {
-        T[] values = (T[])System.Enum.GetValues(typeof(T)); // Lấy tất cả các giá trị của enum
-        return values[UnityEngine.Random.Range(0, values.Length)];      // Chọn một giá trị ngẫu nhiên
     }
 }

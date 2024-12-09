@@ -22,6 +22,8 @@ public class ScaleHandler : MonoBehaviour
     public void ScaleBy(float delta)
     {
         Vector3 scale = go.transform.localScale;
-        go.transform.localScale = scale + Vector3.one * delta;
+        var newScale = scale + Vector3.one * delta;
+        inputField.text = newScale.x.ToString();
+        go.transform.localScale = newScale;
     }
 }

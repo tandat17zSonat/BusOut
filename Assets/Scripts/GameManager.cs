@@ -1,5 +1,5 @@
-using System.Collections;
-using System.Collections.Generic;
+﻿using System.IO;
+using Newtonsoft.Json;
 using UnityEngine;
 
 public class GameManager : Singleton<GameManager>
@@ -27,5 +27,35 @@ public class GameManager : Singleton<GameManager>
     {
         plotManager.Data = data.ParkingPlotData;
         queueManager.Data = data.QueuePassengerData;
+    }
+
+    public void Save(int level)
+    {
+        // Save gameData to json 
+        string filePath = $"Assets/Config/Level/{level}.json";
+        var settings = new JsonSerializerSettings
+        {
+            ReferenceLoopHandling = ReferenceLoopHandling.Ignore // Bỏ qua vòng lặp
+        };
+
+        string json = JsonConvert.SerializeObject(Data, Formatting.Indented, settings);
+        File.WriteAllText(filePath, json);
+        Debug.Log($"Parking plot saved to {filePath}");
+    }
+
+    public void Load(int level)
+    {
+        string filePath = $"Assets/Config/Level/{level}.json";
+        if (!File.Exists(filePath))
+        {
+            Debug.LogWarning("Save file not found!");
+            return;
+        }
+
+        // read
+        string json = File.ReadAllText(filePath);
+        var gameData = JsonConvert.DeserializeObject<GameData>(json);
+
+        Data = gameData;
     }
 }

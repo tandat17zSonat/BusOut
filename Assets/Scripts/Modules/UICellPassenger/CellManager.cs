@@ -1,21 +1,18 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Net.WebSockets;
 using TMPro;
-using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class CellManager : Singleton<CellManager>
 {
+    [SerializeField] GameObject cells;
     [SerializeField] TMP_Text textUI;
 
-    private CustomQueue<GroupPassenger> queue;
-    int curPage = 1;
-    int maxPage = 1;
-    int NUM_CELL = 0;
 
+    private int curPage = 1;
+    private int maxPage = 1;
+    private int NUM_CELL = 0;
+
+    private CustomQueue<GroupPassenger> queue;
     private GameObject selectedCell;
 
     public GameObject SelectedCell 
@@ -38,7 +35,9 @@ public class CellManager : Singleton<CellManager>
     {
         var queueData = Singleton<QueuePassengerController>.Instance.Data;
         queue = queueData.QueuePassenger;
-        NUM_CELL = transform.childCount;
+        curPage = 1;
+        NUM_CELL = cells.transform.childCount;
+        Debug.Log(NUM_CELL);
         Display();
     }
 
@@ -55,7 +54,7 @@ public class CellManager : Singleton<CellManager>
                 continue;
             }
 
-            var child = transform.GetChild(i % NUM_CELL);
+            var child = cells.transform.GetChild(i % NUM_CELL);
             if (child != null)
             {
                 child.gameObject.SetActive(true);
@@ -66,12 +65,12 @@ public class CellManager : Singleton<CellManager>
             if (i >= NUM_CELL * curPage) break;
         }
 
-        if( i == 0) transform.GetChild(0).gameObject.SetActive(false);
+        if( i == 0) cells.transform.GetChild(0).gameObject.SetActive(false);
 
         i = i % NUM_CELL;
-        while (i < transform.childCount && i != 0)
+        while (i < cells.transform.childCount && i != 0)
         {
-            transform.GetChild(i % NUM_CELL).gameObject.SetActive(false);
+            cells.transform.GetChild(i % NUM_CELL).gameObject.SetActive(false);
             i++;
         }
 
