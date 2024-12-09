@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEditor.Tilemaps;
 using UnityEngine;
+using UnityEngine.Pool;
 
 public class ObjectPool : MonoBehaviour
 {
@@ -43,5 +44,16 @@ public class ObjectPool : MonoBehaviour
     {
         obj.SetActive(false);
         pool.Enqueue(obj);
+    }
+
+    public void Reset()
+    {
+        foreach (Transform child in parent.transform)
+        {
+            if (child.gameObject.activeSelf == true)
+            {
+                ReturnObject(child.gameObject);
+            }
+        }
     }
 }

@@ -7,11 +7,11 @@ using UnityEngine.UI;
 
 public class UIStatCar : MonoBehaviour
 {
-    [SerializeField] ParkingPlotController parkingPlotController;
     [SerializeField] List<Toggle> toggles;
+
     public void UpdateInfo()
     {
-        var plotData = (ParkingPlotData) parkingPlotController.Data;
+        var plotData = Singleton<PlotManager>.Instance.PlotData;
         foreach (var toggle in toggles)
         {
             string strColor = toggle.name;

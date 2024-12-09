@@ -1,7 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using System.Net.WebSockets;
-using UnityEngine;
+﻿using UnityEngine;
 
 [RequireComponent(typeof(PolygonCollider2D))]
 public class CarController : BController
@@ -12,14 +9,11 @@ public class CarController : BController
     [SerializeField] CarSize size = CarSize.four;
     [SerializeField] CarDirection direction = CarDirection.LB;
 
-    private bool showGizmos = false; // Biến cờ để kiểm soát việc vẽ Gizmos
-
     public override void Init()
     {
         this.data = new CarData();
     }
 
-    //--------------------------------------------------------------------
     # region: Cập nhật info và hiển thị đúng
     public override void SetInfo(BData data)
     {

@@ -4,10 +4,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class RandomColorHandler : MonoBehaviour
+public class UIRandomColorController: MonoBehaviour
 {
     [SerializeField] List<Toggle> toggles;
-    [SerializeField] ParkingPlotController plotController;
 
     public void RandomColor()
     {
@@ -17,16 +16,10 @@ public class RandomColorHandler : MonoBehaviour
             if(toggle.isOn)
             {
                 CarColor color = (CarColor)Enum.Parse(typeof(CarColor), toggle.name);
-
                 colors.Add(color);
             }
         }
 
-        var plotData = (ParkingPlotData)plotController.Data;
-        foreach (var carData in plotData.Cars)
-        {
-            carData.Color = colors[UnityEngine.Random.Range(0, colors.Count)];
-        }
-        plotController.Display();
+        Singleton<ToolManager>.Instance.RandomColorCar(colors);
     }
 }

@@ -5,7 +5,6 @@ public class CarInteractionHandler : MonoBehaviour
     private LineRenderer lineRenderer;
     private PolygonCollider2D polygonCollider;
 
-    private bool isSelected = false; // Biến để kiểm tra trạng thái được chọn
     private Vector3 delta;
 
     private void Awake()

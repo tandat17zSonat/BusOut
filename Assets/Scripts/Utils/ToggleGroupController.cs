@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Drawing;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -10,12 +11,12 @@ public class ToggleGroupController : MonoBehaviour
     public Type enumType;
 
     private string selectedToggleName;
-    public string SelectedToggleName { get; private set; }
     void Start()
     {
         // Gắn sự kiện onValueChanged cho từng toggle
         foreach (var toggle in toggleGroup.GetComponentsInChildren<Toggle>())
         {
+            if( toggle.isOn) selectedToggleName = toggle.name;
             toggle.onValueChanged.AddListener((isOn) => OnToggleChanged(toggle, isOn));
         }
     }
@@ -24,47 +25,12 @@ public class ToggleGroupController : MonoBehaviour
     {
         if (isOn) // Nếu toggle được bật
         {
-            SelectedToggleName = toggle.name;
-
-            //---------------------------
-            var selectedCar = Singleton<ToolManager>.Instance.SelectedCar;
-            if (selectedCar == null) return;
-
-            var controller = selectedCar.GetComponent<CarController>();
-            var newData = ((CarData)controller.Data);
-
-            try
-            {
-                string strColor = toggle.name;
-                CarColor color = (CarColor)Enum.Parse(typeof(CarColor), strColor);
-                newData.Color = color;
-            }
-            catch
-            {
-            }
-
-            try
-            {
-                string strSize = toggle.name;
-                CarSize size = (CarSize)Enum.Parse(typeof(CarSize), strSize);
-                newData.Size = size;
-            }
-            catch
-            {
-
-            }
-
-            try
-            {
-                string strDirection = toggle.name;
-                CarDirection direction = (CarDirection)Enum.Parse(typeof(CarDirection), strDirection);
-                newData.Direction = direction;
-            }
-            catch
-            {
-
-            }
-            controller.SetInfo(newData);
+            selectedToggleName = toggle.name;
         }
+    }
+
+    public T GetSelectedToggle<T>() where T : Enum
+    {
+        return (T)Enum.Parse(typeof(T), selectedToggleName);
     }
 }
