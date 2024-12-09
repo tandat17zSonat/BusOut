@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 
 /*------------------------------------------------------------------------------
  * Viết lại cấu trúc dữ liệu queue:
@@ -49,6 +50,53 @@ public class CustomQueue<T>
     public LinkedList<T> ToList()
     {
         return list;
+    }
+
+    public void MoveElement(int fromIndex,  int toIndex)
+    {
+        if (fromIndex < 0 || fromIndex >= list.Count || toIndex < 0 || toIndex >= list.Count)
+        {
+            return;
+        }
+
+        // Lấy node tại vị trí fromIndex
+        LinkedListNode<T> node = GetNodeAt(fromIndex);
+
+        if (node == null) return;
+
+        // Xóa node khỏi vị trí hiện tại
+        list.Remove(node);
+
+        // Tìm vị trí mới (toIndex)
+        LinkedListNode<T> targetNode = GetNodeAt(toIndex);
+
+        if (targetNode != null)
+        {
+            list.AddBefore(targetNode, node);
+        }
+        else
+        {
+            list.AddLast(node);
+        }
+    }
+
+    public LinkedListNode<T> GetNodeAt(int index)
+    {
+        int currentIndex = 0;
+        LinkedListNode<T> currentNode = list.First;
+
+        while (currentNode != null)
+        {
+            if (currentIndex == index)
+            {
+                return currentNode;
+            }
+
+            currentIndex++;
+            currentNode = currentNode.Next;
+        }
+
+        return null;
     }
 
     public bool IsEmpty => list.Count == 0;

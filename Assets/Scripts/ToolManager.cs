@@ -91,5 +91,10 @@ public class ToolManager : Singleton<ToolManager>
     {
         Singleton<QueuePassengerController>.Instance.Remove(num);
     }
+
+    public void UpdatePassenger(int oldIndexInQueue, int newIndexInQueue)
+    {
+        Singleton<QueuePassengerController>.Instance.UpdatePassenger(oldIndexInQueue, newIndexInQueue);
+    }
 }
 

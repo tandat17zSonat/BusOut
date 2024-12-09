@@ -7,15 +7,17 @@ public class DraggableCell : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
     private Transform originalParent;
     private Vector2 originalPosition;
 
+    private int oldIndex = 0;
+
     public void OnBeginDrag(PointerEventData eventData)
     {
         // Lưu lại vị trí và cha gốc
         originalParent = transform.parent;
         originalPosition = transform.localPosition;
+        oldIndex = transform.GetSiblingIndex();
 
         // Đưa cell ra ngoài Layout Group để kéo tự do
         transform.SetParent(originalParent.parent);
-        Debug.Log("selected cell: " + name);
     }
 
     public void OnDrag(PointerEventData eventData)
@@ -36,12 +38,11 @@ public class DraggableCell : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
         // Cập nhật lại bố cục
         LayoutRebuilder.ForceRebuildLayoutImmediate(originalParent.GetComponent<RectTransform>());
 
-        //Singleton<ToolManager>.Instance.UpdatePassenger();
+        Singleton<CellManager>.Instance.UpdateCellInfo(oldIndex, newIndex);
     }
 
     private int GetNewGridIndex()
     {
-        // Lấy danh sách các cell khác trong Grid Layout Group
         float closestDistance = float.MaxValue;
         int closestIndex = 0;
 

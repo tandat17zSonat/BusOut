@@ -64,4 +64,9 @@ public class QueuePassengerController : Singleton<QueuePassengerController>
         Debug.Log("Queue Size: " + this.data.GetSize());
     }
 
+    public void UpdatePassenger(int oldIndex, int newIndex)
+    {
+        data.QueuePassenger.MoveElement(oldIndex, newIndex);
+        Display();
+    }
 }

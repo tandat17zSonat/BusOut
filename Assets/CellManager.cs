@@ -13,6 +13,7 @@ public class CellManager : Singleton<CellManager>
     private CustomQueue<GroupPassenger> queue;
     int curPage = 1;
     int maxPage = 1;
+    int NUM_CELL = 0;
 
     private void Start()
     {
@@ -23,14 +24,13 @@ public class CellManager : Singleton<CellManager>
     {
         var queueData = Singleton<QueuePassengerController>.Instance.Data;
         queue = queueData.QueuePassenger;
+        NUM_CELL = transform.childCount;
         Display();
     }
 
     void Display()
     {
         int i = 0;
-        int NUM_CELL = transform.childCount;
-
         maxPage = (int)Math.Ceiling((double) queue.Count/NUM_CELL);
 
         foreach(var data in queue.ToList())
@@ -74,5 +74,12 @@ public class CellManager : Singleton<CellManager>
         curPage--;
         if (curPage > 0) Display();
         else curPage = 1;
+    }
+
+    public void UpdateCellInfo(int oldIndex, int newIndex)
+    {
+        int oldIndexInQueue = (curPage - 1) * NUM_CELL + oldIndex,
+            newIndexInQueue = (curPage - 1) * NUM_CELL + newIndex;
+        Singleton<ToolManager>.Instance.UpdatePassenger(oldIndexInQueue, newIndexInQueue);
     }
 }
