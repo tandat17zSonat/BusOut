@@ -114,5 +114,14 @@ public class ToolManager : Singleton<ToolManager>
         queueData.MergeQueue();
         Singleton<CellManager>.Instance.SetInfo();
     }
+
+    public void RemovePassengerGroup(int indexInQueue)
+    {
+        QueuePassengerData queueData = Singleton<QueuePassengerController>.Instance.Data;
+        queueData.QueuePassenger.Remove(indexInQueue);
+
+        Singleton<QueuePassengerController>.Instance.Data = queueData;
+        Singleton<CellManager>.Instance.SetInfo();
+    }
 }
 

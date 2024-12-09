@@ -15,6 +15,19 @@ public class CellManager : Singleton<CellManager>
     int maxPage = 1;
     int NUM_CELL = 0;
 
+    private GameObject selectedCell;
+
+    public GameObject SelectedCell 
+    { 
+        get => selectedCell;
+        set
+        {
+            if( selectedCell) selectedCell.GetComponent<CellController>().SetSelected(false);
+            selectedCell = value;
+            selectedCell.GetComponent<CellController>().SetSelected(true);
+        }
+    }
+
     private void Start()
     {
         SetInfo();
@@ -52,6 +65,8 @@ public class CellManager : Singleton<CellManager>
             if (i >= NUM_CELL * curPage) break;
         }
 
+        if( i == 0) transform.GetChild(0).gameObject.SetActive(false);
+
         i = i % NUM_CELL;
         while (i < transform.childCount && i != 0)
         {
@@ -81,5 +96,11 @@ public class CellManager : Singleton<CellManager>
         int oldIndexInQueue = (curPage - 1) * NUM_CELL + oldIndex,
             newIndexInQueue = (curPage - 1) * NUM_CELL + newIndex;
         Singleton<ToolManager>.Instance.UpdatePassenger(oldIndexInQueue, newIndexInQueue);
+    }
+
+    public void RemovePassengerGroup()
+    {
+        int idx = (curPage - 1) * NUM_CELL + selectedCell.transform.GetSiblingIndex();
+        Singleton<ToolManager>.Instance.RemovePassengerGroup(idx);
     }
 }

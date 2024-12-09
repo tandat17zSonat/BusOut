@@ -2,12 +2,17 @@
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class DraggableCell : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler
+public class DraggableCell : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler, IPointerClickHandler
 {
     private Transform originalParent;
     private Vector2 originalPosition;
 
     private int oldIndex = 0;
+
+    public void OnPointerClick(PointerEventData eventData)
+    {
+        Singleton<CellManager>.Instance.SelectedCell = this.gameObject;
+    }
 
     public void OnBeginDrag(PointerEventData eventData)
     {

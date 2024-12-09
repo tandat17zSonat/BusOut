@@ -12,12 +12,6 @@ public class CellController : MonoBehaviour
     [SerializeField] CarColor color;
     [SerializeField] int num;
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
     public void SetInfo(CarColor color, int num)
     {
         this.color = color;
@@ -35,5 +29,17 @@ public class CellController : MonoBehaviour
     private void OnValidate()
     {
         SetInfo(this.color, this.num);
+    }
+
+    public void SetSelected(bool isSelected)
+    {
+        if( isSelected)
+        {
+            textUI.color = Color.red;
+        }
+        else
+        {
+            textUI.color = Color.white;
+        }
     }
 }

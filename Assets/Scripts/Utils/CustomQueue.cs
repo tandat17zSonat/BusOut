@@ -80,6 +80,15 @@ public class CustomQueue<T>
         }
     }
 
+    public LinkedListNode<T> Remove(int index)
+    {
+        // Lấy node tại vị trí fromIndex
+        LinkedListNode<T> node = GetNodeAt(index);
+        if (node == null) return null;
+        list.Remove(node);
+        return node;
+    }
+
     public LinkedListNode<T> GetNodeAt(int index)
     {
         int currentIndex = 0;
