@@ -29,6 +29,8 @@ public class GameManager : Singleton<GameManager>
         plotManager.Data = data.ParkingPlotData;
         queueManager.Data = data.QueuePassengerData;
 
+        // hiển thị phần UI
+        Singleton<CellManager>.Instance.SetInfo();
         Singleton<ScaleHandler>.Instance.Scale = data.ScaleFactor;
     }
 

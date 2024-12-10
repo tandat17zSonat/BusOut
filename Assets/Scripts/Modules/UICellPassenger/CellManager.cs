@@ -10,7 +10,7 @@ public class CellManager : Singleton<CellManager>
 
     private int curPage = 1;
     private int maxPage = 1;
-    private int NUM_CELL = 0;
+    private int numCell = 0;
 
     private CustomQueue<GroupPassenger> queue;
     private GameObject selectedCell;
@@ -28,33 +28,38 @@ public class CellManager : Singleton<CellManager>
 
     private void Start()
     {
-        SetInfo();
+        int i = 0;
+        numCell = cells.transform.childCount;
+        while (i < numCell)
+        {
+            cells.transform.GetChild(i % numCell).gameObject.SetActive(false);
+            i++;
+        }
     }
 
-    public void SetInfo()
+    public void SetInfo(bool backFirstPage = true)
     {
         var queueData = Singleton<QueuePassengerController>.Instance.Data;
         queue = queueData.QueuePassenger;
-        curPage = 1;
-        NUM_CELL = cells.transform.childCount;
-        Debug.Log(NUM_CELL);
+        if( backFirstPage) curPage = 1;
+        numCell = cells.transform.childCount;
         Display();
     }
 
     void Display()
     {
         int i = 0;
-        maxPage = (int)Math.Ceiling((double) queue.Count/NUM_CELL);
+        maxPage = (int)Math.Ceiling((double) queue.Count/numCell);
 
         foreach(var data in queue.ToList())
         {
-            if (i < NUM_CELL * (curPage - 1))
+            if (i < numCell * (curPage - 1))
             {
                 i++;
                 continue;
             }
 
-            var child = cells.transform.GetChild(i % NUM_CELL);
+            var child = cells.transform.GetChild(i % numCell);
             if (child != null)
             {
                 child.gameObject.SetActive(true);
@@ -62,15 +67,15 @@ public class CellManager : Singleton<CellManager>
             }
             i++;
 
-            if (i >= NUM_CELL * curPage) break;
+            if (i >= numCell * curPage) break;
         }
 
         if( i == 0) cells.transform.GetChild(0).gameObject.SetActive(false);
 
-        i = i % NUM_CELL;
-        while (i < cells.transform.childCount && i != 0)
+        i = i % numCell;
+        while (i < numCell && i != 0)
         {
-            cells.transform.GetChild(i % NUM_CELL).gameObject.SetActive(false);
+            cells.transform.GetChild(i % numCell).gameObject.SetActive(false);
             i++;
         }
 
@@ -93,20 +98,20 @@ public class CellManager : Singleton<CellManager>
 
     public void UpdateCellInfo(int oldIndex, int newIndex)
     {
-        int oldIndexInQueue = (curPage - 1) * NUM_CELL + oldIndex,
-            newIndexInQueue = (curPage - 1) * NUM_CELL + newIndex;
+        int oldIndexInQueue = (curPage - 1) * numCell + oldIndex,
+            newIndexInQueue = (curPage - 1) * numCell + newIndex;
         Singleton<ToolManager>.Instance.UpdatePassenger(oldIndexInQueue, newIndexInQueue);
     }
 
     public void RemovePassengerGroup()
     {
-        int idx = (curPage - 1) * NUM_CELL + selectedCell.transform.GetSiblingIndex();
+        int idx = (curPage - 1) * numCell + selectedCell.transform.GetSiblingIndex();
         Singleton<ToolManager>.Instance.RemovePassengerGroup(idx);
     }
 
     public void DividePassengerGroup(int num)
     {
-        int idx = (curPage - 1) * NUM_CELL + selectedCell.transform.GetSiblingIndex();
+        int idx = (curPage - 1) * numCell + selectedCell.transform.GetSiblingIndex();
 
         Singleton<ToolManager>.Instance.DevidePassengerGroup(idx, num);
 

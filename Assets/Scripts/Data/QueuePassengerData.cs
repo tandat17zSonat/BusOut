@@ -27,12 +27,13 @@ public class QueuePassengerData
         while (queue.Count > 0)
         {
             var front = QueuePassenger.Peek();
-            if (front.num >= num)
+            if (front.num > num)
             {
                 front.num -= num;
                 queue.SetFront(front);
                 break;
             }
+            num -= front.num;
             QueuePassenger.Dequeue();
         }
     }

@@ -39,7 +39,7 @@ public class CellController : MonoBehaviour
         }
         else
         {
-            textUI.color = Color.white;
+            textUI.color = Color.black;
         }
     }
 }

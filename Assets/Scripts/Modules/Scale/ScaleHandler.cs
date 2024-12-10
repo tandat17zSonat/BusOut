@@ -15,7 +15,7 @@ public class ScaleHandler : Singleton<ScaleHandler>
         {
             scale = value;
             var newScale = Vector3.one * scale;
-            inputField.text = newScale.x.ToString();
+            inputField.text = scale.ToString();
             go.transform.localScale = newScale;
         }
     }
@@ -27,11 +27,11 @@ public class ScaleHandler : Singleton<ScaleHandler>
 
     public void ScaleTo()
     {
-        Scale = 1.0f;
-        if(float.TryParse(inputField.text, out scale))
+        double sc;
+        if (double.TryParse(inputField.text, out sc))
         {
+            Scale = (float)sc;
             Singleton<GameManager>.Instance.Data.ScaleFactor = scale;
-            go.transform.localScale = Vector3.one * scale;
         }
         else
         {
