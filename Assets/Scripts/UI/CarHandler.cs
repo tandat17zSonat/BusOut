@@ -1,7 +1,7 @@
 ﻿using System.Threading.Tasks;
 using UnityEngine;
 
-public class CarHandler : MonoBehaviour
+public class CarManager : Singleton<CarManager>
 {
     [SerializeField] ToggleGroupController toggleGroupColor;
     [SerializeField] ToggleGroupController toggleGroupSize;
@@ -18,5 +18,10 @@ public class CarHandler : MonoBehaviour
         Singleton<ToolManager>.Instance.UpdateCar(color, size, direction);
     }
 
-
+    public void ChangeToggleValue(CarColor color, CarSize size, CarDirection direction)
+    {
+        toggleGroupColor.SetSelectedToggle<CarColor>(color);
+        toggleGroupSize.SetSelectedToggle<CarSize>(size);
+        toggleGroupDirection.SetSelectedToggle<CarDirection>(direction);
+    }
 }

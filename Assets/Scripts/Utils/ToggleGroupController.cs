@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Drawing;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -32,5 +29,17 @@ public class ToggleGroupController : MonoBehaviour
     public T GetSelectedToggle<T>() where T : Enum
     {
         return (T)Enum.Parse(typeof(T), selectedToggleName);
+    }
+
+    public void SetSelectedToggle<T>(T value) where T : Enum
+    {
+        foreach (var toggle in toggleGroup.GetComponentsInChildren<Toggle>())
+        {
+            toggle.isOn = false;
+            if(toggle.name == value.ToString())
+            {
+                toggle.isOn = true;
+            }
+        }
     }
 }

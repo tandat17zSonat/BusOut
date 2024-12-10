@@ -3,7 +3,6 @@ using UnityEngine.UI;
 
 public class BoudaryController : MonoBehaviour
 {
-    [SerializeField] GameObject region;
 
     private void OnTriggerStay2D(Collider2D collision)
     {
@@ -19,6 +18,6 @@ public class BoudaryController : MonoBehaviour
 
     public void ShowBoundary(Toggle toggle)
     {
-        region.SetActive(toggle.isOn);
+        gameObject.SetActive(toggle.isOn);
     }
 }

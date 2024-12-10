@@ -10541,7 +10541,7 @@ CircleCollider2D:
   m_ExcludeLayers:
     serializedVersion: 2
     m_Bits: 0
-  m_LayerOverridePriority: 0
+  m_LayerOverridePriority: -1
   m_ForceSendLayers:
     serializedVersion: 2
     m_Bits: 4294967295
@@ -10588,7 +10588,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: abe52e9666b2ce641a99bd8b8e683d12, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  region: {fileID: 1124120750}
 --- !u!50 &499810113
 Rigidbody2D:
   serializedVersion: 4
@@ -59841,7 +59840,7 @@ SpriteRenderer:
   m_SortingLayer: 4
   m_SortingOrder: 0
   m_Sprite: {fileID: -2413806693520163455, guid: ebe73ca9363db456bacf42c025bb4847, type: 3}
-  m_Color: {r: 0.4867658, g: 0.9716981, b: 0.44459772, a: 0.68235296}
+  m_Color: {r: 0.4867658, g: 0.9716981, b: 0.44459772, a: 0.5019608}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -66980,7 +66979,7 @@ GameObject:
   - component: {fileID: 1561194663}
   - component: {fileID: 1561194664}
   m_Layer: 5
-  m_Name: toggleShow
+  m_Name: ToggleShow
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -67005,7 +67004,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 116.15001, y: -3.2500305}
-  m_SizeDelta: {x: 94.4, y: 40}
+  m_SizeDelta: {x: 100, y: 40}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1561194664
 MonoBehaviour:

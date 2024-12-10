@@ -30,6 +30,9 @@ public class ToolManager : Singleton<ToolManager>
             {
                 selectedCar = value;
                 selectedCar.GetComponent<LineRenderer>().enabled = true;
+
+                var data = selectedCar.GetComponent<CarController>().Data as CarData;
+                Singleton<CarManager>.Instance.ChangeToggleValue(data.Color, data.Size, data.Direction);
             }
 
         }
@@ -45,7 +48,6 @@ public class ToolManager : Singleton<ToolManager>
         newData.Size = size;
         newData.Direction = direction;
         controller.SetInfo(newData);
-        Debug.Log("Update car: " + color + " " + size + " " + direction);
     }
 
     public void RemoveCar()
