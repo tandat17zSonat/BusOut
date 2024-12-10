@@ -9,6 +9,9 @@ public class CarController : BController
     [SerializeField] CarSize size = CarSize.four;
     [SerializeField] CarDirection direction = CarDirection.LB;
 
+    private bool isStay = false;
+    public bool IsStay { get => isStay; set => isStay = value; }
+
     public override void Init()
     {
         this.data = new CarData();

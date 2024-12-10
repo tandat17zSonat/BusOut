@@ -146,5 +146,17 @@ public class ToolManager : Singleton<ToolManager>
             Singleton<CellManager>.Instance.SetInfo();
         }
     }
+
+    public void RemoveAllOutObject()
+    {
+        var cars = Singleton<PlotManager>.Instance.GetCarObjects();
+        foreach ( var car in cars )
+        {
+            if(car.GetComponent<CarController>().IsStay == false)
+            {
+                Singleton<PlotManager>.Instance.Remove(car);
+            }
+        }
+    }
 }
 
