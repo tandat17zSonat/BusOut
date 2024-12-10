@@ -1,7 +1,4 @@
-﻿using System.IO;
-using Newtonsoft.Json;
-using UnityEngine;
-using UnityEngine.UI;
+﻿using UnityEngine;
 using System.Collections.Generic;
 
 public class ToolManager : Singleton<ToolManager>

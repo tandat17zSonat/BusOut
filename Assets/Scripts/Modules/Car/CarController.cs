@@ -71,4 +71,40 @@ public class CarController : BController
         ((CarData)this.data).SetData(color, size, direction);
         Display();
     }
+
+    public bool CanPlayCar()
+    {
+        Vector2 boxSize = new Vector2(1f, 1f); // Kích thước hình hộp
+        float maxDistance = 1000f; // Khoảng cách kiểm tra
+        float angle = ((CarData) data).GetDirectionAngle();
+        Vector2 direction = ((CarData)data).GetDirectionVector();
+
+        RaycastHit2D[] hits = Physics2D.BoxCastAll(transform.position, boxSize, angle, direction, maxDistance);
+
+        // Nếu va chạm
+        bool check = true;
+        foreach (RaycastHit2D hit in hits)
+        {
+            if (hit.collider != null && hit.collider.gameObject != gameObject)
+            {
+                check = false;
+                break;
+            }
+        }
+        return check;
+    }
+
+    /// <summary>
+    /// Xe di chuyển tới slot
+    /// </summary>
+    public float MoveToSlot(Vector2 destination)
+    {
+        return 0.5f;
+    }
+
+    public void Leave()
+    {
+        return;
+    }
 }
+

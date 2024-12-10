@@ -49,7 +49,51 @@ public class CarData: BData
         if (this.size == CarSize.ten) return 2;
         return -1;
     }
-}
+
+    public Vector2 GetDirectionVector()
+    {
+        switch(this.direction)
+        {
+            case CarDirection.LB:
+                return Vector2.left + Vector2.down;
+
+            case CarDirection.L:
+                return Vector2.left;
+
+            case CarDirection.LT:
+                return Vector2.left + Vector2.up;
+
+            case CarDirection.T:
+                return Vector2.up;
+
+            case CarDirection.RT:
+                return Vector2.right + Vector2.up;
+
+            case CarDirection.R:
+                return Vector2.right;
+
+            case CarDirection.RB:
+                return Vector2.right + Vector2.down;
+
+            case CarDirection.B:
+                return Vector2.down;
+        }
+        return Vector2.zero;
+    }
+
+    public float GetDirectionAngle()
+    {
+        switch (this.direction)
+        {
+            case CarDirection.LB:
+            case CarDirection.LT:
+            case CarDirection.RT:
+            case CarDirection.RB:
+                return 45f;
+        }
+        return 0f;
+    }
+} 
 
 public enum CarColor
 {

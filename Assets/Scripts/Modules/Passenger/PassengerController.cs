@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using Unity.VisualScripting;
+using UnityEngine;
 
 public class PassengerController : BController
 {
@@ -54,4 +55,16 @@ public class PassengerController : BController
             y = cellY * Config.DISTANCE_PASSENGER;
         return new Vector3(x, y, y);
     }
+
+    public void MoveToCar(GameObject car)
+    {
+
+    }
+}
+
+public enum PassengerState
+{
+    READY, // sẵn sàng lên xe
+    MOVING, // Đang lên xe
+    FINISH // đã lên xe
 }

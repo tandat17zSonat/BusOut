@@ -10,11 +10,14 @@ GameObject:
   m_Component:
   - component: {fileID: 2976883445115856693}
   - component: {fileID: 7597729179115960814}
+  - component: {fileID: 8461016581424923630}
   - component: {fileID: 8654763212912997377}
-  - component: {fileID: 491211709284190334}
+  - component: {fileID: 5219847998112253780}
+  - component: {fileID: 8769850570511092680}
+  - component: {fileID: 1288467782144546876}
   m_Layer: 0
-  m_Name: Car40
-  m_TagString: Untagged
+  m_Name: CarInGame
+  m_TagString: Car
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -72,10 +75,10 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: -733754879
+  m_SortingLayer: 1
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 4342baf0f86e85c4a835b69938ee6b25, type: 3}
+  m_Sprite: {fileID: 21300000, guid: a604b69996f167647a139b9fb746ff55, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -86,6 +89,33 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!50 &8461016581424923630
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8382298084441418637}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 4
 --- !u!60 &8654763212912997377
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -122,7 +152,7 @@ PolygonCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 2.98, y: 2.62}
+    oldSize: {x: 1.77, y: 3.84}
     newSize: {x: 2.98, y: 2.62}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -130,12 +160,12 @@ PolygonCollider2D:
   m_AutoTiling: 0
   m_Points:
     m_Paths:
-    - - {x: 0.19563591, y: 1.2641995}
-      - {x: -1.6229715, y: -0.33566666}
-      - {x: -0.12669578, y: -1.374352}
-      - {x: 1.6291717, y: 0.2338869}
+    - - {x: -0.86351067, y: 1.5144174}
+      - {x: -0.88776064, y: -1.6485196}
+      - {x: 0.88061386, y: -1.6606747}
+      - {x: 0.8756401, y: 1.5113237}
   m_UseDelaunayMesh: 0
---- !u!120 &491211709284190334
+--- !u!120 &5219847998112253780
 LineRenderer:
   serializedVersion: 2
   m_ObjectHideFlags: 0
@@ -156,7 +186,7 @@ LineRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 0}
+  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -174,13 +204,11 @@ LineRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 1326051001
+  m_SortingLayer: 4
   m_SortingOrder: 0
   m_Positions:
   - {x: 0, y: 0, z: 0}
-  - {x: 0, y: 0, z: 1}
-  - {x: 0, y: 0, z: 1}
   - {x: 0, y: 0, z: 1}
   m_Parameters:
     serializedVersion: 3
@@ -189,8 +217,8 @@ LineRenderer:
       serializedVersion: 2
       m_Curve:
       - serializedVersion: 3
-        time: 0
-        value: 1
+        time: 0.005584717
+        value: 0.13835907
         inSlope: 0
         outSlope: 0
         tangentMode: 0
@@ -202,8 +230,8 @@ LineRenderer:
       m_RotationOrder: 4
     colorGradient:
       serializedVersion: 2
-      key0: {r: 1, g: 1, b: 1, a: 1}
-      key1: {r: 1, g: 1, b: 1, a: 1}
+      key0: {r: 0, g: 1, b: 0.03532791, a: 1}
+      key1: {r: 0, g: 1, b: 0.03532791, a: 1}
       key2: {r: 0, g: 0, b: 0, a: 0}
       key3: {r: 0, g: 0, b: 0, a: 0}
       key4: {r: 0, g: 0, b: 0, a: 0}
@@ -226,8 +254,8 @@ LineRenderer:
       atime5: 0
       atime6: 0
       atime7: 0
-      m_Mode: 0
-      m_ColorSpace: -1
+      m_Mode: 1
+      m_ColorSpace: 0
       m_NumColorKeys: 2
       m_NumAlphaKeys: 2
     numCornerVertices: 0
@@ -239,5 +267,33 @@ LineRenderer:
     generateLightingData: 0
   m_MaskInteraction: 0
   m_UseWorldSpace: 1
-  m_Loop: 0
+  m_Loop: 1
   m_ApplyActiveColorSpace: 1
+--- !u!114 &8769850570511092680
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8382298084441418637}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3a2ab7f4a1d44094c94eb685e4f4de83, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  carScriptableObject: {fileID: 11400000, guid: ac3d6dda602f2c04195e4df77d6a2714, type: 2}
+  color: 8
+  size: 10
+  direction: 4
+--- !u!114 &1288467782144546876
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8382298084441418637}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 466c1dab39edbed4abd973cbce603465, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

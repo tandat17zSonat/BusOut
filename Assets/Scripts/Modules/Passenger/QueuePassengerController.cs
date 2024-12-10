@@ -66,4 +66,10 @@ public class QueuePassengerController : Singleton<QueuePassengerController>
         data.QueuePassenger.MoveElement(oldIndex, newIndex);
         Display();
     }
+
+    public GameObject GetFrontPassenger()
+    {
+        return currentQueue.Peek();
+    }
+
 }
