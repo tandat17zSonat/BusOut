@@ -57,6 +57,7 @@ public class CarController : BController
     // Update is called once per frame
     void Update()
     {
+        transform.localPosition = new Vector3(transform.localPosition.x, transform.localPosition.y, transform.localPosition.y);
         ((CarData)data).Position = transform.localPosition; // Lưu lại vị trí xe mỗi khi xe di chuyển
     }
 

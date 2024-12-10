@@ -41,7 +41,7 @@
         "Size": 10,
         "Direction": 3,
         "Position": {
-          "x": 5.592937,
+          "x": 5.59293652,
           "y": -9.155581,
           "normalized": {
             "x": 0.5213047,
@@ -59,15 +59,15 @@
         "Direction": 5,
         "Position": {
           "x": -4.79557848,
-          "y": -3.87656736,
+          "y": -3.87656784,
           "normalized": {
-            "x": -0.777686238,
-            "y": -0.628652632,
+            "x": -0.7776862,
+            "y": -0.6286527,
             "magnitude": 1.0,
             "sqrMagnitude": 1.0
           },
-          "magnitude": 6.16646957,
-          "sqrMagnitude": 38.02535
+          "magnitude": 6.16647,
+          "sqrMagnitude": 38.0253525
         }
       },
       {
@@ -116,15 +116,15 @@
         "Direction": 4,
         "Position": {
           "x": -10.9686823,
-          "y": -7.12935,
+          "y": -7.12935066,
           "normalized": {
-            "x": -0.8384539,
+            "x": -0.8384538,
             "y": -0.5449726,
             "magnitude": 1.0,
-            "sqrMagnitude": 1.0
+            "sqrMagnitude": 0.99999994
           },
-          "magnitude": 13.0820341,
-          "sqrMagnitude": 171.139618
+          "magnitude": 13.0820351,
+          "sqrMagnitude": 171.139633
         }
       },
       {
@@ -162,10 +162,10 @@
         "Direction": 2,
         "Position": {
           "x": -10.8739414,
-          "y": -4.66019773,
+          "y": -4.660198,
           "normalized": {
             "x": -0.919146955,
-            "y": -0.393914819,
+            "y": -0.393914849,
             "magnitude": 1.0,
             "sqrMagnitude": 1.0
           },
@@ -179,10 +179,10 @@
         "Direction": 3,
         "Position": {
           "x": -6.24931431,
-          "y": -1.11926448,
+          "y": -1.1192646,
           "normalized": {
             "x": -0.9843371,
-            "y": -0.176296711,
+            "y": -0.176296726,
             "magnitude": 1.0,
             "sqrMagnitude": 1.0
           },
@@ -219,12 +219,12 @@
         "Direction": 4,
         "Position": {
           "x": -10.8334866,
-          "y": -2.37501287,
+          "y": -2.37501335,
           "normalized": {
             "x": -0.9768023,
-            "y": -0.214143246,
+            "y": -0.214143291,
             "magnitude": 1.0,
-            "sqrMagnitude": 1.0
+            "sqrMagnitude": 1.00000012
           },
           "magnitude": 11.0907669,
           "sqrMagnitude": 123.005119
@@ -236,10 +236,10 @@
         "Direction": 2,
         "Position": {
           "x": -9.827008,
-          "y": 0.3437412,
+          "y": 0.343741417,
           "normalized": {
             "x": -0.9993888,
-            "y": 0.0349578522,
+            "y": 0.0349578746,
             "magnitude": 1.0,
             "sqrMagnitude": 1.0
           },
@@ -310,15 +310,15 @@
         "Direction": 1,
         "Position": {
           "x": 0.830056965,
-          "y": -6.38903666,
+          "y": -6.389036,
           "normalized": {
-            "x": 0.1288362,
+            "x": 0.128836215,
             "y": -0.9916659,
             "magnitude": 1.0,
             "sqrMagnitude": 1.0
           },
-          "magnitude": 6.442731,
-          "sqrMagnitude": 41.5087852
+          "magnitude": 6.44273043,
+          "sqrMagnitude": 41.5087776
         }
       },
       {
@@ -344,20 +344,14 @@
         "Direction": 5,
         "Position": {
           "x": 11.4245863,
-          "y": -6.83718729,
+          "y": -6.837187,
           "normalized": {
-            "x": 0.858074367,
+            "x": 0.8580744,
             "y": -0.513525367,
-            "normalized": {
-              "x": 0.8580744,
-              "y": -0.5135254,
-              "magnitude": 1.0,
-              "sqrMagnitude": 1.00000012
-            },
-            "magnitude": 0.99999994,
-            "sqrMagnitude": 0.99999994
+            "magnitude": 1.0,
+            "sqrMagnitude": 1.0
           },
-          "magnitude": 13.3142147,
+          "magnitude": 13.3142138,
           "sqrMagnitude": 177.2683
         }
       },
@@ -401,18 +395,133 @@
         "Direction": -2,
         "Position": {
           "x": 10.1977081,
-          "y": -4.286653,
+          "y": -4.28665352,
           "normalized": {
             "x": 0.921865344,
-            "y": -0.3875103,
+            "y": -0.387510329,
             "magnitude": 1.0,
             "sqrMagnitude": 0.99999994
           },
           "magnitude": 11.0620365,
-          "sqrMagnitude": 122.368645
+          "sqrMagnitude": 122.368652
         }
       }
     ]
   },
-  "QueuePassengerData": null
+  "QueuePassengerData": {
+    "QueuePassenger": {
+      "List": [
+        {
+          "color": 2,
+          "num": 1
+        },
+        {
+          "color": 6,
+          "num": 1
+        },
+        {
+          "color": 1,
+          "num": 1
+        },
+        {
+          "color": 8,
+          "num": 1
+        },
+        {
+          "color": 0,
+          "num": 1
+        },
+        {
+          "color": 4,
+          "num": 1
+        },
+        {
+          "color": 9,
+          "num": 1
+        },
+        {
+          "color": 10,
+          "num": 1
+        },
+        {
+          "color": 7,
+          "num": 1
+        },
+        {
+          "color": 5,
+          "num": 1
+        },
+        {
+          "color": 10,
+          "num": 1
+        },
+        {
+          "color": 7,
+          "num": 1
+        },
+        {
+          "color": 2,
+          "num": 1
+        },
+        {
+          "color": 10,
+          "num": 1
+        },
+        {
+          "color": 7,
+          "num": 1
+        },
+        {
+          "color": 4,
+          "num": 1
+        },
+        {
+          "color": 10,
+          "num": 1
+        },
+        {
+          "color": 9,
+          "num": 1
+        },
+        {
+          "color": 5,
+          "num": 1
+        },
+        {
+          "color": 10,
+          "num": 1
+        },
+        {
+          "color": 1,
+          "num": 2
+        },
+        {
+          "color": 5,
+          "num": 1
+        },
+        {
+          "color": 10,
+          "num": 1
+        },
+        {
+          "color": 3,
+          "num": 1
+        },
+        {
+          "color": 2,
+          "num": 1
+        },
+        {
+          "color": 0,
+          "num": 1
+        },
+        {
+          "color": 5,
+          "num": 3
+        }
+      ],
+      "IsEmpty": false,
+      "Count": 27
+    }
+  }
 }

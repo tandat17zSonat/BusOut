@@ -27,7 +27,7 @@ public class PassengerController : BController
     public override void Display()
     {
         SpriteRenderer spriteRenderer = GetComponent<SpriteRenderer>();
-        Sprite sprite = passengerScriptableObject.GetSprite((PassengerData) this.data);
+        Sprite sprite = passengerScriptableObject.GetSprite((PassengerData)this.data);
         spriteRenderer.sprite = sprite;
 
         transform.localPosition = GetPosition();
@@ -37,19 +37,21 @@ public class PassengerController : BController
     // Cập nhật khi chỉnh sửa ở editor
     private void OnValidate()
     {
-        if( this.data == null) this.data = new PassengerData();
-        ((PassengerData) this.data).SetData(color, positionIndex, isSeat);
+        if (this.data == null) this.data = new PassengerData();
+        ((PassengerData)this.data).SetData(color, positionIndex, isSeat);
         Display();
     }
-    
 
-    public Vector2 GetPosition()
+
+    public Vector3 GetPosition()
     {
         var pIdx = ((PassengerData)this.data).PositionIndex;
 
         int cellX = pIdx - Config.WIDTH_QUEUE_PASSENGER > 0 ? Config.WIDTH_QUEUE_PASSENGER : pIdx;
         int cellY = pIdx - Config.WIDTH_QUEUE_PASSENGER > 0 ? pIdx - Config.WIDTH_QUEUE_PASSENGER : 0;
 
-        return new Vector2(cellX * Config.DISTANCE_PASSENGER, cellY * Config.DISTANCE_PASSENGER);
+        float x = cellX * Config.DISTANCE_PASSENGER,
+            y = cellY * Config.DISTANCE_PASSENGER;
+        return new Vector3(x, y, y);
     }
 }
