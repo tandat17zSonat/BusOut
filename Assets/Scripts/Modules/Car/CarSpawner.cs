@@ -7,16 +7,19 @@ public class CarSpawner : MonoBehaviour
     {
         Debug.Log("GenCar: " + numCar4 + " " + numCar6 + " " + numCar10);
         var mapCount = new Dictionary<int, int>();
-        mapCount[4] =  numCar4;
+        mapCount[4] = numCar4;
         mapCount[6] = numCar6;
         mapCount[10] = numCar10;
         int count = 0;
-        while (count < 1000)
+
+        List<CarDirection> ignoreDirection = new List<CarDirection>() { CarDirection.parking};
+        List<CarSize> ignoreSize = new List<CarSize>();
+        while (true)
         {
             count++;
             var rColor = Util.GetRandomEnumValue<CarColor>();
-            var rDirection = Util.GetRandomEnumValue<CarDirection>();
-            var rSize = Util.GetRandomEnumValue<CarSize>();
+            var rDirection = Util.GetRandomEnumValue<CarDirection>(ignoreDirection.ToArray());
+            var rSize = Util.GetRandomEnumValue<CarSize>(ignoreSize.ToArray());
 
             if(mapCount[(int) rSize] > 0)
             {
@@ -27,6 +30,18 @@ public class CarSpawner : MonoBehaviour
                 carData.Position = position;
 
                 Singleton<PlotManager>.Instance.Add(carData);
+            }
+
+            // Không random lại các giá trị đã tìm đủ
+            if(mapCount[(int) rSize] == 0)
+            {
+                ignoreSize.Add(rSize);
+            }
+
+            // Random xong 
+            if( ignoreSize.Count == Util.GetEnumLength<CarSize>())
+            {
+                break;
             }
         }
 

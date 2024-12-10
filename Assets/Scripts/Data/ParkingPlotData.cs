@@ -1,8 +1,6 @@
-using System.Collections;
 using System.Collections.Generic;
-using UnityEngine;
 
-public class ParkingPlotData: BData
+public class ParkingPlotData
 {
     private List<CarData> cars = new List<CarData>();
 

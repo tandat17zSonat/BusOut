@@ -14,6 +14,7 @@ public class GameManager : Singleton<GameManager>
             var gameData = new GameData();
             gameData.ParkingPlotData = plotManager.Data;
             gameData.QueuePassengerData = queueManager.Data;
+            gameData.ScaleFactor = Singleton<ScaleHandler>.Instance.Scale;
             return gameData;
         }
         set
@@ -27,6 +28,8 @@ public class GameManager : Singleton<GameManager>
     {
         plotManager.Data = data.ParkingPlotData;
         queueManager.Data = data.QueuePassengerData;
+
+        Singleton<ScaleHandler>.Instance.Scale = data.ScaleFactor;
     }
 
     public void Save(int level)

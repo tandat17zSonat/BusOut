@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-public class QueuePassengerData: BData
+public class QueuePassengerData
 {
     private CustomQueue<GroupPassenger> queue = new CustomQueue<GroupPassenger>();
     public CustomQueue<GroupPassenger> QueuePassenger { get => queue; set => queue = value; }
