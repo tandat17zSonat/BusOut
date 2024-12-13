@@ -67,9 +67,9 @@ public class QueuePassengerController : Singleton<QueuePassengerController>
         Display();
     }
 
-    public GameObject GetFrontPassenger()
+    public PassengerController GetFrontPassenger()
     {
-        return currentQueue.Peek();
+        return currentQueue.Peek().GetComponent<PassengerController>();
     }
 
 }

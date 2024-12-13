@@ -23,14 +23,19 @@ public class CarInteractionHandler : MonoBehaviour
         this.delta = clickPoint - this.transform.position;
 
         Singleton<ToolManager>.Instance.SelectedCar = gameObject;
+        Singleton<GameManager>.Instance.SelectedCar = gameObject;
     }
 
     private void OnMouseDrag()
     {
-        if (lineRenderer.enabled)
+        if( Singleton<GameManager>.Instance.State == GameState.TOOL)
         {
-            transform.position = Camera.main.ScreenToWorldPoint(Input.mousePosition) - this.delta;
+            if (lineRenderer.enabled)
+            {
+                transform.position = Camera.main.ScreenToWorldPoint(Input.mousePosition) - this.delta;
+            }
         }
+        
     }
 
     #endregion

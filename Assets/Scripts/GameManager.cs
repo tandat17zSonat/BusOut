@@ -4,10 +4,13 @@ using UnityEngine;
 
 public class GameManager : Singleton<GameManager>
 {
-    private GameState _state;
+    private GameState _state = GameState.LOBBY;
+    public GameState State { get => _state; set => _state = value; }
 
     [SerializeField] PlotManager plotManager;
     [SerializeField] QueuePassengerController queueManager;
+
+    [SerializeField] GameObject UITool;
 
     private GameObject selectedCar;
     public GameObject SelectedCar
@@ -120,35 +123,38 @@ public class GameManager : Singleton<GameManager>
 
     void OnPlayState()
     {
+        // Cần check đâm xe khách không nữa
         if (selectedCar != null && CanCarMove())
         {
-            var slot = Singleton<SlotManager>.Instance.GetEmptySlot();
-            slot.GetComponent<SlotController>().WaitingCar(selectedCar);
+            Debug.Log("GameManager: selectedCar");
+            var slotController = Singleton<SlotManager>.Instance.GetEmptySlot();
+            slotController.WaitingCar(selectedCar);
 
-            var destinationPoint = slot.transform.position;
+            var destinationPoint = slotController.transform.position;
             var carController = selectedCar.GetComponent<CarController>();
             carController.MoveToSlot(destinationPoint);
 
+            selectedCar = null;
+
         }
 
-        selectedCar = null;
-        if (CanPassengerGo())
-        {
-            var passenger = Singleton<QueuePassengerController>.Instance.GetFrontPassenger();
-            var passengerController = passenger.GetComponent<PassengerController>();
+        //if (CanPassengerGo())
+        //{
+        //    var pController = Singleton<QueuePassengerController>.Instance.GetFrontPassenger();
+        //    var pData = pController.Data as PassengerData;
 
-            var data = passengerController.Data as PassengerData;
-            var cars = Singleton<SlotManager>.Instance.GetCarByColor(data.Color);
-            passengerController.MoveToCar(cars[0]);
-        }
+        //    var cars = Singleton<SlotManager>.Instance.GetCarByColor(pData.Color);
+        //    pController.MoveToCar(cars[0]);
+        //}
 
-        if (CanCarGo())
-        {
-            var car = Singleton<SlotManager>.Instance.GetFullCar();
-            car.GetComponent<CarController>().Leave();
-        }
+        //if (CanCarLeave())
+        //{
+        //    var car = Singleton<SlotManager>.Instance.GetFullCar();
+        //    // Xe rời đi thì PlotManager returnobject vào pool
+        //    car.GetComponent<CarController>().Leave();
+        //}
 
-        if(CheckEndGame())
+        if (CheckEndGame())
         {
             _state = GameState.RESULT;
         }
@@ -160,24 +166,28 @@ public class GameManager : Singleton<GameManager>
 
     }
 
-    bool CanCarGo()
+    bool CanCarLeave()
     {
         // Xem xe ở trạng thái đầy chưa
-        return false;
+        return Singleton<SlotManager>.Instance.GetFullCar() != null;
     }
 
     bool CanCarMove()
     {
         // Singleton<SlotManager>.Instance duyệt qua các slot xem có ai EMPTY không?
-        return false;
+        return Singleton<SlotManager>.Instance.CheckEmptySlot();
     }
 
     bool CanPassengerGo()
     {
-        // màu các xe đang chờ
-        // QueuePassengerManager check xem khách đầu có lên đc màu nào khong
-        // Khách đang ở state == ready
-        return false;
+        // Lấy màu khách
+        // Lấy xe đang ở slot theo màu
+        // Check xem có xe không
+        var passenger = Singleton<QueuePassengerController>.Instance.GetFrontPassenger();
+        var pData = passenger.Data as PassengerData;
+        
+        var carByColor = Singleton<SlotManager>.Instance.GetCarByColor(pData.Color);
+        return carByColor.Count > 0;
     }
 
     void AddCartoSlotQueue()
@@ -189,6 +199,11 @@ public class GameManager : Singleton<GameManager>
     {
         return false;
     }
+
+    public void Play()
+    {
+        _state = GameState.PLAY;
+    }
 }
 
 public enum GameState
@@ -196,5 +211,6 @@ public enum GameState
     LOBBY,
     PREPARE,
     PLAY,
-    RESULT
+    RESULT,
+    TOOL
 }

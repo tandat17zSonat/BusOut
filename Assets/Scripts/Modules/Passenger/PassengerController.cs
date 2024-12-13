@@ -56,7 +56,7 @@ public class PassengerController : BController
         return new Vector3(x, y, y);
     }
 
-    public void MoveToCar(GameObject car)
+    public void MoveToCar(CarController car)
     {
 
     }

@@ -12,6 +12,10 @@ public class CarController : BController
     private bool isStay = false;
     public bool IsStay { get => isStay; set => isStay = value; }
 
+    CarState _state = CarState.PARKING;
+    public CarState State { get => _state; set => _state = value; }
+
+
     public override void Init()
     {
         this.data = new CarData();
@@ -32,6 +36,7 @@ public class CarController : BController
 
     public override void Display()
     {
+        Debug.Log("check car");
         // update sprite
         SpriteRenderer spriteRenderer = GetComponent<SpriteRenderer>();
         Sprite sprite = carScriptableObject.GetSprite((CarData) this.data);
@@ -97,14 +102,37 @@ public class CarController : BController
     /// <summary>
     /// Xe di chuyển tới slot
     /// </summary>
-    public float MoveToSlot(Vector2 destination)
+    public void MoveToSlot(Vector2 destination)
     {
-        return 0.5f;
+        Debug.Log("Xe di chuyển tới destination");
+        State = CarState.MOVE;
+        // Xe di chuyeen trong config.time_wait_car
+        transform.position = destination;
+
+        var cData = Data as CarData;
+        cData.Direction = CarDirection.parking;
+        Data = cData;
+        Display();
+        State = CarState.READY;
     }
 
     public void Leave()
     {
+        // Xe di chuyen rời đi -------------
+        State = CarState.LEAVE;
         return;
+    }
+
+    public int GetCurrentNum()
+    {
+        return 0;
     }
 }
 
+public enum CarState
+{
+    PARKING,
+    MOVE,
+    READY,
+    LEAVE
+}
