@@ -9,8 +9,13 @@ public class PassengerController : BController
     [SerializeField] int positionIndex = 0;
     [SerializeField] bool isSeat = false;
 
-    PassengerState state = PassengerState.READY;
-    public PassengerState State { get => state; set => state = value; }
+    PassengerState _state = PassengerState.READY;
+    public PassengerState State { get => _state; set => _state = value; }
+
+
+
+
+
 
     public override void Init()
     {
@@ -59,20 +64,28 @@ public class PassengerController : BController
         return new Vector3(x, y, y);
     }
 
+    #region: Hành khách di chuyển lên xe
     public void MoveToCar(CarController car)
     {
         State = PassengerState.MOVING;
-        transform.position = car.transform.position; 
-        Invoke("ToCar", Config.TIME_PASSENGER_TO_CAR);
+        Invoke("AfterMoveToCar", Config.TIME_PASSENGER_TO_CAR);
+
+        // effect
+        transform.position = car.transform.position;
     }
 
-    private void ToCar()
+    private void AfterMoveToCar()
     {
-        Debug.Log("PassengerController: Len xe roi");
-        Singleton<QueuePassengerController>.Instance.Remove(1);
+        
         State = PassengerState.READY;
     }
+    #endregion
 
+
+    public bool IsReady()
+    {
+        return _state == PassengerState.READY;
+    }
 }
 
 public enum PassengerState

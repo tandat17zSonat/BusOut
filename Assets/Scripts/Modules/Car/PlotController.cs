@@ -61,6 +61,21 @@ public class PlotManager : Singleton<PlotManager>
         objectPool.Reset();
     }
 
+
+    #region: Xe rời khỏi slot
+    private CarController carLeaved;
+    public void Leave(CarController car)
+    {
+        this.carLeaved = car;
+        this.carLeaved.Leave();
+        Invoke("AfterLeave", Config.TIME_CAR_LEAVE);
+    }
+    private void AfterLeave()
+    {
+        Remove(carLeaved.gameObject);
+    }
+    #endregion
+
     public void OnPhysic(bool isTrigger)
     {
         foreach (Transform child in transform)

@@ -51,7 +51,7 @@
       {
         "Color": 3,
         "Size": 10,
-        "Direction": 5,
+        "Direction": 4,
         "Position": {
           "x": 3.80776,
           "y": -0.138606548,
@@ -74,7 +74,7 @@
       {
         "Color": 10,
         "Size": 6,
-        "Direction": -2,
+        "Direction": 2,
         "Position": {
           "x": -0.9078734,
           "y": 0.23158884,

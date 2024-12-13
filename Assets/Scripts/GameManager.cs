@@ -1,4 +1,5 @@
 ﻿using System.IO;
+using System.Net.WebSockets;
 using Newtonsoft.Json;
 using UnityEngine;
 
@@ -19,15 +20,6 @@ public class GameManager : Singleton<GameManager>
         set
         {
             selectedCar = value;
-            var controller = selectedCar.GetComponent<CarController>();
-            if (controller.CanPlayCar())
-            {
-                Debug.Log("Can't play");
-            }
-            else
-            {
-                Debug.Log("Can play");
-            }
         }
     }
 
@@ -123,39 +115,58 @@ public class GameManager : Singleton<GameManager>
 
     void OnPlayState()
     {
-        // Cần check đâm xe khách không nữa
-        if (selectedCar != null && CanCarMove())
+        // ACTION
+        if (selectedCar != null)
         {
-            Debug.Log("GameManager: selectedCar");
-            var slotController = Singleton<SlotManager>.Instance.GetEmptySlot();
-            slotController.WaitingCar(selectedCar);
+            var car = selectedCar.GetComponent<CarController>();
+            if (car.CanMove() == false) // Xe có đi được không?
+            {
+                Debug.Log("-> Action: selectedCar - INVALID: can't move");
+            }
+            else
+            {
+                if (Singleton<SlotManager>.Instance.CheckEmptySlot()) // Còn slot cho xe đỗ không?
+                {
+                    Debug.Log("-> Action: selectedCar");
 
-            var destinationPoint = slotController.transform.position;
-            var carController = selectedCar.GetComponent<CarController>();
-            carController.MoveToSlot(destinationPoint);
+                    var slotController = Singleton<SlotManager>.Instance.GetFirstEmptySlot();
+                    slotController.WaitingCar(car);
 
+                    var destinationPoint = slotController.transform.position;
+                    car.MoveToSlot(destinationPoint);
+                }
+                else
+                {
+                    Debug.Log("-> Action: selectedCar - INVALID: don't have slot");
+                }
+            }
             selectedCar = null;
-
         }
 
-        if (CanPassengerGo())
+        // Kiểm tra hành khách đầu tiên lên xe được không? 
+        var passenger = Singleton<QueuePassengerController>.Instance.GetFrontPassenger();
+        if (passenger != null && CanPassengerGo(passenger))
         {
-            var pController = Singleton<QueuePassengerController>.Instance.GetFrontPassenger();
-            var pData = pController.Data as PassengerData;
+            var pData = passenger.Data as PassengerData;
 
-            var cars = Singleton<SlotManager>.Instance.GetCarByColor(pData.Color);
+            var cars = Singleton<SlotManager>.Instance.GetReadyCarByColor(pData.Color);
             var car = cars[0];
+
             car.IncreaseNum(1);
-            pController.MoveToCar(car);
+
+            // LƯU VÀO XE ĐỂ SAU THỰC HIỆN POOLING ---------------------------
+            Singleton<QueuePassengerController>.Instance.MoveToCar(passenger, car);
         }
 
+        // Kiểm tra xe full khách có thể rời khỏi chưa?
         if (CanCarLeave())
         {
             var slot = Singleton<SlotManager>.Instance.GetSlotHasFullCar(); ;
             var car = Singleton<SlotManager>.Instance.GetFullCar();
             // Xe rời đi thì PlotManager returnobject vào pool
             slot.Free();
-            car.Leave();
+
+            Singleton<PlotManager>.Instance.Leave(car);
         }
 
         if (CheckEndGame())
@@ -178,32 +189,20 @@ public class GameManager : Singleton<GameManager>
 
     bool CanCarMove()
     {
-        // Singleton<SlotManager>.Instance duyệt qua các slot xem có ai EMPTY không?
-        return Singleton<SlotManager>.Instance.CheckEmptySlot();
+        var carController = selectedCar.GetComponent<CarController>();
+        return carController.CanMove() && Singleton<SlotManager>.Instance.CheckEmptySlot();
     }
 
-    bool CanPassengerGo()
+    bool CanPassengerGo(PassengerController passenger)
     {
-        // Lấy màu khách
-        // Lấy xe đang ở slot theo màu và còn trống
-        // Check xem có xe không
-        var passenger = Singleton<QueuePassengerController>.Instance.GetFrontPassenger();
-        if (passenger == null) return false;
-
-        if (passenger.State != PassengerState.READY)
+        if (passenger.IsReady())
         {
-            return false;
+            var pData = passenger.Data as PassengerData;
+
+            var carByColor = Singleton<SlotManager>.Instance.GetReadyCarByColor(pData.Color);
+            return carByColor.Count > 0;
         }
-
-        var pData = passenger.Data as PassengerData;
-        
-        var carByColor = Singleton<SlotManager>.Instance.GetCarByColor(pData.Color);
-        return carByColor.Count > 0;
-    }
-
-    void AddCartoSlotQueue()
-    {
-
+        return false;
     }
 
     bool CheckEndGame()

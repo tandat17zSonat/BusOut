@@ -1,18 +1,22 @@
 ﻿using System.Collections.Generic;
+using System.Net.WebSockets;
+using System.Security.Cryptography;
 using UnityEngine;
 
 public class SlotManager : Singleton<SlotManager>
 {
     [SerializeField] List<SlotController> slots;
+
+
     public List<CarController> GetCars()
     {
-        // Lấy các xe đã tới bên (slot.state = ready)
         List<CarController> cars = new List<CarController>();
-        foreach (var controller in slots)
+        foreach (var slot in slots)
         {
-            if( controller.CheckEmpty() == false && controller.State == SlotState.READY)
+            if( slot.CheckEmpty() == false)
             {
-                cars.Add(controller.GetCar());
+                var car = slot.GetCar();
+                cars.Add(car);
             }
             
         }
@@ -25,9 +29,8 @@ public class SlotManager : Singleton<SlotManager>
         {
             if( slot.CheckEmpty() == false)
             {
-                var cController = slot.GetCar();
-                var cData = cController.Data as CarData;
-                if (cController.GetCurrentNum() == (int)cData.Size)
+                var car = slot.GetCar();
+                if (car.IsFull())
                 {
                     return slot;
                 }
@@ -47,17 +50,17 @@ public class SlotManager : Singleton<SlotManager>
         return null;
     }
 
-    public List<CarController> GetCarByColor(CarColor color)
+    public List<CarController> GetReadyCarByColor(CarColor color)
     {
         List<CarController> carByColor = new List<CarController>();
         var cars = GetCars();
         foreach (var car in cars)
         {
-            var cData = car.Data as CarData;
-            if (color == cData.Color && car.GetCurrentNum() < (int) cData.Size)
+            if(car.IsReady() && car.CheckColor(color))
             {
                 carByColor.Add(car);
             }
+            
         }
         return carByColor;
     }
@@ -74,7 +77,7 @@ public class SlotManager : Singleton<SlotManager>
         return false;
     }
 
-    public SlotController GetEmptySlot()
+    public SlotController GetFirstEmptySlot()
     {
         foreach (var slot in slots)
         {
@@ -83,7 +86,7 @@ public class SlotManager : Singleton<SlotManager>
                 return slot;
             }
         }
-        Debug.LogWarning("SlotManager: don't getEmptySlot");
+        Debug.LogWarning("SlotManager: don't have EmptySlot");
         return null;
     }
 }

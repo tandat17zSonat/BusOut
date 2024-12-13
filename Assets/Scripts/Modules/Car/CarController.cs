@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using UnityEngine;
 
 [RequireComponent(typeof(PolygonCollider2D))]
 public class CarController : BController
@@ -14,10 +15,11 @@ public class CarController : BController
 
     CarState _state = CarState.PARKING;
     public CarState State { get => _state; set => _state = value; }
+    public List<PassengerController> Passengers { get => passengers; set => passengers = value; }
 
     int currentNum = 0;
 
-
+    List<PassengerController> passengers = new List<PassengerController>();
 
 
 
@@ -83,7 +85,7 @@ public class CarController : BController
         Display();
     }
 
-    public bool CanPlayCar()
+    public bool CanMove()
     {
         Vector2 boxSize = new Vector2(1f, 1f); // Kích thước hình hộp
         float maxDistance = 1000f; // Khoảng cách kiểm tra
@@ -105,42 +107,52 @@ public class CarController : BController
         return check;
     }
 
-    /// <summary>
-    /// Xe di chuyển tới slot
-    /// </summary>
+
+    #region: Xe di chuyển tới slot
     public void MoveToSlot(Vector2 destination)
     {
-        Debug.Log("Xe di chuyển tới destination");
-        transform.localScale = Vector2.one / 4;
-        State = CarState.MOVE;
-        // Xe di chuyeen trong config.time_wait_car
-        transform.position = destination;
+        _state = CarState.MOVE;
+        Invoke("AfterMoveToSlot", Config.TIME_CAR_MOVE);
 
-        Invoke("ToSlot", Config.TIME_CAR_MOVE);
+        // effect 
+        transform.position = destination;
+        transform.localScale = Vector2.one / 2;
     }
 
-    private void ToSlot()
+    private void AfterMoveToSlot()
     {
-        transform.localScale = Vector2.one;
+        _state = CarState.READY;
         var cData = Data as CarData;
         cData.Direction = CarDirection.parking;
-        Data = cData;
         Display();
-        State = CarState.READY;
+        
+
+        // effect
+        transform.localScale = Vector2.one;
     }
+    #endregion
+
+    #region: Xe rời đi
     public void Leave()
     {
         // Xe di chuyen rời đi -------------
         State = CarState.LEAVE;
-        transform.position = transform.position + 3*Vector3.up;
+        transform.position = transform.position - 3*Vector3.up;
         Invoke("AfterLeave", Config.TIME_CAR_LEAVE);
         return;
     }
 
     private void AfterLeave()
     {
+        foreach(var p in Passengers)
+        {
+            Singleton<QueuePassengerController>.Instance.ReturnPassenger(p.gameObject);
+        }
         Singleton<PlotManager>.Instance.Remove(gameObject);
     }
+    #endregion
+
+
     public void IncreaseNum(int num)
     {
         currentNum += num;
@@ -148,6 +160,23 @@ public class CarController : BController
     public int GetCurrentNum()
     {
         return currentNum;
+    }
+
+    public bool IsReady()
+    {
+        return _state == CarState.READY;
+    }
+
+    public bool CheckColor(CarColor color)
+    {
+        var carData = Data as CarData;
+        return carData.Color == color;
+    }
+
+    public bool IsFull()
+    {
+        var carData = Data as CarData;
+        return currentNum == (int)carData.Size;
     }
 }
 

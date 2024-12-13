@@ -61,6 +61,27 @@ public class QueuePassengerController : Singleton<QueuePassengerController>
         Display();
     }
 
+    #region: Hành khách lên xe
+    public void MoveToCar(PassengerController passenger, CarController car)
+    {
+        passenger.MoveToCar(car);
+        Invoke("AfterMoveToCar", Config.TIME_PASSENGER_TO_CAR);
+
+        // tạo 1 hành khách trên xe
+        var temp = GetTempPassenger();
+        var pData = passenger.Data as PassengerData;
+        pData.IsSeat = true;
+        temp.SetInfo(pData);
+        temp.MoveToCar(car);
+        car.Passengers.Add(temp);
+    }
+    private void AfterMoveToCar()
+    {
+        Remove(1);
+    }
+    #endregion
+
+
     public void UpdatePassenger(int oldIndex, int newIndex)
     {
         data.QueuePassenger.MoveElement(oldIndex, newIndex);
@@ -76,4 +97,13 @@ public class QueuePassengerController : Singleton<QueuePassengerController>
         return currentQueue.Peek().GetComponent<PassengerController>();
     }
 
+    public PassengerController GetTempPassenger()
+    {
+        return objectPool.GetObject().GetComponent<PassengerController>();
+    }
+
+    public void ReturnPassenger(GameObject obj)
+    {
+        objectPool.ReturnObject(obj);
+    }
 }

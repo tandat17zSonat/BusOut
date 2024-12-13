@@ -9,7 +9,7 @@ public class PassengerData :BData
     private int positionIndex; // index vị trí đừng
 
     public CarColor Color { get => color;}
-    public bool IsSeat { get => isSeat;}
+    public bool IsSeat { get => isSeat; set => isSeat = value; }
     public int PositionIndex { get => positionIndex;}
 
     public PassengerData()
