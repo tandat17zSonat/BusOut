@@ -15,6 +15,12 @@ public class CarController : BController
     CarState _state = CarState.PARKING;
     public CarState State { get => _state; set => _state = value; }
 
+    int currentNum = 0;
+
+
+
+
+
 
     public override void Init()
     {
@@ -105,17 +111,23 @@ public class CarController : BController
     public void MoveToSlot(Vector2 destination)
     {
         Debug.Log("Xe di chuyển tới destination");
+        transform.localScale = Vector2.one / 4;
         State = CarState.MOVE;
         // Xe di chuyeen trong config.time_wait_car
         transform.position = destination;
 
+        Invoke("ToSlot", Config.TIME_WAIT_CAR);
+    }
+
+    private void ToSlot()
+    {
+        transform.localScale = Vector2.one;
         var cData = Data as CarData;
         cData.Direction = CarDirection.parking;
         Data = cData;
         Display();
         State = CarState.READY;
     }
-
     public void Leave()
     {
         // Xe di chuyen rời đi -------------
@@ -123,9 +135,13 @@ public class CarController : BController
         return;
     }
 
+    public void IncreaseNum(int num)
+    {
+        currentNum += num;
+    }
     public int GetCurrentNum()
     {
-        return 0;
+        return currentNum;
     }
 }
 

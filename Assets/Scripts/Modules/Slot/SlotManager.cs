@@ -9,7 +9,7 @@ public class SlotManager : Singleton<SlotManager>
         List<CarController> cars = new List<CarController>();
         foreach (var controller in slots)
         {
-            if( controller.CheckEmpty())
+            if( controller.CheckEmpty() == false)
             {
                 cars.Add(controller.GetCar());
             }
@@ -38,7 +38,7 @@ public class SlotManager : Singleton<SlotManager>
         foreach (var car in cars)
         {
             var cData = car.Data as CarData;
-            if (color == cData.Color)
+            if (color == cData.Color && car.GetCurrentNum() < (int) cData.Size)
             {
                 carByColor.Add(car);
             }

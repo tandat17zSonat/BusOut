@@ -138,14 +138,16 @@ public class GameManager : Singleton<GameManager>
 
         }
 
-        //if (CanPassengerGo())
-        //{
-        //    var pController = Singleton<QueuePassengerController>.Instance.GetFrontPassenger();
-        //    var pData = pController.Data as PassengerData;
+        if (CanPassengerGo())
+        {
+            var pController = Singleton<QueuePassengerController>.Instance.GetFrontPassenger();
+            var pData = pController.Data as PassengerData;
 
-        //    var cars = Singleton<SlotManager>.Instance.GetCarByColor(pData.Color);
-        //    pController.MoveToCar(cars[0]);
-        //}
+            var cars = Singleton<SlotManager>.Instance.GetCarByColor(pData.Color);
+            var car = cars[0];
+            car.IncreaseNum(1);
+            pController.MoveToCar(car);
+        }
 
         //if (CanCarLeave())
         //{
@@ -181,9 +183,13 @@ public class GameManager : Singleton<GameManager>
     bool CanPassengerGo()
     {
         // Lấy màu khách
-        // Lấy xe đang ở slot theo màu
+        // Lấy xe đang ở slot theo màu và còn trống
         // Check xem có xe không
         var passenger = Singleton<QueuePassengerController>.Instance.GetFrontPassenger();
+        if (passenger.State != PassengerState.READY)
+        {
+            return false;
+        }
         var pData = passenger.Data as PassengerData;
         
         var carByColor = Singleton<SlotManager>.Instance.GetCarByColor(pData.Color);
