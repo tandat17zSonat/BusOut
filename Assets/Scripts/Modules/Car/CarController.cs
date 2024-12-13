@@ -116,7 +116,7 @@ public class CarController : BController
         // Xe di chuyeen trong config.time_wait_car
         transform.position = destination;
 
-        Invoke("ToSlot", Config.TIME_WAIT_CAR);
+        Invoke("ToSlot", Config.TIME_CAR_MOVE);
     }
 
     private void ToSlot()
@@ -132,9 +132,15 @@ public class CarController : BController
     {
         // Xe di chuyen rời đi -------------
         State = CarState.LEAVE;
+        transform.position = transform.position + 3*Vector3.up;
+        Invoke("AfterLeave", Config.TIME_CAR_LEAVE);
         return;
     }
 
+    private void AfterLeave()
+    {
+        Singleton<PlotManager>.Instance.Remove(gameObject);
+    }
     public void IncreaseNum(int num)
     {
         currentNum += num;

@@ -69,6 +69,10 @@ public class QueuePassengerController : Singleton<QueuePassengerController>
 
     public PassengerController GetFrontPassenger()
     {
+        if( currentQueue.Count == 0)
+        {
+            return null;
+        }
         return currentQueue.Peek().GetComponent<PassengerController>();
     }
 

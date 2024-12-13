@@ -1,9 +1,11 @@
-﻿using UnityEngine;
+﻿using UnityEditorInternal;
+using UnityEngine;
 
 public class SlotController : MonoBehaviour
 {
     CarController carController;
     SlotState _state = SlotState.EMPTY;
+    public SlotState State { get => _state; set => _state = value; }
 
     /// <summary>
     /// slot vào trạng thái chờ xe tới
@@ -12,7 +14,7 @@ public class SlotController : MonoBehaviour
     {
         carController = car.GetComponent<CarController>();
         _state = SlotState.WAITING; // Vô hiệu hóa slot này để không cho nhận xe
-        Invoke("ToReady", Config.TIME_WAIT_CAR);
+        Invoke("AfterWaitingCar", Config.TIME_CAR_MOVE);
 
     }
 
@@ -21,7 +23,7 @@ public class SlotController : MonoBehaviour
         return _state == SlotState.EMPTY;
     }
 
-    void ToReady()
+    void AfterWaitingCar()
     {
         Debug.Log("Slot đã nhận được xe");
         _state = SlotState.READY;
@@ -31,6 +33,13 @@ public class SlotController : MonoBehaviour
     {
         return carController;
     }
+
+    public void Free()
+    {
+        carController = null;
+        _state = SlotState.EMPTY;
+    }
+
 }
 
 public enum SlotState

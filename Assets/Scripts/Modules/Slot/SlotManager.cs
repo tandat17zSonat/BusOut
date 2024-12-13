@@ -6,10 +6,11 @@ public class SlotManager : Singleton<SlotManager>
     [SerializeField] List<SlotController> slots;
     public List<CarController> GetCars()
     {
+        // Lấy các xe đã tới bên (slot.state = ready)
         List<CarController> cars = new List<CarController>();
         foreach (var controller in slots)
         {
-            if( controller.CheckEmpty() == false)
+            if( controller.CheckEmpty() == false && controller.State == SlotState.READY)
             {
                 cars.Add(controller.GetCar());
             }
@@ -17,16 +18,31 @@ public class SlotManager : Singleton<SlotManager>
         }
         return cars; 
     }
+
+    public SlotController GetSlotHasFullCar()
+    {
+        foreach (var slot in slots)
+        {
+            if( slot.CheckEmpty() == false)
+            {
+                var cController = slot.GetCar();
+                var cData = cController.Data as CarData;
+                if (cController.GetCurrentNum() == (int)cData.Size)
+                {
+                    return slot;
+                }
+            }
+            
+        }
+        return null;
+    }
+
     public CarController GetFullCar()
     {
-        var cars = GetCars();
-        foreach (var cController in cars)
+        var slot = GetSlotHasFullCar();
+        if (slot != null)
         {
-            var cData = cController.Data as CarData;
-            if( cController.GetCurrentNum() == (int) cData.Size)
-            {
-                return cController;
-            }
+            return slot.GetCar();
         }
         return null;
     }

@@ -149,12 +149,14 @@ public class GameManager : Singleton<GameManager>
             pController.MoveToCar(car);
         }
 
-        //if (CanCarLeave())
-        //{
-        //    var car = Singleton<SlotManager>.Instance.GetFullCar();
-        //    // Xe rời đi thì PlotManager returnobject vào pool
-        //    car.GetComponent<CarController>().Leave();
-        //}
+        if (CanCarLeave())
+        {
+            var slot = Singleton<SlotManager>.Instance.GetSlotHasFullCar(); ;
+            var car = Singleton<SlotManager>.Instance.GetFullCar();
+            // Xe rời đi thì PlotManager returnobject vào pool
+            slot.Free();
+            car.Leave();
+        }
 
         if (CheckEndGame())
         {
@@ -186,10 +188,13 @@ public class GameManager : Singleton<GameManager>
         // Lấy xe đang ở slot theo màu và còn trống
         // Check xem có xe không
         var passenger = Singleton<QueuePassengerController>.Instance.GetFrontPassenger();
+        if (passenger == null) return false;
+
         if (passenger.State != PassengerState.READY)
         {
             return false;
         }
+
         var pData = passenger.Data as PassengerData;
         
         var carByColor = Singleton<SlotManager>.Instance.GetCarByColor(pData.Color);

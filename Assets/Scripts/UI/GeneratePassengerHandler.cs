@@ -33,7 +33,12 @@ public class GeneratePassengerHandler : MonoBehaviour
         int num = 0;
         if (int.TryParse(inputNum.text, out num) == false)
         {
-            num = 10;
+            var plotData = Singleton<PlotManager>.Instance.Data;
+            foreach( var car in plotData.Cars)
+            {
+                num += (int)car.Size;
+            }
+
         }
         Singleton<ToolManager>.Instance.GeneratePassenger(num);
 
