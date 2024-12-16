@@ -1,0 +1,16 @@
+banner_warning.png
+size:812,812
+filter:Linear,Linear
+pma:true
+Layer 1
+bounds:557,281,529,253
+rotate:90
+Layer 1_2
+bounds:2,65,527,253
+Layer 2
+bounds:2,320,551,244
+Layer 2_2
+bounds:2,566,553,244
+upward-arrow1
+bounds:531,185,88,94
+offsets:1,1,90,97

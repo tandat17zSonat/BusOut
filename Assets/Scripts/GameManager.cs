@@ -119,8 +119,13 @@ public class GameManager : Singleton<GameManager>
         if (selectedCar != null)
         {
             var car = selectedCar.GetComponent<CarController>();
-            if (car.CanMove() == false) // Xe có đi được không?
+            var tupleRes = car.CanMove();
+            if (tupleRes.Item1 != null) // Xe có đi được không?
             {
+                car.Crash(tupleRes.Item2);
+
+                //var collisionCar = tupleRes.Item1;
+                //collisionCar.GetComponent<CarController>().Crash2();
                 Debug.Log("-> Action: selectedCar - INVALID: can't move");
             }
             else
@@ -187,12 +192,6 @@ public class GameManager : Singleton<GameManager>
         return Singleton<SlotManager>.Instance.GetFullCar() != null;
     }
 
-    bool CanCarMove()
-    {
-        var carController = selectedCar.GetComponent<CarController>();
-        return carController.CanMove() && Singleton<SlotManager>.Instance.CheckEmptySlot();
-    }
-
     bool CanPassengerGo(PassengerController passenger)
     {
         if (passenger.IsReady())
@@ -213,6 +212,11 @@ public class GameManager : Singleton<GameManager>
     public void Play()
     {
         _state = GameState.PLAY;
+    }
+
+    public void EnableTool()
+    {
+        _state = GameState.TOOL;
     }
 }
 

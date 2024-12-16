@@ -1,0 +1,25 @@
+Widget.png
+size:196,280
+filter:Linear,Linear
+pma:true
+banner
+bounds:139,101,177,55
+offsets:1,1,179,57
+rotate:90
+banner_r
+bounds:97,2,49,51
+offsets:1,1,51,53
+rotate:90
+blue car
+bounds:2,101,177,135
+offsets:0,1,177,138
+rotate:90
+ribbon1
+bounds:97,53,94,46
+offsets:1,0,96,47
+ribbon2
+bounds:150,4,19,47
+offsets:1,2,21,50
+smoke03
+bounds:2,12,93,87
+offsets:6,6,101,108

@@ -78,7 +78,7 @@ SpriteRenderer:
   m_SortingLayerID: -733754879
   m_SortingLayer: 1
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: a604b69996f167647a139b9fb746ff55, type: 3}
+  m_Sprite: {fileID: 21300000, guid: fd1f2e486f9868446bca81730a0a2afe, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -145,14 +145,14 @@ PolygonCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1.77, y: 3.84}
+    oldSize: {x: 3.53, y: 3.59}
     newSize: {x: 2.98, y: 2.62}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -160,10 +160,10 @@ PolygonCollider2D:
   m_AutoTiling: 0
   m_Points:
     m_Paths:
-    - - {x: -0.86351067, y: 1.5144174}
-      - {x: -0.88776064, y: -1.6485196}
-      - {x: 0.88061386, y: -1.6606747}
-      - {x: 0.8756401, y: 1.5113237}
+    - - {x: 0.77591556, y: 1.8267013}
+      - {x: -1.5559323, y: -0.50426126}
+      - {x: -0.33485028, y: -1.7551057}
+      - {x: 2.0282898, y: 0.5885273}
   m_UseDelaunayMesh: 0
 --- !u!120 &5219847998112253780
 LineRenderer:
@@ -284,7 +284,9 @@ MonoBehaviour:
   carScriptableObject: {fileID: 11400000, guid: ac3d6dda602f2c04195e4df77d6a2714, type: 2}
   color: 8
   size: 10
-  direction: 4
+  direction: 1
+  boudary: {fileID: 0}
+  backTime: 3
 --- !u!114 &1288467782144546876
 MonoBehaviour:
   m_ObjectHideFlags: 0
