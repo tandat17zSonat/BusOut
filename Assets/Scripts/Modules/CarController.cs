@@ -1,6 +1,7 @@
 ﻿using System;
 using DG.Tweening;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class CarController : MonoBehaviour
 {
@@ -17,7 +18,7 @@ public class CarController : MonoBehaviour
     int currentPassengerNum = 0;
 
     public CarState State { get => _state; set => _state = value; }
-  
+
     public CarData Data { get => carDataController.Data as CarData; }
 
     // Update is called once per frame
@@ -50,12 +51,14 @@ public class CarController : MonoBehaviour
                 var delta = 0.75f;
 
                 // Di gan toi slot
-                if (obj.name == "T" && Math.Abs(transform.position.x - target.x) < delta)
+                if (obj.name == "T" &&  ((veclocity.x > 0 && obj.transform.position.x > target.x)
+                        || (veclocity.x < 0 && obj.transform.position.x < target.x)))
                 {
-                    _state = CarState.READY;
-                    transform.DOMove(target, 0.25f);
+                        _state = CarState.READY;
+                        transform.DOMove(target, 0.25f);
 
-                    carDataController.DisplayChangeDirection(CarDirection.parking);
+                        carDataController.DisplayChangeDirection(CarDirection.parking);
+                    
                 }
                 else
                 {
@@ -92,7 +95,7 @@ public class CarController : MonoBehaviour
         target = slot.transform.position;
 
         _state = CarState.MOVE;
-        
+
     }
 
     public void Crash()
@@ -172,7 +175,7 @@ public class CarController : MonoBehaviour
 
     public void ShowPassengerSeat()
     {
-        int size = (int) Data.Size;
+        int size = (int)Data.Size;
         int count = currentPassengerNum - 1;
 
         var child = transform.Find(size.ToString() + count.ToString());
