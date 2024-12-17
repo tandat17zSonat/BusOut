@@ -3,19 +3,16 @@ using UnityEngine;
 
 public class SlotController : MonoBehaviour
 {
-    CarController carController;
-
-    SlotState _state = SlotState.EMPTY;
-    public SlotState State { get => _state; set => _state = value; }
+    CarDataController carController;
 
     public bool CheckEmpty()
     {
-        return _state == SlotState.EMPTY;
+        return carController == null;
     }
 
     
 
-    public CarController GetCar()
+    public CarDataController GetCar()
     {
         return carController;
     }
@@ -23,22 +20,11 @@ public class SlotController : MonoBehaviour
     public void Free()
     {
         carController = null;
-        _state = SlotState.EMPTY;
     }
 
-    #region: slot vào trạng thái chờ xe tới
-    public void WaitingCar(CarController car)
+    public void WaitingCar(CarDataController car)
     {
         carController = car;
-        _state = SlotState.BUSY; // Vô hiệu hóa slot này để không cho nhận xe
 
     }
-    #endregion
-}
-
-public enum SlotState
-{
-    EMPTY, // Xe có thể tới
-    BUSY, // Chờ xe, không thể nhận xe khác
-    READY // Sẵn sàng đón khách
 }

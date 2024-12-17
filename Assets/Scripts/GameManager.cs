@@ -20,6 +20,7 @@ public class GameManager : Singleton<GameManager>
         }
     }
 
+
     private GameData data;
     public GameData Data
     {
@@ -38,6 +39,9 @@ public class GameManager : Singleton<GameManager>
         }
     }
 
+
+    private CarEvent carEvent;
+    public CarEvent CarEvent { get=>carEvent; set => carEvent = value; }
 
 
 
@@ -131,32 +135,20 @@ public class GameManager : Singleton<GameManager>
         // ACTION
         if (selectedCar != null)
         {
-            var car = selectedCar.GetComponent<CarController>();
-            var tupleRes = car.TryMove();
-            if (tupleRes.Item1 != null) // Xe có đi được không?
+            var car = selectedCar.GetComponent<CarDataController>();
+            if (Singleton<SlotManager>.Instance.CheckEmptySlot()) // Còn slot cho xe đỗ không?
             {
-                car.Crash(tupleRes.Item2);
+                Debug.Log("-> Action: selectedCar");
 
-                //var collisionCar = tupleRes.Item1;
-                //collisionCar.GetComponent<CarController>().Crash2();
-                Debug.Log("-> Action: selectedCar - INVALID: can't move");
+                var slotController = Singleton<SlotManager>.Instance.GetFirstEmptySlot();
+                slotController.WaitingCar(car);
+
+                var destinationPoint = slotController.transform.position;
+                car.SetMove(destinationPoint);
             }
             else
             {
-                if (Singleton<SlotManager>.Instance.CheckEmptySlot()) // Còn slot cho xe đỗ không?
-                {
-                    Debug.Log("-> Action: selectedCar");
-
-                    var slotController = Singleton<SlotManager>.Instance.GetFirstEmptySlot();
-                    slotController.WaitingCar(car);
-
-                    var destinationPoint = slotController.transform.position;
-                    car.MoveToSlot(destinationPoint);
-                }
-                else
-                {
-                    Debug.Log("-> Action: selectedCar - INVALID: don't have slot");
-                }
+                Debug.LogWarning("Don't have empty slot!!!");
             }
             selectedCar = null;
         }
@@ -239,4 +231,9 @@ public enum GameState
     PLAY,
     RESULT,
     TOOL
+}
+
+public enum CarEvent
+{
+    CRASH
 }

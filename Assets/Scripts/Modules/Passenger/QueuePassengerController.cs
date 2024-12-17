@@ -68,7 +68,7 @@ public class QueuePassengerController : Singleton<QueuePassengerController>
     }
 
     #region: Hành khách lên xe
-    public void MoveToCar(PassengerController passenger, CarController car)
+    public void MoveToCar(PassengerController passenger, CarDataController car)
     {
         passenger.MoveToCar(car);
         Invoke("AfterMoveToCar", Config.TIME_PASSENGER_TO_CAR);

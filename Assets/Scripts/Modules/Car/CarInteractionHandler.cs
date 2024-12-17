@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-[RequireComponent (typeof(LineRenderer), typeof(PolygonCollider2D))]
+[RequireComponent(typeof(LineRenderer), typeof(PolygonCollider2D))]
 public class CarInteractionHandler : MonoBehaviour
 {
     private LineRenderer lineRenderer;
@@ -13,7 +13,7 @@ public class CarInteractionHandler : MonoBehaviour
         lineRenderer = GetComponent<LineRenderer>();
         polygonCollider = GetComponent<PolygonCollider2D>();
 
-        lineRenderer.enabled = false; 
+        lineRenderer.enabled = false;
     }
 
     #region: Xử lý di chuyển xe bằng touch 
@@ -22,20 +22,24 @@ public class CarInteractionHandler : MonoBehaviour
         Vector3 clickPoint = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         this.delta = clickPoint - this.transform.position;
 
-        Singleton<ToolManager>.Instance.SelectedCar = gameObject;
+        if (Singleton<GameManager>.Instance.State == GameState.TOOL)
+        {
+            Singleton<ToolManager>.Instance.SelectedCar = gameObject;
+        }
+
         Singleton<GameManager>.Instance.SelectedCar = gameObject;
     }
 
     private void OnMouseDrag()
     {
-        if( Singleton<GameManager>.Instance.State == GameState.TOOL)
+        if (Singleton<GameManager>.Instance.State == GameState.TOOL)
         {
             if (lineRenderer.enabled)
             {
                 transform.position = Camera.main.ScreenToWorldPoint(Input.mousePosition) - this.delta;
             }
         }
-        
+
     }
 
     #endregion
@@ -58,6 +62,10 @@ public class CarInteractionHandler : MonoBehaviour
 
     private void Update()
     {
-        UpdateOutline();
+        if (Singleton<GameManager>.Instance.State == GameState.TOOL)
+        {
+            UpdateOutline();
+        }
+            
     }
 }

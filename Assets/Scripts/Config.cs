@@ -5,7 +5,7 @@ public static class Config
 
     public const float TIME_CAR_MOVE = 4f;
 
-    public const float VEC_CAR_MOVE = 40f;
+    public const float VEC_CAR_MOVE = 30f;
 
 
     public const float TIME_PASSENGER_TO_CAR = 0.5f;

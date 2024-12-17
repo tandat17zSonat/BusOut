@@ -30,7 +30,7 @@ public class ToolManager : Singleton<ToolManager>
                 selectedCar = value;
                 selectedCar.GetComponent<LineRenderer>().enabled = true;
 
-                var data = selectedCar.GetComponent<CarController>().Data as CarData;
+                var data = selectedCar.GetComponent<CarDataController>().Data as CarData;
                 Singleton<CarManager>.Instance.ChangeToggleValue(data.Color, data.Size, data.Direction);
             }
 
@@ -41,7 +41,7 @@ public class ToolManager : Singleton<ToolManager>
     {
         if (selectedCar == null) return;
 
-        var controller = selectedCar.GetComponent<CarController>();
+        var controller = selectedCar.GetComponent<CarDataController>();
         var newData = ((CarData)controller.Data);
         newData.Color = color;
         newData.Size = size;
@@ -152,7 +152,7 @@ public class ToolManager : Singleton<ToolManager>
         var cars = Singleton<PlotManager>.Instance.GetCarObjects();
         foreach ( var car in cars )
         {
-            if(car.GetComponent<CarController>().IsStay == false)
+            if(car.GetComponent<CarDataController>().IsStay == false)
             {
                 Singleton<PlotManager>.Instance.Remove(car);
             }

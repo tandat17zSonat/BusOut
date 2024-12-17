@@ -52,33 +52,58 @@ public class CarData: BData
 
     public Vector2 GetDirectionVector()
     {
+        Vector2 direction = Vector2.zero;
         switch(this.direction)
         {
             case CarDirection.LB:
-                return Vector2.left + Vector2.down;
+                {
+                    direction = Vector2.left + Vector2.down;
+                    break;
+                }
 
             case CarDirection.L:
-                return Vector2.left;
+                {
+                    direction = Vector2.left;
+                    break;
+                }
 
             case CarDirection.LT:
-                return Vector2.left + Vector2.up;
+                {
+                    direction = Vector2.left + Vector2.up;
+                    break;
+                }
 
             case CarDirection.T:
-                return Vector2.up;
+                {
+                    direction = Vector2.up;
+                    break;
+                }
 
             case CarDirection.RT:
-                return Vector2.right + Vector2.up;
+                {
+                    direction = Vector2.right + Vector2.up;
+                    break;
+                }
 
             case CarDirection.R:
-                return Vector2.right;
+                {
+                    direction = Vector2.right;
+                    break;
+                }
 
             case CarDirection.RB:
-                return Vector2.right + Vector2.down;
+                {
+                    direction = Vector2.right + Vector2.down;
+                    break;
+                }
 
             case CarDirection.B:
-                return Vector2.down;
+                {
+                    direction = Vector2.down;
+                    break;
+                }
         }
-        return Vector2.zero;
+        return direction.normalized;
     }
 
     public float GetDirectionAngle()

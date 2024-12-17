@@ -5,6 +5,7 @@ using UnityEngine.Pool;
 public class PlotManager : Singleton<PlotManager>
 {
     [SerializeField] ObjectPool objectPool;
+    [SerializeField] DirectionController directionController;
 
     public ParkingPlotData Data
     {
@@ -63,8 +64,8 @@ public class PlotManager : Singleton<PlotManager>
 
 
     #region: Xe rời khỏi slot
-    private CarController carLeaved;
-    public void Leave(CarController car)
+    private CarDataController carLeaved;
+    public void Leave(CarDataController car)
     {
         this.carLeaved = car;
         this.carLeaved.Leave();
@@ -87,5 +88,10 @@ public class PlotManager : Singleton<PlotManager>
     public void Reset()
     {
         RemoveAll();
+    }
+
+    public Vector2 GetDirectionVector(Vector2 oldDirection, GameObject collision, Vector2 collisionPosition, Vector2 targetPosition)
+    {
+        return directionController.GetDirectionVector(oldDirection, collision, collisionPosition, targetPosition);
     }
 }

@@ -278,15 +278,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 8382298084441418637}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3a2ab7f4a1d44094c94eb685e4f4de83, type: 3}
+  m_Script: {fileID: 11500000, guid: e9685a2cb9a8fcb4085cabf756d894b6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   carScriptableObject: {fileID: 11400000, guid: ac3d6dda602f2c04195e4df77d6a2714, type: 2}
   color: 8
   size: 10
   direction: 1
-  boudary: {fileID: 0}
-  backTime: 3
 --- !u!114 &1288467782144546876
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -14,8 +14,8 @@ public class CarScriptableObject : ScriptableObject
     private Dictionary<string, Sprite> spritesDict = new Dictionary<string, Sprite>();
 
     // Biến lưu xe vừa chọn lựa chọn
-    private CarController selectedCar;
-    public CarController SelectedCar { get => selectedCar; set => selectedCar = value; }
+    private CarDataController selectedCar;
+    public CarDataController SelectedCar { get => selectedCar; set => selectedCar = value; }
 
     // Số lượng id của direction 
     private int NUM_DIRECTION_ID = 6;

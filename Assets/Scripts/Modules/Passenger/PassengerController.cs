@@ -65,7 +65,7 @@ public class PassengerController : BController
     }
 
     #region: Hành khách di chuyển lên xe
-    public void MoveToCar(CarController car)
+    public void MoveToCar(CarDataController car)
     {
         State = PassengerState.MOVING;
         Invoke("AfterMoveToCar", Config.TIME_PASSENGER_TO_CAR);
@@ -76,7 +76,6 @@ public class PassengerController : BController
 
     private void AfterMoveToCar()
     {
-        
         State = PassengerState.READY;
     }
     #endregion
