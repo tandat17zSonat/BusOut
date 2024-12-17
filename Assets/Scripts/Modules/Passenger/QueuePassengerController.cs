@@ -61,6 +61,12 @@ public class QueuePassengerController : Singleton<QueuePassengerController>
         Display();
     }
 
+    public void RemoveAll()
+    {
+        int size = data.GetSize();
+        Remove(size);
+    }
+
     #region: Hành khách lên xe
     public void MoveToCar(PassengerController passenger, CarController car)
     {
@@ -105,5 +111,10 @@ public class QueuePassengerController : Singleton<QueuePassengerController>
     public void ReturnPassenger(GameObject obj)
     {
         objectPool.ReturnObject(obj);
+    }
+
+    public void Reset()
+    {
+        RemoveAll();
     }
 }

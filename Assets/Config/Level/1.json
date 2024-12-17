@@ -7,16 +7,16 @@
         "Size": 10,
         "Direction": 4,
         "Position": {
-          "x": -3.35361171,
-          "y": -0.595766068,
+          "x": -4.843806,
+          "y": -0.674198151,
           "normalized": {
-            "x": -0.984584332,
-            "y": -0.174910516,
+            "x": -0.990451932,
+            "y": -0.137858719,
             "magnitude": 1.0,
             "sqrMagnitude": 1.0
           },
-          "magnitude": 3.40611935,
-          "sqrMagnitude": 11.6016483
+          "magnitude": 4.89050055,
+          "sqrMagnitude": 23.9169979
         }
       },
       {
@@ -24,74 +24,56 @@
         "Size": 10,
         "Direction": 5,
         "Position": {
-          "x": 1.97309089,
-          "y": -1.2806468,
+          "x": 2.12995,
+          "y": -1.75123358,
           "normalized": {
-            "x": 0.838805258,
-            "y": -0.5444317,
-            "normalized": {
-              "x": 0.838805139,
-              "y": -0.5444316,
-              "normalized": {
-                "x": 0.8388052,
-                "y": -0.5444317,
-                "magnitude": 1.0,
-                "sqrMagnitude": 1.0
-              },
-              "magnitude": 0.99999994,
-              "sqrMagnitude": 0.9999999
-            },
-            "magnitude": 1.00000012,
+            "x": 0.772435963,
+            "y": -0.635092735,
+            "magnitude": 1.0,
             "sqrMagnitude": 1.00000012
           },
-          "magnitude": 2.35226345,
-          "sqrMagnitude": 5.533144
+          "magnitude": 2.75744557,
+          "sqrMagnitude": 7.603506
         }
       },
       {
         "Color": 3,
         "Size": 10,
-        "Direction": 5,
+        "Direction": 4,
         "Position": {
-          "x": 3.80776,
-          "y": -0.138606548,
+          "x": 4.51364231,
+          "y": 0.09668732,
           "normalized": {
-            "x": 0.9993381,
-            "y": -0.03637698,
+            "x": 0.9997706,
+            "y": 0.0214162152,
             "normalized": {
-              "x": 0.99933815,
-              "y": -0.0363769829,
+              "x": 0.999770641,
+              "y": 0.0214162171,
               "magnitude": 1.0,
               "sqrMagnitude": 1.0
             },
             "magnitude": 0.99999994,
             "sqrMagnitude": 0.9999999
           },
-          "magnitude": 3.810282,
-          "sqrMagnitude": 14.5182476
+          "magnitude": 4.514678,
+          "sqrMagnitude": 20.3823147
         }
       },
       {
         "Color": 10,
         "Size": 6,
-        "Direction": -2,
+        "Direction": 2,
         "Position": {
-          "x": -0.9078734,
-          "y": 0.23158884,
+          "x": -1.45689285,
+          "y": 0.85903883,
           "normalized": {
-            "x": -0.968971,
-            "y": 0.2471742,
-            "normalized": {
-              "x": -0.9689711,
-              "y": 0.247174218,
-              "magnitude": 1.0,
-              "sqrMagnitude": 1.0
-            },
-            "magnitude": 0.99999994,
-            "sqrMagnitude": 0.99999994
+            "x": -0.861405849,
+            "y": 0.5079173,
+            "magnitude": 1.0,
+            "sqrMagnitude": 1.0
           },
-          "magnitude": 0.936945856,
-          "sqrMagnitude": 0.87786746
+          "magnitude": 1.6912967,
+          "sqrMagnitude": 2.8604846
         }
       },
       {
@@ -99,16 +81,16 @@
         "Size": 4,
         "Direction": 3,
         "Position": {
-          "x": -0.5864098,
-          "y": 2.54976535,
+          "x": -1.135431,
+          "y": 3.80466843,
           "normalized": {
-            "x": -0.224134549,
-            "y": 0.974558234,
+            "x": -0.285968274,
+            "y": 0.9582391,
             "magnitude": 1.0,
             "sqrMagnitude": 1.0
           },
-          "magnitude": 2.61632943,
-          "sqrMagnitude": 6.84517956
+          "magnitude": 3.97047925,
+          "sqrMagnitude": 15.7647057
         }
       },
       {
@@ -116,16 +98,22 @@
         "Size": 4,
         "Direction": 1,
         "Position": {
-          "x": 1.82653761,
-          "y": 1.80697823,
+          "x": 2.53242,
+          "y": 2.82658577,
           "normalized": {
-            "x": 0.71090287,
-            "y": 0.7032902,
-            "magnitude": 1.0,
-            "sqrMagnitude": 1.0
+            "x": 0.667287767,
+            "y": 0.7447999,
+            "normalized": {
+              "x": 0.6672878,
+              "y": 0.7448,
+              "magnitude": 1.0,
+              "sqrMagnitude": 1.0
+            },
+            "magnitude": 0.99999994,
+            "sqrMagnitude": 0.9999999
           },
-          "magnitude": 2.569321,
-          "sqrMagnitude": 6.60141
+          "magnitude": 3.795094,
+          "sqrMagnitude": 14.4027376
         }
       },
       {
@@ -133,16 +121,16 @@
         "Size": 6,
         "Direction": 2,
         "Position": {
-          "x": -0.4928071,
-          "y": -1.808938,
+          "x": -1.35555208,
+          "y": -1.65207386,
           "normalized": {
-            "x": -0.2628495,
-            "y": -0.9648369,
+            "x": -0.6343178,
+            "y": -0.7730724,
             "magnitude": 1.0,
             "sqrMagnitude": 1.00000012
           },
-          "magnitude": 1.8748641,
-          "sqrMagnitude": 3.5151155
+          "magnitude": 2.13702345,
+          "sqrMagnitude": 4.56686926
         }
       },
       {
@@ -150,22 +138,22 @@
         "Size": 10,
         "Direction": -3,
         "Position": {
-          "x": -2.83305669,
-          "y": 3.53438258,
+          "x": -4.55854464,
+          "y": 5.18144131,
           "normalized": {
-            "x": -0.6254419,
-            "y": 0.7802707,
+            "x": -0.6605361,
+            "y": 0.750794232,
             "normalized": {
-              "x": -0.625441968,
-              "y": 0.780270755,
+              "x": -0.66053617,
+              "y": 0.7507943,
               "magnitude": 1.0,
               "sqrMagnitude": 1.00000012
             },
             "magnitude": 0.99999994,
             "sqrMagnitude": 0.99999994
           },
-          "magnitude": 4.529688,
-          "sqrMagnitude": 20.51807
+          "magnitude": 6.90128,
+          "sqrMagnitude": 47.6276627
         }
       },
       {
@@ -173,16 +161,16 @@
         "Size": 6,
         "Direction": 3,
         "Position": {
-          "x": 0.566384733,
-          "y": -4.298728,
+          "x": 0.4879498,
+          "y": -4.69088459,
           "normalized": {
-            "x": 0.130627409,
-            "y": -0.991431534,
+            "x": 0.103462607,
+            "y": -0.9946334,
             "magnitude": 1.0,
-            "sqrMagnitude": 1.0
+            "sqrMagnitude": 1.00000012
           },
-          "magnitude": 4.33588,
-          "sqrMagnitude": 18.7998543
+          "magnitude": 4.71619463,
+          "sqrMagnitude": 22.2424927
         }
       }
     ]
@@ -192,39 +180,23 @@
       "List": [
         {
           "color": 7,
-          "num": 4
-        },
-        {
-          "color": 3,
           "num": 6
         },
         {
           "color": 8,
-          "num": 4
+          "num": 10
         },
         {
           "color": 3,
-          "num": 4
-        },
-        {
-          "color": 7,
-          "num": 2
+          "num": 10
         },
         {
           "color": 9,
           "num": 10
         },
         {
-          "color": 8,
-          "num": 4
-        },
-        {
           "color": 4,
           "num": 10
-        },
-        {
-          "color": 8,
-          "num": 2
         },
         {
           "color": 10,
@@ -244,7 +216,7 @@
         }
       ],
       "IsEmpty": false,
-      "Count": 13
+      "Count": 9
     }
   },
   "ScaleFactor": 1.0

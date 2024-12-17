@@ -1,17 +1,17 @@
 ﻿using System.IO;
-using System.Net.WebSockets;
 using Newtonsoft.Json;
 using UnityEngine;
 
 public class GameManager : Singleton<GameManager>
 {
-    private GameState _state = GameState.LOBBY;
+    [SerializeField] SharedDataSO sharedDataSO;
+
+
+    private GameState _state = GameState.TOOL;
     public GameState State { get => _state; set => _state = value; }
 
-    [SerializeField] PlotManager plotManager;
+    [SerializeField, Space(10)] PlotManager plotManager;
     [SerializeField] QueuePassengerController queueManager;
-
-    [SerializeField] GameObject UITool;
 
     private GameObject selectedCar;
     public GameObject SelectedCar
@@ -41,6 +41,10 @@ public class GameManager : Singleton<GameManager>
         }
     }
 
+
+
+
+    //--------------------------------------------------------------------
     public void Display()
     {
         plotManager.Data = data.ParkingPlotData;
@@ -81,6 +85,24 @@ public class GameManager : Singleton<GameManager>
         Data = gameData;
     }
 
+    public void Reload()
+    {
+        int level = sharedDataSO.level;
+        Load(level);
+    }
+
+    public void Reset()
+    {
+        selectedCar = null;
+
+        sharedDataSO.Reset();
+        plotManager.Reset();
+        queueManager.Reset();
+        _state = GameState.LOBBY;
+    }
+
+
+
 
     private void Update()
     {
@@ -119,7 +141,7 @@ public class GameManager : Singleton<GameManager>
         if (selectedCar != null)
         {
             var car = selectedCar.GetComponent<CarController>();
-            var tupleRes = car.CanMove();
+            var tupleRes = car.TryMove();
             if (tupleRes.Item1 != null) // Xe có đi được không?
             {
                 car.Crash(tupleRes.Item2);
@@ -212,11 +234,17 @@ public class GameManager : Singleton<GameManager>
     public void Play()
     {
         _state = GameState.PLAY;
+        Singleton<PlotManager>.Instance.SetTrigger(true);
+
+        int level = 1;
+        Load(level);
     }
 
     public void EnableTool()
     {
+        Reset();
         _state = GameState.TOOL;
+        Singleton<PlotManager>.Instance.SetTrigger(false);
     }
 }
 

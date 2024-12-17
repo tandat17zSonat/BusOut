@@ -76,11 +76,16 @@ public class PlotManager : Singleton<PlotManager>
     }
     #endregion
 
-    public void OnPhysic(bool isTrigger)
+    public void SetTrigger(bool isTrigger)
     {
         foreach (Transform child in transform)
         {
             child.GetComponent<Collider2D>().isTrigger = isTrigger;
         }
+    }
+
+    public void Reset()
+    {
+        RemoveAll();
     }
 }

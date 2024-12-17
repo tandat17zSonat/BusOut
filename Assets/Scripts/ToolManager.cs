@@ -4,6 +4,8 @@ using System.Collections.Generic;
 public class ToolManager : Singleton<ToolManager>
 {
 
+    [SerializeField] SharedDataSO SharedDataSO;
+
     private GameObject selectedCar;
     public GameObject SelectedCar
     {
@@ -55,7 +57,6 @@ public class ToolManager : Singleton<ToolManager>
 
     public void RemoveAllCar()
     {
-        if (selectedCar == null) return;
         Singleton<PlotManager>.Instance.RemoveAll();
     }
 

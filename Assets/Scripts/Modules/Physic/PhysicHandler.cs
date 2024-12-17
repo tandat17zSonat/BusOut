@@ -6,6 +6,6 @@ public class PhysicHandler : MonoBehaviour
     public void OnPhysic(Toggle toggle)
     {
         bool isTrigger = toggle.isOn;
-        Singleton<PlotManager>.Instance.OnPhysic(isTrigger);
+        Singleton<PlotManager>.Instance.SetTrigger(isTrigger);
     }
 }

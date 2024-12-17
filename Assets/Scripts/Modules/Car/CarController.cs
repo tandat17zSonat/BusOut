@@ -107,8 +107,11 @@ public class CarController : BController
         Display();
     }
 
-    public (GameObject, Vector3) CanMove()
+    public (GameObject, Vector3) TryMove()
     {
+        if (_state != CarState.PARKING) return (null, Vector3.zero);
+
+
         Vector2 boxSize = new Vector2(0.5f, 0.5f); // Kích thước hình hộp
         float maxDistance = 1000f; // Khoảng cách kiểm tra
         float angle = ((CarData)data).GetDirectionAngle();

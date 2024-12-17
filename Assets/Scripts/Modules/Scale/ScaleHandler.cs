@@ -4,7 +4,6 @@ using UnityEngine;
 public class ScaleHandler : Singleton<ScaleHandler>
 {
     public TMP_InputField inputField;
-    public GameObject go;
 
     private float scale = 1f;
 
@@ -16,7 +15,7 @@ public class ScaleHandler : Singleton<ScaleHandler>
             scale = value;
             var newScale = Vector3.one * scale;
             inputField.text = scale.ToString();
-            go.transform.localScale = newScale;
+            Singleton<PlotManager>.Instance.gameObject.transform.localScale = newScale;
         }
     }
 
