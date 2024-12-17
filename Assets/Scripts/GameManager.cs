@@ -40,7 +40,7 @@ public class GameManager : Singleton<GameManager>
         }
     }
 
-    
+
     private Queue<SlotController> queueSlot = new Queue<SlotController>();
     public Queue<SlotController> QueueSlot { get => queueSlot; set => queueSlot = value; }
 
@@ -52,8 +52,10 @@ public class GameManager : Singleton<GameManager>
         plotManager.Data = data.ParkingPlotData;
         queueManager.Data = data.QueuePassengerData;
 
+        plotManager.transform.localScale = Vector3.one * data.ScaleFactor;
         //// hiển thị phần UI
-        if (_state == GameState.TOOL) {
+        if (_state == GameState.TOOL)
+        {
             Singleton<CellManager>.Instance.SetInfo();
             Singleton<ScaleHandler>.Instance.Scale = data.ScaleFactor;
         }
@@ -95,6 +97,8 @@ public class GameManager : Singleton<GameManager>
 
         plotManager.Reset();
         queueManager.Reset();
+
+        queueSlot = new Queue<SlotController>();
     }
 
 
@@ -138,7 +142,7 @@ public class GameManager : Singleton<GameManager>
         if (selectedCar != null)
         {
             var car = selectedCar.GetComponent<CarController>();
-            if (Singleton<SlotManager>.Instance.CheckEmptySlot()) // Còn slot cho xe đỗ không?
+            if (car.State == CarState.PARKING && Singleton<SlotManager>.Instance.CheckEmptySlot()) // Còn slot cho xe đỗ không?
             {
                 Debug.Log("-> Action: selectedCar");
 
@@ -181,7 +185,7 @@ public class GameManager : Singleton<GameManager>
         if (CanCarLeave())
         {
             var slot = Singleton<SlotManager>.Instance.GetSlotHasFullCar(); ;
-            var car = Singleton<SlotManager>.Instance.GetFullCar();
+            var car = slot.GetCar();
             // Xe rời đi thì PlotManager returnobject vào pool
             slot.Free();
 
@@ -220,12 +224,12 @@ public class GameManager : Singleton<GameManager>
 
     bool CheckEndGame()
     {
-        if( Singleton<QueuePassengerController>.Instance.Data.GetSize() == 0)
+        if (Singleton<QueuePassengerController>.Instance.Data.GetSize() == 0)
         {
             _state = GameState.WIN;
             return true;
         }
-        if( Singleton<SlotManager>.Instance.CheckBusyAllSlot() == true &&
+        if (Singleton<SlotManager>.Instance.CheckBusyAllSlot() == true &&
             Singleton<QueuePassengerController>.Instance.CheckStatusAllPassenger() == false)
         {
             _state = GameState.LOSS;

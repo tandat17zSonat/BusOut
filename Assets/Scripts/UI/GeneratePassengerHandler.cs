@@ -11,7 +11,7 @@ public class GeneratePassengerHandler : MonoBehaviour
     {
         CarColor color = toggleGroupColor.GetSelectedToggle<CarColor>();
         int num = 0;
-        if( int.TryParse(inputNum.text, out num )  == false)
+        if (int.TryParse(inputNum.text, out num) == false)
         {
             num = 1;
         }
@@ -50,7 +50,7 @@ public class GeneratePassengerHandler : MonoBehaviour
         Dictionary<CarColor, int> color2num = new Dictionary<CarColor, int>();
 
         var plotData = Singleton<PlotManager>.Instance.Data;
-        foreach(var car in plotData.Cars)
+        foreach (var car in plotData.Cars)
         {
             Singleton<QueuePassengerController>.Instance.Add(car.Color, (int)car.Size);
         }

@@ -47,7 +47,7 @@ public class CarController : MonoBehaviour
                 veclocity = Singleton<PlotManager>.Instance.GetDirectionVector(cData.GetDirectionVector(), obj, transform.position, target);
                 veclocity.Normalize();
 
-                var delta = 0.5f;
+                var delta = 0.75f;
 
                 // Di gan toi slot
                 if (obj.name == "T" && Math.Abs(transform.position.x - target.x) < delta)
@@ -71,10 +71,10 @@ public class CarController : MonoBehaviour
                 if (otherController.State == CarState.PARKING)
                 {
                     otherController.Crash();
-
-                    Singleton<GameManager>.Instance.QueueSlot.Enqueue(targetSlot);
-                    targetSlot = null;
                 }
+
+                Singleton<GameManager>.Instance.QueueSlot.Enqueue(targetSlot);
+                targetSlot = null;
 
                 transform.DOMove(oldPosition, 0.5f).SetEase(Ease.OutBack);
                 _state = CarState.PARKING;
@@ -92,6 +92,7 @@ public class CarController : MonoBehaviour
         target = slot.transform.position;
 
         _state = CarState.MOVE;
+        
     }
 
     public void Crash()
