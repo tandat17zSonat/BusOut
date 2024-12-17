@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 907878472585033429}
   - component: {fileID: 2962328112448161644}
   - component: {fileID: 2195997519318201772}
+  - component: {fileID: 166815789795353289}
   m_Layer: 0
   m_Name: Passenger
   m_TagString: Untagged
@@ -101,3 +102,16 @@ MonoBehaviour:
   color: 9
   positionIndex: 0
   isSeat: 0
+--- !u!114 &166815789795353289
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2635145339080019735}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 38ef3eba99aec2d45a4e53f188c8c049, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pDataController: {fileID: 2195997519318201772}

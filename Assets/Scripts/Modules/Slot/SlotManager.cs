@@ -89,4 +89,18 @@ public class SlotManager : Singleton<SlotManager>
         Debug.LogWarning("SlotManager: don't have EmptySlot");
         return null;
     }
+
+    // Tất cả slot đều đang có xe không?
+    public bool CheckBusyAllSlot()
+    {
+        foreach(var slot in slots)
+        {
+            var car = slot.GetCar();
+            if ( car == null || car.State != CarState.READY) 
+            {
+                return false;
+            }
+        }
+        return true;
+    }
 }

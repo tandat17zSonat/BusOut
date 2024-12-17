@@ -95,13 +95,19 @@ public class QueuePassengerController : Singleton<QueuePassengerController>
         return currentQueue.Peek().GetComponent<PassengerController>();
     }
 
-    public void ReturnPassenger(GameObject obj)
-    {
-        objectPool.ReturnObject(obj);
-    }
-
     public void Reset()
     {
         RemoveAll();
+    }
+
+    // kiem tra hanh khach len xe khong
+    public bool CheckStatusAllPassenger()
+    {
+        foreach(var p in currentQueue.ToArray())
+        {
+            var controller = p.GetComponent<PassengerController>();
+            if(controller.State == PassengerState.MOVING) return true;
+        }
+        return false;
     }
 }

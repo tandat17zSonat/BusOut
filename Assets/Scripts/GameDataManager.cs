@@ -8,7 +8,7 @@ public class GameDataManager : MonoBehaviour
     void Start()
     {
         int level = sharedDataSO.level;
-        Singleton<GameManager>.Instance.State = GameState.PLAY;
+        Singleton<GameManager>.Instance.State = GameState.LOBBY;
         Singleton<GameManager>.Instance.Load(level);
     }
 

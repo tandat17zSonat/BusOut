@@ -1,7 +1,6 @@
-﻿using Unity.VisualScripting;
-using UnityEngine;
+﻿using UnityEngine;
 
-public class PassengerController : BController
+public class PassengerDataController : BController
 {
     [SerializeField] PassengerScriptableObject passengerScriptableObject;
 
@@ -9,14 +8,7 @@ public class PassengerController : BController
     [SerializeField] int positionIndex = 0;
     [SerializeField] bool isSeat = false;
 
-    PassengerState _state = PassengerState.READY;
-    public PassengerState State { get => _state; set => _state = value; }
-
-
-
-
-
-
+   
     public override void Init()
     {
         this.data = new PassengerData();
@@ -63,34 +55,4 @@ public class PassengerController : BController
             y = cellY * Config.DISTANCE_PASSENGER;
         return new Vector3(x, y, y);
     }
-
-    #region: Hành khách di chuyển lên xe
-    public void MoveToCar(CarController car)
-    {
-        State = PassengerState.MOVING;
-        Invoke("AfterMoveToCar", Config.TIME_PASSENGER_TO_CAR);
-
-        // effect
-        transform.position = car.transform.position;
-        gameObject.SetActive(false);
-    }
-
-    private void AfterMoveToCar()
-    {
-        State = PassengerState.READY;
-    }
-    #endregion
-
-
-    public bool IsReady()
-    {
-        return _state == PassengerState.READY;
-    }
-}
-
-public enum PassengerState
-{
-    READY, // sẵn sàng lên xe
-    MOVING, // Đang lên xe
-    FINISH // đã lên xe
 }

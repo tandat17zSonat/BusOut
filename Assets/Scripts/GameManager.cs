@@ -118,7 +118,8 @@ public class GameManager : Singleton<GameManager>
                     OnPlayState();
                     break;
                 }
-            case GameState.RESULT:
+            case GameState.WIN:
+            case GameState.LOSS:
                 {
                     OnResultState();
                     break;
@@ -189,7 +190,7 @@ public class GameManager : Singleton<GameManager>
 
         if (CheckEndGame())
         {
-            _state = GameState.RESULT;
+            Debug.Log("End game " + _state);
         }
 
     }
@@ -209,7 +210,7 @@ public class GameManager : Singleton<GameManager>
     {
         if (passenger.IsReady())
         {
-            var pData = passenger.Data as PassengerData;
+            var pData = passenger.Data;
 
             var carByColor = Singleton<SlotManager>.Instance.GetReadyCarByColor(pData.Color);
             return carByColor.Count > 0;
@@ -219,16 +220,23 @@ public class GameManager : Singleton<GameManager>
 
     bool CheckEndGame()
     {
+        if( Singleton<QueuePassengerController>.Instance.Data.GetSize() == 0)
+        {
+            _state = GameState.WIN;
+            return true;
+        }
+        if( Singleton<SlotManager>.Instance.CheckBusyAllSlot() == true &&
+            Singleton<QueuePassengerController>.Instance.CheckStatusAllPassenger() == false)
+        {
+            _state = GameState.LOSS;
+            return true;
+        }
         return false;
     }
 
     public void Play()
     {
         _state = GameState.PLAY;
-        Singleton<PlotManager>.Instance.SetTrigger(true);
-
-        int level = 1;
-        Load(level);
     }
 }
 
@@ -237,7 +245,8 @@ public enum GameState
     LOBBY,
     PREPARE,
     PLAY,
-    RESULT,
+    WIN,
+    LOSS,
     TOOL
 }
 
