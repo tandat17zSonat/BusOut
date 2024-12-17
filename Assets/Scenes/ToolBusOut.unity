@@ -12056,7 +12056,6 @@ GameObject:
   - component: {fileID: 547920164}
   - component: {fileID: 547920163}
   - component: {fileID: 547920162}
-  - component: {fileID: 547920161}
   m_Layer: 5
   m_Name: ButtonRemoveAll
   m_TagString: Untagged
@@ -12084,18 +12083,6 @@ RectTransform:
   m_AnchoredPosition: {x: 38.9, y: -25}
   m_SizeDelta: {x: 112.7, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &547920161
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 547920159}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7b044d29265cf184d971ef8ed979f5a4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &547920162
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -57512,7 +57499,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   inputField: {fileID: 503109223}
-  go: {fileID: 1742640377}
 --- !u!1 &1104206109
 GameObject:
   m_ObjectHideFlags: 0
@@ -62264,7 +62250,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 87cfe28d35da84941a51894aeee0c70c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sharedDataSO: {fileID: 11400000, guid: 41a270395f8d23f44b5b1637ff083625, type: 2}
   plotManager: {fileID: 1742640382}
   queueManager: {fileID: 907457029}
 --- !u!114 &1410294009
@@ -65382,7 +65367,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 246.9, y: -50}
+  m_AnchoredPosition: {x: 246.89996, y: -50}
   m_SizeDelta: {x: 325, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1564379697
@@ -66041,18 +66026,6 @@ MonoBehaviour:
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: Gameplay
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 1410294008}
-        m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
-        m_MethodName: Reload
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &1596310144

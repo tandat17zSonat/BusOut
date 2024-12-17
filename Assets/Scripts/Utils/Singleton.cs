@@ -1,4 +1,4 @@
-using UnityEngine;
+﻿using UnityEngine;
 
 public class Singleton<T> : MonoBehaviour where T : MonoBehaviour
 {
@@ -32,6 +32,6 @@ public class Singleton<T> : MonoBehaviour where T : MonoBehaviour
         }
 
         _instance = this as T;
-        DontDestroyOnLoad(gameObject);
+        DontDestroyOnLoad(gameObject); // Không hủy singleton khi load scene mới
     }
 }

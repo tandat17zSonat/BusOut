@@ -4,9 +4,6 @@ using UnityEngine;
 
 public class GameManager : Singleton<GameManager>
 {
-    [SerializeField] SharedDataSO sharedDataSO;
-
-
     private GameState _state = GameState.TOOL;
     public GameState State { get => _state; set => _state = value; }
 
@@ -50,9 +47,11 @@ public class GameManager : Singleton<GameManager>
         plotManager.Data = data.ParkingPlotData;
         queueManager.Data = data.QueuePassengerData;
 
-        // hiển thị phần UI
-        Singleton<CellManager>.Instance.SetInfo();
-        Singleton<ScaleHandler>.Instance.Scale = data.ScaleFactor;
+        //// hiển thị phần UI
+        if (_state == GameState.TOOL) {
+            Singleton<CellManager>.Instance.SetInfo();
+            Singleton<ScaleHandler>.Instance.Scale = data.ScaleFactor;
+        }
     }
 
     public void Save(int level)
@@ -85,20 +84,12 @@ public class GameManager : Singleton<GameManager>
         Data = gameData;
     }
 
-    public void Reload()
-    {
-        int level = sharedDataSO.level;
-        Load(level);
-    }
-
     public void Reset()
     {
         selectedCar = null;
 
-        sharedDataSO.Reset();
         plotManager.Reset();
         queueManager.Reset();
-        _state = GameState.LOBBY;
     }
 
 
@@ -238,13 +229,6 @@ public class GameManager : Singleton<GameManager>
 
         int level = 1;
         Load(level);
-    }
-
-    public void EnableTool()
-    {
-        Reset();
-        _state = GameState.TOOL;
-        Singleton<PlotManager>.Instance.SetTrigger(false);
     }
 }
 
