@@ -54,6 +54,11 @@ public class PlotManager : Singleton<PlotManager>
 
     public void Remove(GameObject obj)
     {
+        for (int i = 0; i < obj.transform.childCount; i++)
+        {
+            Transform child = obj.transform.GetChild(i);
+            child.gameObject.SetActive(false);
+        }
         objectPool.ReturnObject(obj);
     }
 
@@ -64,8 +69,8 @@ public class PlotManager : Singleton<PlotManager>
 
 
     #region: Xe rời khỏi slot
-    private CarDataController carLeaved;
-    public void Leave(CarDataController car)
+    private CarController carLeaved;
+    public void Leave(CarController car)
     {
         this.carLeaved = car;
         this.carLeaved.Leave();

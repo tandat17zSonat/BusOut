@@ -65,13 +65,14 @@ public class PassengerController : BController
     }
 
     #region: Hành khách di chuyển lên xe
-    public void MoveToCar(CarDataController car)
+    public void MoveToCar(CarController car)
     {
         State = PassengerState.MOVING;
         Invoke("AfterMoveToCar", Config.TIME_PASSENGER_TO_CAR);
 
         // effect
         transform.position = car.transform.position;
+        gameObject.SetActive(false);
     }
 
     private void AfterMoveToCar()

@@ -1,4 +1,5 @@
-﻿using System.IO;
+﻿using System.Collections.Generic;
+using System.IO;
 using Newtonsoft.Json;
 using UnityEngine;
 
@@ -39,9 +40,9 @@ public class GameManager : Singleton<GameManager>
         }
     }
 
-
-    private CarEvent carEvent;
-    public CarEvent CarEvent { get=>carEvent; set => carEvent = value; }
+    
+    private Queue<SlotController> queueSlot = new Queue<SlotController>();
+    public Queue<SlotController> QueueSlot { get => queueSlot; set => queueSlot = value; }
 
 
 
@@ -135,16 +136,15 @@ public class GameManager : Singleton<GameManager>
         // ACTION
         if (selectedCar != null)
         {
-            var car = selectedCar.GetComponent<CarDataController>();
+            var car = selectedCar.GetComponent<CarController>();
             if (Singleton<SlotManager>.Instance.CheckEmptySlot()) // Còn slot cho xe đỗ không?
             {
                 Debug.Log("-> Action: selectedCar");
 
-                var slotController = Singleton<SlotManager>.Instance.GetFirstEmptySlot();
-                slotController.WaitingCar(car);
+                var target = Singleton<SlotManager>.Instance.GetFirstEmptySlot();
+                car.SetMove(target);
 
-                var destinationPoint = slotController.transform.position;
-                car.SetMove(destinationPoint);
+                target.SetCar(car); // waiting for ....
             }
             else
             {
@@ -152,6 +152,14 @@ public class GameManager : Singleton<GameManager>
             }
             selectedCar = null;
         }
+
+        // Slot dang doi xe nhung xe crash -----------------
+        while (queueSlot.Count > 0)
+        {
+            var slot = queueSlot.Dequeue();
+            slot.Free();
+        }
+
 
         // Kiểm tra hành khách đầu tiên lên xe được không? 
         var passenger = Singleton<QueuePassengerController>.Instance.GetFrontPassenger();
@@ -162,10 +170,10 @@ public class GameManager : Singleton<GameManager>
             var cars = Singleton<SlotManager>.Instance.GetReadyCarByColor(pData.Color);
             var car = cars[0];
 
-            car.IncreaseNum(1);
-
             // LƯU VÀO XE ĐỂ SAU THỰC HIỆN POOLING ---------------------------
             Singleton<QueuePassengerController>.Instance.MoveToCar(passenger, car);
+            car.AddPassenger();
+            car.ShowPassengerSeat();
         }
 
         // Kiểm tra xe full khách có thể rời khỏi chưa?
@@ -235,5 +243,6 @@ public enum GameState
 
 public enum CarEvent
 {
-    CRASH
+    CRASH,
+    TO_SLOT
 }

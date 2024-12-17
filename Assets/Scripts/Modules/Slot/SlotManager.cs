@@ -8,9 +8,9 @@ public class SlotManager : Singleton<SlotManager>
     [SerializeField] List<SlotController> slots;
 
 
-    public List<CarDataController> GetCars()
+    public List<CarController> GetCars()
     {
-        List<CarDataController> cars = new List<CarDataController>();
+        var cars = new List<CarController>();
         foreach (var slot in slots)
         {
             if( slot.CheckEmpty() == false)
@@ -40,7 +40,7 @@ public class SlotManager : Singleton<SlotManager>
         return null;
     }
 
-    public CarDataController GetFullCar()
+    public CarController GetFullCar()
     {
         var slot = GetSlotHasFullCar();
         if (slot != null)
@@ -50,9 +50,9 @@ public class SlotManager : Singleton<SlotManager>
         return null;
     }
 
-    public List<CarDataController> GetReadyCarByColor(CarColor color)
+    public List<CarController> GetReadyCarByColor(CarColor color)
     {
-        List<CarDataController> carByColor = new List<CarDataController>();
+        var carByColor = new List<CarController>();
         var cars = GetCars();
         foreach (var car in cars)
         {

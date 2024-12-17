@@ -68,18 +68,10 @@ public class QueuePassengerController : Singleton<QueuePassengerController>
     }
 
     #region: Hành khách lên xe
-    public void MoveToCar(PassengerController passenger, CarDataController car)
+    public void MoveToCar(PassengerController passenger, CarController car)
     {
         passenger.MoveToCar(car);
-        Invoke("AfterMoveToCar", Config.TIME_PASSENGER_TO_CAR);
-
-        // tạo 1 hành khách trên xe
-        var temp = GetTempPassenger();
-        var pData = passenger.Data as PassengerData;
-        pData.IsSeat = true;
-        temp.SetInfo(pData);
-        temp.MoveToCar(car);
-        car.Passengers.Add(temp);
+        Invoke("AfterMoveToCar", Config.TIME_PASSENGER_TO_CAR);        
     }
     private void AfterMoveToCar()
     {
@@ -101,11 +93,6 @@ public class QueuePassengerController : Singleton<QueuePassengerController>
             return null;
         }
         return currentQueue.Peek().GetComponent<PassengerController>();
-    }
-
-    public PassengerController GetTempPassenger()
-    {
-        return objectPool.GetObject().GetComponent<PassengerController>();
     }
 
     public void ReturnPassenger(GameObject obj)

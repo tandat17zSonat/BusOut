@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class SlotController : MonoBehaviour
 {
-    CarDataController carController;
+    CarController carController;
 
     public bool CheckEmpty()
     {
@@ -12,7 +12,7 @@ public class SlotController : MonoBehaviour
 
     
 
-    public CarDataController GetCar()
+    public CarController GetCar()
     {
         return carController;
     }
@@ -22,7 +22,7 @@ public class SlotController : MonoBehaviour
         carController = null;
     }
 
-    public void WaitingCar(CarDataController car)
+    public void SetCar(CarController car)
     {
         carController = car;
 
