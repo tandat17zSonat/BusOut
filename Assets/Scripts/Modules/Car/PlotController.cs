@@ -64,6 +64,11 @@ public class PlotManager : Singleton<PlotManager>
     public void RemoveAll()
     {
         objectPool.Reset();
+        foreach(var obj in objectPool.ToArray())
+        {
+            var controller = obj.GetComponent<CarController>();
+            controller.Reset();
+        }
     }
 
 
@@ -94,9 +99,9 @@ public class PlotManager : Singleton<PlotManager>
         RemoveAll();
     }
 
-    public List<Vector2> GetListPointToTarget(CarData carData, GameObject collision, Vector2 targetPosition)
+    public List<Vector2> GetListPointToTarget(CarData carData, GameObject collision, Vector2 collisionPosition,  Vector2 targetPosition)
     {
-        return directionController.GetListPointToTarget(carData.GetDirectionVector(), collision, carData.Position, targetPosition);
+        return directionController.GetListPointToTarget(carData.GetDirectionVector(), collision, collisionPosition, targetPosition);
     }
 
     public float GetYTop()

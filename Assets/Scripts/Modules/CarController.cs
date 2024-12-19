@@ -34,7 +34,7 @@ public class CarController : MonoBehaviour
         }
     }
 
-    private void OnTriggerStay2D(Collider2D collision)
+    private void OnTriggerEnter2D(Collider2D collision)
     {
         if (_state == CarState.START_MOVE)
         {
@@ -44,7 +44,8 @@ public class CarController : MonoBehaviour
                 _state = CarState.MOVE_TO_SLOT;
 
                 var obj = collision.gameObject;
-                List<Vector2> points = Singleton<PlotManager>.Instance.GetListPointToTarget(Data, obj, target);
+                var collisionPoint = (Vector2) transform.position + Data.GetDirectionVector();
+                List<Vector2> points = Singleton<PlotManager>.Instance.GetListPointToTarget(Data, obj, collisionPoint , target);
 
                 var sequence = DOTween.Sequence();
                 var prePoint = (Vector2) transform.position;
@@ -160,6 +161,9 @@ public class CarController : MonoBehaviour
         {
             AfterLeave();
         });
+
+        // Ẩn khách trên xe
+        HidePassengerSeat();
         return;
     }
 
@@ -196,6 +200,19 @@ public class CarController : MonoBehaviour
 
         var child = transform.Find(size.ToString() + count.ToString());
         child.gameObject.SetActive(true);
+    }
+
+    public void HidePassengerSeat()
+    {
+        foreach (Transform item in transform)
+        {
+            item.gameObject.SetActive(false);
+        }
+    }
+    public void Reset()
+    {
+        _state = CarState.PARKING;
+        HidePassengerSeat();
     }
 }
 public enum CarState

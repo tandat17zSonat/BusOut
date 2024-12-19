@@ -24,6 +24,11 @@ public class ObjectPool : MonoBehaviour
         }
     }
 
+    public GameObject[] ToArray()
+    {
+        return pool.ToArray();
+    }
+
     public GameObject GetObject()
     {
         if( pool.Count > 0)

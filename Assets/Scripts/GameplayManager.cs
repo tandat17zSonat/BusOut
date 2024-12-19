@@ -129,7 +129,7 @@ public class GameplayManager : Singleton<GameplayManager>
             }
             else
             {
-                Debug.LogWarning("Don't have empty slot!!!");
+                Debug.LogWarning("Don't have empty slot!!!" + car.State.ToString());
             }
             selectedCar = null;
         }
