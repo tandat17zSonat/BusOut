@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
 using DG.Tweening;
 using UnityEngine;
-using UnityEngine.Diagnostics;
 
 public class CarController : MonoBehaviour
 {
@@ -62,6 +61,8 @@ public class CarController : MonoBehaviour
                         );
                     prePoint = point;
                 }
+
+                // Chỉnh lại state khi xe tới target
                 sequence.OnComplete(() =>
                 {
                     carDataController.DisplayChangeDirection(CarDirection.parking);
@@ -127,28 +128,30 @@ public class CarController : MonoBehaviour
         // Xe di chuyen rời đi -------------
         State = CarState.LEAVE;
 
-        float totalTime = 0;
         var sequence = DOTween.Sequence();
 
-        var point1 = transform.position + Vector3.down * 2;
-        float t1 = 2 / Config.VEC_CAR_MOVE;
-        sequence.Append(transform.DOMove(point1, t1));
-
-        var point2 = point1 + Vector3.right * 30;
-        float t2 = 30 / Config.VEC_CAR_MOVE;
+        var yTop = Singleton<PlotManager>.Instance.GetYTop();
+        var point1 = new Vector2(transform.position.x, yTop);
+        var t1 = Vector2.Distance(point1, transform.position) / Config.VEC_CAR_MOVE;
         sequence.Append(
-            transform.DOMove(point2, t2)
+            transform.DOMove(point1, t1)
                 .OnStart(() =>
                 {
-                    CarData cData = Data as CarData;
-                    cData.Direction = CarDirection.R;
-                    carDataController.SetInfo(cData);
+                    carDataController.DisplayChangeDirection(CarDirection.R);
                 })
             );
 
-        totalTime += t1;
-        totalTime += t2;
-        Invoke("AfterLeave", totalTime);
+        var point2 = point1 + Vector2.right * 30;
+        float t2 = Vector2.Distance(point2, point1) / Config.VEC_CAR_MOVE;
+        sequence.Append(
+            transform.DOMove(point2, t2)
+            );
+
+        // trả object về pool khi đi khỏi màn hình
+        sequence.OnComplete(() =>
+        {
+            AfterLeave();
+        });
         return;
     }
 

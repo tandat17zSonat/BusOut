@@ -7,12 +7,7 @@ public class GameDataManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        Singleton<GameManager>.Instance.Reset();
-        Singleton<PlotManager>.Instance.SetTrigger(true);
-
-        int level = sharedDataSO.level;
-        Singleton<GameManager>.Instance.State = GameState.LOBBY;
-        Singleton<GameManager>.Instance.Load(level);
+        Replay();
     }
 
     public void EnableTool()
@@ -20,5 +15,17 @@ public class GameDataManager : MonoBehaviour
         Singleton<GameManager>.Instance.Reset();
         Singleton<GameManager>.Instance.State = GameState.TOOL;
         Singleton<PlotManager>.Instance.SetTrigger(false);
+    }
+
+    public void Replay()
+    {
+        Singleton<GameManager>.Instance.Reset();
+        Singleton<PlotManager>.Instance.SetTrigger(true);
+
+        int level = sharedDataSO.level;
+        Singleton<GameManager>.Instance.Load(level);
+
+        Singleton<GameManager>.Instance.StartPlay();
+        
     }
 }

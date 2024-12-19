@@ -98,4 +98,9 @@ public class PlotManager : Singleton<PlotManager>
     {
         return directionController.GetListPointToTarget(carData.GetDirectionVector(), collision, carData.Position, targetPosition);
     }
+
+    public float GetYTop()
+    {
+        return directionController.GetYTop();
+    }
 }

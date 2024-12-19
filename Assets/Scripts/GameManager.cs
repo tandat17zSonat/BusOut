@@ -1,15 +1,19 @@
 ﻿using System.Collections.Generic;
 using System.IO;
+using DG.Tweening;
 using Newtonsoft.Json;
+using Spine.Unity;
 using UnityEngine;
 
 public class GameManager : Singleton<GameManager>
 {
-    private GameState _state = GameState.TOOL;
+    private GameState _state = GameState.LOBBY;
     public GameState State { get => _state; set => _state = value; }
 
     [SerializeField, Space(10)] PlotManager plotManager;
     [SerializeField] QueuePassengerController queueManager;
+
+    [SerializeField] SkeletonAnimation animStart;
 
     private GameObject selectedCar;
     public GameObject SelectedCar
@@ -110,11 +114,13 @@ public class GameManager : Singleton<GameManager>
         {
             case GameState.LOBBY:
                 {
+                    selectedCar = null;
                     break;
                 }
             case GameState.PREPARE:
                 {
                     OnPrepareState();
+                    selectedCar = null;
                     break;
                 }
             case GameState.PLAY:
@@ -238,9 +244,14 @@ public class GameManager : Singleton<GameManager>
         return false;
     }
 
-    public void Play()
+    public void StartPlay()
     {
-        _state = GameState.PLAY;
+        _state = GameState.PREPARE;
+        animStart.state.SetAnimation(0, "animation", false);
+        DOVirtual.DelayedCall(Config.TIME_PREPARE, () =>
+        {
+            _state = GameState.PLAY;
+        });
     }
 }
 

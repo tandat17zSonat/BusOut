@@ -37411,6 +37411,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   plotManager: {fileID: 1742640382}
   queueManager: {fileID: 907457029}
+  animStart: {fileID: 1735012209}
 --- !u!1001 &1472272432
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -37788,9 +37789,8 @@ GameObject:
   - component: {fileID: 1735012211}
   - component: {fileID: 1735012210}
   - component: {fileID: 1735012209}
-  - component: {fileID: 1735012212}
   m_Layer: 0
-  m_Name: SpineTut
+  m_Name: AnimStart
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -37899,21 +37899,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1735012207}
   m_Mesh: {fileID: 0}
---- !u!114 &1735012212
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1735012207}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a8de03a42308345498c11bd8c064dc87, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  skeletonAnimation: {fileID: 1735012209}
-  animationName: animation
-  loop: 0
 --- !u!1 &1742640377
 GameObject:
   m_ObjectHideFlags: 0
@@ -38508,9 +38493,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1410294008}
-        m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
-        m_MethodName: Play
+      - m_Target: {fileID: 2000798006}
+        m_TargetAssemblyTypeName: GameDataManager, Assembly-CSharp
+        m_MethodName: Replay
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

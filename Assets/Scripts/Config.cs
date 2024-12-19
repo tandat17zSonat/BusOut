@@ -1,5 +1,7 @@
 public static class Config
 {
+    public const float TIME_PREPARE = 2f;
+
     public const int WIDTH_QUEUE_PASSENGER = 12;
     public const float DISTANCE_PASSENGER = 0.6f;
 

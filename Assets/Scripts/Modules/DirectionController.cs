@@ -50,8 +50,8 @@ public class DirectionController : MonoBehaviour
             res.Add(pointLT);
         }
 
-        var yTop = pointLT.y;
-        res.Add(new Vector2(targetPosition.x, yTop));
+        
+        res.Add(new Vector2(targetPosition.x, GetYTop()));
 
         res.Add(targetPosition);
         return res;
@@ -61,5 +61,10 @@ public class DirectionController : MonoBehaviour
     {
         var pos = obj.transform.TransformPoint(point);
         return pos;
+    }
+
+    public float GetYTop()
+    {
+        return pointLT.y;
     }
 }
