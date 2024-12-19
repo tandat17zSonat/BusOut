@@ -3,9 +3,6 @@ using System.Collections.Generic;
 
 public class ToolManager : Singleton<ToolManager>
 {
-
-    [SerializeField] SharedDataSO SharedDataSO;
-
     private GameObject selectedCar;
     public GameObject SelectedCar
     {

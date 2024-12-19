@@ -30,6 +30,8 @@ public class DirectionController : MonoBehaviour
         var res = new List<Vector2>();
         if (collision == objBottom)
         {
+            var yBottom = pointLB.y;
+            res.Add(new Vector2(collisionPosition.x, yBottom));
             if (direction.x >= 0)
             {
                 res.Add(pointRB);
@@ -43,11 +45,19 @@ public class DirectionController : MonoBehaviour
         }
         else if (collision == objRight)
         {
+            var xRight = pointRB.x;
+            res.Add(new Vector2(xRight, collisionPosition.y));
             res.Add(pointRT);
         }
         else if (collision == objLeft)
         {
+            var xLeft = pointLB.x;
+            res.Add(new Vector2(xLeft, collisionPosition.y));
             res.Add(pointLT);
+        }
+        else if( collision == objTop)
+        {
+            res.Add(new Vector2(collisionPosition.x, GetYTop()));
         }
 
         

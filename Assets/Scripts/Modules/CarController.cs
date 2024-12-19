@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using DG.Tweening;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class CarController : MonoBehaviour
@@ -72,18 +73,25 @@ public class CarController : MonoBehaviour
 
             if (collision.gameObject.tag == "Car")
             {
-                _state = CarState.MOVE_BACK;
-
-                // Xe bị đâm rung lắc
+                
                 var otherCar = collision.gameObject;
                 var otherController = otherCar.GetComponent<CarController>();
+                // check có va chạm với xe khác không ?
+                if (otherController.State != CarState.PARKING 
+                    && otherController.State != CarState.CRASHING)
+                {
+                    return;
+                }
+
+                // Xe bị đâm rung lắc
                 if (otherController.State == CarState.PARKING)
                 {
                     otherController.Crash();
                 }
 
+                _state = CarState.MOVE_BACK;
                 // Báo targetSlot không chờ xe này nữa
-                Singleton<GameManager>.Instance.QueueSlot.Enqueue(targetSlot);
+                Singleton<GameplayManager>.Instance.QueueSlot.Enqueue(targetSlot);
                 targetSlot = null;
 
                 // Xe di chuyển về vị trí ban đầu

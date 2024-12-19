@@ -22,17 +22,17 @@ public class CarInteractionHandler : MonoBehaviour
         Vector3 clickPoint = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         this.delta = clickPoint - this.transform.position;
 
-        if (Singleton<GameManager>.Instance.State == GameState.TOOL)
+        if (Singleton<GameplayManager>.Instance.State == GameState.TOOL)
         {
             Singleton<ToolManager>.Instance.SelectedCar = gameObject;
         }
 
-        Singleton<GameManager>.Instance.SelectedCar = gameObject;
+        Singleton<GameplayManager>.Instance.SelectedCar = gameObject;
     }
 
     private void OnMouseDrag()
     {
-        if (Singleton<GameManager>.Instance.State == GameState.TOOL)
+        if (Singleton<GameplayManager>.Instance.State == GameState.TOOL)
         {
             if (lineRenderer.enabled)
             {
@@ -62,7 +62,7 @@ public class CarInteractionHandler : MonoBehaviour
 
     private void Update()
     {
-        if (Singleton<GameManager>.Instance.State == GameState.TOOL)
+        if (Singleton<GameplayManager>.Instance.State == GameState.TOOL)
         {
             UpdateOutline();
         }

@@ -13,8 +13,8 @@ GameObject:
   - component: {fileID: 8461016581424923630}
   - component: {fileID: 8654763212912997377}
   - component: {fileID: 5219847998112253780}
-  - component: {fileID: 8769850570511092680}
   - component: {fileID: 1288467782144546876}
+  - component: {fileID: 2752778792093130119}
   m_Layer: 0
   m_Name: Car
   m_TagString: Car
@@ -78,7 +78,7 @@ SpriteRenderer:
   m_SortingLayerID: -733754879
   m_SortingLayer: 1
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: fd1f2e486f9868446bca81730a0a2afe, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 4342baf0f86e85c4a835b69938ee6b25, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -152,7 +152,7 @@ PolygonCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 3.53, y: 3.59}
+    oldSize: {x: 2.98, y: 2.62}
     newSize: {x: 2.98, y: 2.62}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -160,10 +160,10 @@ PolygonCollider2D:
   m_AutoTiling: 0
   m_Points:
     m_Paths:
-    - - {x: 0.77591556, y: 1.8267013}
-      - {x: -1.5559323, y: -0.50426126}
-      - {x: -0.33485028, y: -1.7551057}
-      - {x: 2.0282898, y: 0.5885273}
+    - - {x: 0.25838056, y: 1.7303059}
+      - {x: -1.5109069, y: -0.044653744}
+      - {x: -0.1719688, y: -1.4026291}
+      - {x: 1.6153058, y: 0.37253538}
   m_UseDelaunayMesh: 0
 --- !u!120 &5219847998112253780
 LineRenderer:
@@ -269,24 +269,6 @@ LineRenderer:
   m_UseWorldSpace: 1
   m_Loop: 1
   m_ApplyActiveColorSpace: 1
---- !u!114 &8769850570511092680
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8382298084441418637}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3a2ab7f4a1d44094c94eb685e4f4de83, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  carScriptableObject: {fileID: 11400000, guid: ac3d6dda602f2c04195e4df77d6a2714, type: 2}
-  color: 8
-  size: 10
-  direction: 1
-  boudary: {fileID: 0}
-  backTime: 3
 --- !u!114 &1288467782144546876
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -299,3 +281,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 466c1dab39edbed4abd973cbce603465, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &2752778792093130119
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8382298084441418637}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e9685a2cb9a8fcb4085cabf756d894b6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  carScriptableObject: {fileID: 11400000, guid: ac3d6dda602f2c04195e4df77d6a2714, type: 2}
+  color: 0
+  size: 4
+  direction: 1

@@ -21,7 +21,7 @@ public class ScaleHandler : Singleton<ScaleHandler>
 
     private void Start()
     {
-        Scale = Singleton<GameManager>.Instance.Data.ScaleFactor;
+        Scale = Singleton<GameplayManager>.Instance.Data.ScaleFactor;
     }
 
     public void ScaleTo()
@@ -30,7 +30,7 @@ public class ScaleHandler : Singleton<ScaleHandler>
         if (double.TryParse(inputField.text, out sc))
         {
             Scale = (float)sc;
-            Singleton<GameManager>.Instance.Data.ScaleFactor = scale;
+            Singleton<GameplayManager>.Instance.Data.ScaleFactor = scale;
         }
         else
         {
@@ -40,9 +40,9 @@ public class ScaleHandler : Singleton<ScaleHandler>
 
     public void ScaleBy(float delta)
     {
-        float oldScale = Singleton<GameManager>.Instance.Data.ScaleFactor ;
+        float oldScale = Singleton<GameplayManager>.Instance.Data.ScaleFactor ;
 
         Scale = oldScale + delta;
-        Singleton<GameManager>.Instance.Data.ScaleFactor = Scale;
+        Singleton<GameplayManager>.Instance.Data.ScaleFactor = Scale;
     }
 }

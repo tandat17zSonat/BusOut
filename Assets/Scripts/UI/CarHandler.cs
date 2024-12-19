@@ -9,7 +9,7 @@ public class CarManager : Singleton<CarManager>
 
     public async void updateCar()
     {
-        if( Singleton<GameManager>.Instance.State == GameState.TOOL)
+        if( Singleton<GameplayManager>.Instance.State == GameState.TOOL)
         {
             // Delay để toggle thay đổi xong giá trị mới updateCar
             await Task.Delay(100);

@@ -19,8 +19,9 @@ public class PhysicHandler : MonoBehaviour
                 if (child.gameObject.activeSelf == true)
                 {
                     var seq = DOTween.Sequence();
-                    seq.Append(child.transform.DOScale(Vector3.one * 1.2f, 0.2f));
-                    seq.Append(child.transform.DOScale(Vector3.one, 0.2f));
+                    var oldScale = child.transform.localScale;
+                    seq.Append(child.transform.DOScale(oldScale * 1.3f, 0.2f));
+                    seq.Append(child.transform.DOScale(oldScale, 0.2f));
                 }
             }
         }
