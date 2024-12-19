@@ -103,4 +103,12 @@ public class SlotManager : Singleton<SlotManager>
         }
         return true;
     }
+
+    public void Reset()
+    {
+        foreach (var slot in slots)
+        {
+            slot.Free();
+        }
+    }
 }

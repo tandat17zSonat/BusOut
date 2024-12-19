@@ -13,7 +13,7 @@ public class GameplayManager : Singleton<GameplayManager>
     [SerializeField] QueuePassengerController queueManager;
 
     [SerializeField] SkeletonAnimation animStart;
-
+    [SerializeField] PanelController panelResult;
 
     private GameData data;
     public GameData Data
@@ -74,7 +74,7 @@ public class GameplayManager : Singleton<GameplayManager>
 
         plotManager.Reset();
         queueManager.Reset();
-
+        Singleton<SlotManager>.Instance.Reset();
         queueSlot = new Queue<SlotController>();
     }
 
@@ -177,7 +177,7 @@ public class GameplayManager : Singleton<GameplayManager>
 
     void OnResultState()
     {
-
+        panelResult.SetResult(_state == GameState.WIN);
     }
 
     bool CanCarLeave()
