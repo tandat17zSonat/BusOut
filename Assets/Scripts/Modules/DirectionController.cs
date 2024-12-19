@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public class DirectionController : MonoBehaviour
@@ -7,37 +8,58 @@ public class DirectionController : MonoBehaviour
     [SerializeField] GameObject objLeft;
     [SerializeField] GameObject objRight;
 
-    public Vector2 GetDirectionVector(Vector2 oldDirection, GameObject collision, Vector2 collisionPosition, Vector2 targetPosition)
+    Vector2 pointLT, pointRT, pointLB, pointRB;
+    private void Start()
     {
+        var boxColliderTop = objTop.GetComponent<BoxCollider2D>();
+        var center = boxColliderTop.offset;
+        var size = boxColliderTop.size;
+        pointLT = ConvertToWorldSpace(objTop, new Vector2(center.x - size.x/2, center.y));
+        pointRT = ConvertToWorldSpace(objTop, new Vector2(center.x + size.x/2, center.y));
+
+        var boxColliderBottom = objBottom.GetComponent<BoxCollider2D>();
+        center = boxColliderBottom.offset;
+        size = boxColliderBottom.size;
+        pointLB = ConvertToWorldSpace(objBottom, new Vector2(center.x - size.x/2, center.y));
+        pointRB = ConvertToWorldSpace(objBottom, new Vector2(center.x + size.x/2, center.y));
+
+    }
+
+    public List<Vector2> GetListPointToTarget(Vector2 direction, GameObject collision, Vector2 collisionPosition, Vector2 targetPosition)
+    {
+        var res = new List<Vector2>();
         if (collision == objBottom)
         {
-            if (oldDirection.x >= 0)
+            if (direction.x >= 0)
             {
-                return Vector2.right;
+                res.Add(pointRB);
+                res.Add(pointRT);
             }
             else
             {
-                return Vector2.left;
+                res.Add(pointLB);
+                res.Add(pointLT);
             }
+        }
+        else if (collision == objRight)
+        {
+            res.Add(pointRT);
+        }
+        else if (collision == objLeft)
+        {
+            res.Add(pointLT);
         }
 
-        else if (collision == objRight || collision == objLeft)
-        {
-            return Vector2.up;
-        }
+        var yTop = pointLT.y;
+        res.Add(new Vector2(targetPosition.x, yTop));
 
-        else if (collision == objTop)
-        {
-            if (collisionPosition.x <= targetPosition.x)
-            {
-                return Vector2.right;
-            }
-            else
-            {
-                return Vector2.left;
-            }
-        }
-        Debug.LogWarning("DirectionController: don't find direction vector");
-        return Vector2.zero;
+        res.Add(targetPosition);
+        return res;
+    }
+
+    private Vector2 ConvertToWorldSpace(GameObject obj, Vector2 point)
+    {
+        var pos = obj.transform.TransformPoint(point);
+        return pos;
     }
 }

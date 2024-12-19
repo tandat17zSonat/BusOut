@@ -1,7 +1,7 @@
-﻿using System;
+﻿using System.Collections.Generic;
 using DG.Tweening;
 using UnityEngine;
-using UnityEngine.UIElements;
+using UnityEngine.Diagnostics;
 
 public class CarController : MonoBehaviour
 {
@@ -10,7 +10,6 @@ public class CarController : MonoBehaviour
 
     CarState _state = CarState.PARKING;
 
-    Vector2 veclocity = Vector2.zero;
     Vector2 oldPosition;
     Vector2 target;
     SlotController targetSlot;
@@ -26,10 +25,9 @@ public class CarController : MonoBehaviour
     {
         switch (_state)
         {
-            case CarState.MOVE:
-            case CarState.MOVE_TO_SLOT:
+            case CarState.START_MOVE:
                 {
-                    var v = (Vector3)veclocity * Config.VEC_CAR_MOVE;
+                    var v = (Vector3)Data.GetDirectionVector() * Config.VEC_CAR_MOVE;
                     transform.position += v * Time.deltaTime;
                     break;
                 }
@@ -38,37 +36,44 @@ public class CarController : MonoBehaviour
 
     private void OnTriggerStay2D(Collider2D collision)
     {
-        if (_state == CarState.MOVE || _state == CarState.MOVE_TO_SLOT)
+        if (_state == CarState.START_MOVE)
         {
+            // Va chạm với object chỉ đường -> Xe có thể di tới điểm slot đón khách
             if (collision.gameObject.tag == "DirectionObject")
             {
                 _state = CarState.MOVE_TO_SLOT;
-                var cData = Data as CarData;
+
                 var obj = collision.gameObject;
-                veclocity = Singleton<PlotManager>.Instance.GetDirectionVector(cData.GetDirectionVector(), obj, transform.position, target);
-                veclocity.Normalize();
+                List<Vector2> points = Singleton<PlotManager>.Instance.GetListPointToTarget(Data, obj, target);
 
-                var delta = 0.75f;
-
-                // Di gan toi slot
-                if (obj.name == "T" &&  ((veclocity.x > 0 && obj.transform.position.x > target.x)
-                        || (veclocity.x < 0 && obj.transform.position.x < target.x)))
+                var sequence = DOTween.Sequence();
+                var prePoint = (Vector2) transform.position;
+                foreach (var point in points)
                 {
-                        _state = CarState.READY;
-                        transform.DOMove(target, 0.25f);
-
-                        carDataController.DisplayChangeDirection(CarDirection.parking);
-                    
+                    var time = Vector2.Distance(point, prePoint) / Config.VEC_CAR_MOVE;
+                    var delta_direction = point - prePoint;
+                    var currentDirection = Util.GetCarDirectionByVector(delta_direction);
+                    sequence.Append(
+                        transform.DOMove(point, time).OnStart(() =>
+                        {
+                            // Chỉnh lại hướng đi cho xe
+                            carDataController.DisplayChangeDirection(currentDirection);
+                        })
+                        );
+                    prePoint = point;
                 }
-                else
+                sequence.OnComplete(() =>
                 {
-                    var direction = Util.GetCarDirectionByVector(veclocity);
-                    carDataController.DisplayChangeDirection(direction);
-                }
+                    carDataController.DisplayChangeDirection(CarDirection.parking);
+                    _state = CarState.READY;
+                });
             }
 
-            if (collision.gameObject.tag == "Car" && _state != CarState.MOVE_TO_SLOT)
+            if (collision.gameObject.tag == "Car")
             {
+                _state = CarState.MOVE_BACK;
+
+                // Xe bị đâm rung lắc
                 var otherCar = collision.gameObject;
                 var otherController = otherCar.GetComponent<CarController>();
                 if (otherController.State == CarState.PARKING)
@@ -76,11 +81,18 @@ public class CarController : MonoBehaviour
                     otherController.Crash();
                 }
 
+                // Báo targetSlot không chờ xe này nữa
                 Singleton<GameManager>.Instance.QueueSlot.Enqueue(targetSlot);
                 targetSlot = null;
 
-                transform.DOMove(oldPosition, 0.5f).SetEase(Ease.OutBack);
-                _state = CarState.PARKING;
+                // Xe di chuyển về vị trí ban đầu
+                transform.DOMove(oldPosition, Config.TIME_CAR_MOVE_BACK)
+                    .SetEase(Ease.OutBack)
+                    .OnComplete(() =>
+                    {
+                        _state = CarState.PARKING;
+                    });
+
             }
         }
     }
@@ -90,11 +102,10 @@ public class CarController : MonoBehaviour
         var cData = Data as CarData;
 
         oldPosition = transform.position;
-        veclocity = cData.GetDirectionVector();
         targetSlot = slot;
         target = slot.transform.position;
 
-        _state = CarState.MOVE;
+        _state = CarState.START_MOVE;
 
     }
 
@@ -104,17 +115,11 @@ public class CarController : MonoBehaviour
         if (_state != CarState.CRASHING)
         {
             _state = CarState.CRASHING;
-            transform.DOPunchPosition(new Vector3(0.5f, 0, 0), 1).OnComplete(() =>
+            transform.DOPunchPosition(new Vector3(0.5f, 0, 0), Config.TIME_CAR_SHAKE).OnComplete(() =>
             {
                 _state = CarState.PARKING;
             });
         }
-    }
-
-    public bool CanMoveToSlot()
-    {
-
-        return true;
     }
     #region: Xe rời đi
     public void Leave()
@@ -185,8 +190,9 @@ public class CarController : MonoBehaviour
 public enum CarState
 {
     PARKING,
-    MOVE,
+    START_MOVE,
     MOVE_TO_SLOT,
+    MOVE_BACK,
     CRASHING,
     READY,
     LEAVE

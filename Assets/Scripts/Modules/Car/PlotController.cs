@@ -94,8 +94,8 @@ public class PlotManager : Singleton<PlotManager>
         RemoveAll();
     }
 
-    public Vector2 GetDirectionVector(Vector2 oldDirection, GameObject collision, Vector2 collisionPosition, Vector2 targetPosition)
+    public List<Vector2> GetListPointToTarget(CarData carData, GameObject collision, Vector2 targetPosition)
     {
-        return directionController.GetDirectionVector(oldDirection, collision, collisionPosition, targetPosition);
+        return directionController.GetListPointToTarget(carData.GetDirectionVector(), collision, carData.Position, targetPosition);
     }
 }

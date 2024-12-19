@@ -23,7 +23,7 @@ public class ColorScriptableObject : ScriptableObject
         {
             foreach (Sprite sp in this.sprites)
             {
-                if (sp.name == name)
+                if (sp.name.ToLower() == name.ToLower())
                 {
                     this.spritesDict[name] = sp;
                     return sp;

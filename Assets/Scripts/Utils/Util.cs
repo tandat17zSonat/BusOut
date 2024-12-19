@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class Util
@@ -38,16 +39,76 @@ public class Util
         return values.Length;
     }
 
-    public static  CarDirection GetCarDirectionByVector(Vector3 normal)
+    public static  CarDirection GetCarDirectionByVector(Vector2 normal)
     {
-        if (normal.x < 0 && normal.y < 0) return CarDirection.LB;
-        if (normal.x < 0 && normal.y == 0) return CarDirection.L;
-        if (normal.x < 0 && normal.y > 0) return CarDirection.LT;
-        if (normal.x == 0 && normal.y > 0) return CarDirection.T;
-        if (normal.x > 0 && normal.y > 0) return CarDirection.RT;
-        if (normal.x > 0 && normal.y == 0) return CarDirection.R;
-        if (normal.x > 0 && normal.y < 0) return CarDirection.RB;
-        if (normal.x == 0 && normal.y < 0) return CarDirection.B;
-        return CarDirection.parking;
+        CarDirection res = CarDirection.parking;
+        float max = -1.0f;
+        foreach (CarDirection direction in Enum.GetValues(typeof(CarDirection)))
+        {
+            var v = GetDirectionVector(direction);
+            var dotValue = Vector2.Dot(normal, v);
+            if ( max < dotValue)
+            {
+                max = dotValue;
+                res = direction;
+            }
+        }
+        return res;
+    }
+
+    public static Vector2 GetDirectionVector(CarDirection carDirection)
+    {
+        Vector2 direction = Vector2.zero;
+        switch (carDirection)
+        {
+            case CarDirection.LB:
+                {
+                    direction = Vector2.left + Vector2.down;
+                    break;
+                }
+
+            case CarDirection.L:
+                {
+                    direction = Vector2.left;
+                    break;
+                }
+
+            case CarDirection.LT:
+                {
+                    direction = Vector2.left + Vector2.up;
+                    break;
+                }
+
+            case CarDirection.T:
+                {
+                    direction = Vector2.up;
+                    break;
+                }
+
+            case CarDirection.RT:
+                {
+                    direction = Vector2.right + Vector2.up;
+                    break;
+                }
+
+            case CarDirection.R:
+                {
+                    direction = Vector2.right;
+                    break;
+                }
+
+            case CarDirection.RB:
+                {
+                    direction = Vector2.right + Vector2.down;
+                    break;
+                }
+
+            case CarDirection.B:
+                {
+                    direction = Vector2.down;
+                    break;
+                }
+        }
+        return direction.normalized;
     }
 }
